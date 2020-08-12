@@ -36,7 +36,7 @@ class Cashgrants extends Admin_Controller
 			$buttons = '';
 			if(in_array('viewOrder', $this->permission)) {
 				//.base_url('orders/printDiv/'.$value['id']).
-				$buttons.= '<a target="__blank" href="#" class="btn btn-default"><i class="fa fa-print"></i></a>';
+				$buttons.= '<a target="__blank" href="'.base_url('cashgrants/printDiv/'.$value['id']).'" class="btn btn-default"><i class="fa fa-print"></i></a>';
 			}
 
 			if(in_array('updateOrder', $this->permission)) {
@@ -211,140 +211,98 @@ class Cashgrants extends Admin_Controller
         }
         
 		if($id) {
-			$order_data = $this->model_orders->getOrdersData($id);
-			$orders_items = $this->model_orders->getOrdersItemData($id);
-			$company_info = $this->model_company->getCompanyData(1);
-
-			$order_date = date('d/m/Y', $order_data['date_time']);
-			$paid_status = ($order_data['paid_status'] == 1) ? "Paid" : "Unpaid";
-
-			$html = '<!-- Main content -->
+			$cashgrant_master=$this->db->query(" SELECT * FROM cg_master WHERE id = $id")->result();
+			$cashgrant_data=$this->db->query("
+									SELECT
+										cg_details.no_of_child,
+										cg_details.no_of_care,
+										cg_details.amount,
+										camp_info.camp_id,
+										camp_info.upailla,
+										camp_info.carea
+									FROM
+										cg_details
+									LEFT JOIN camp_info ON camp_info.id = cg_details.camp_id
+									WHERE
+										cg_details.cg_id =	$id
+							")->result();
+							
+							echo '<pre>';
+							print_r($cashgrant_master);
+							echo '</pre>';
+							
+			?>
 			<!DOCTYPE html>
-			<html>
+			<html lang="en">
 			<head>
+			  <title>Cash Grant Report</title>
 			  <meta charset="utf-8">
-			  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-			  <title>AdminLTE 2 | Invoice</title>
-			  <!-- Tell the browser to be responsive to screen width -->
-			  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-			  <!-- Bootstrap 3.3.7 -->
-			  <link rel="stylesheet" href="'.base_url('assets/bower_components/bootstrap/dist/css/bootstrap.min.css').'">
-			  <!-- Font Awesome -->
-			  <link rel="stylesheet" href="'.base_url('assets/bower_components/font-awesome/css/font-awesome.min.css').'">
-			  <link rel="stylesheet" href="'.base_url('assets/dist/css/AdminLTE.min.css').'">
+			  <meta name="viewport" content="width=device-width, initial-scale=1">
+			  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+			  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+			  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 			</head>
-			<body onload="window.print();">
-			
-			<div class="wrapper">
-			  <section class="invoice">
-			    <!-- title row -->
-			    <div class="row">
-			      <div class="col-xs-12">
-			        <h2 class="page-header">
-			          '.$company_info['company_name'].'
-			          <small class="pull-right">Date: '.$order_date.'</small>
-			        </h2>
-			      </div>
-			      <!-- /.col -->
-			    </div>
-			    <!-- info row -->
-			    <div class="row invoice-info">
-			      
-			      <div class="col-sm-4 invoice-col">
-			        
-			        <b>Bill ID:</b> '.$order_data['bill_no'].'<br>
-			        <b>Name:</b> '.$order_data['customer_name'].'<br>
-			        <b>Address:</b> '.$order_data['customer_address'].' <br />
-			        <b>Phone:</b> '.$order_data['customer_phone'].'
-			      </div>
-			      <!-- /.col -->
-			    </div>
-			    <!-- /.row -->
-
-			    <!-- Table row -->
-			    <div class="row">
-			      <div class="col-xs-12 table-responsive">
-			        <table class="table table-striped">
-			          <thead>
-			          <tr>
-			            <th>Product name</th>
-			            <th>Price</th>
-			            <th>Qty</th>
-			            <th>Amount</th>
-			          </tr>
-			          </thead>
-			          <tbody>'; 
-
-			          foreach ($orders_items as $k => $v) {
-
-			          	$product_data = $this->model_products->getProductData($v['product_id']); 
-			          	
-			          	$html .= '<tr>
-				            <td>'.$product_data['name'].'</td>
-				            <td>'.$v['rate'].'</td>
-				            <td>'.$v['qty'].'</td>
-				            <td>'.$v['amount'].'</td>
-			          	</tr>';
-			          }
-			          
-			          $html .= '</tbody>
-			        </table>
-			      </div>
-			      <!-- /.col -->
-			    </div>
-			    <!-- /.row -->
-
-			    <div class="row">
-			      
-			      <div class="col-xs-6 pull pull-right">
-
-			        <div class="table-responsive">
-			          <table class="table">
-			            <tr>
-			              <th style="width:50%">Gross Amount:</th>
-			              <td>'.$order_data['gross_amount'].'</td>
-			            </tr>';
-
-			            if($order_data['service_charge'] > 0) {
-			            	$html .= '<tr>
-				              <th>Service Charge ('.$order_data['service_charge_rate'].'%)</th>
-				              <td>'.$order_data['service_charge'].'</td>
-				            </tr>';
-			            }
-
-			            if($order_data['vat_charge'] > 0) {
-			            	$html .= '<tr>
-				              <th>Vat Charge ('.$order_data['vat_charge_rate'].'%)</th>
-				              <td>'.$order_data['vat_charge'].'</td>
-				            </tr>';
-			            }
-			            
-			            
-			            $html .=' <tr>
-			              <th>Discount:</th>
-			              <td>'.$order_data['discount'].'</td>
-			            </tr>
-			            <tr>
-			              <th>Net Amount:</th>
-			              <td>'.$order_data['net_amount'].'</td>
-			            </tr>
-			            <tr>
-			              <th>Paid Status:</th>
-			              <td>'.$paid_status.'</td>
-			            </tr>
-			          </table>
-			        </div>
-			      </div>
-			      <!-- /.col -->
-			    </div>
-			    <!-- /.row -->
-			  </section>
-			  <!-- /.content -->
+			<body>
+			<div class="container center">
+			  <div class="row">
+				<table class="table table-border">
+					<tr>
+						<td><img src="<?php echo base_url();?>/assets/images/cashgrants/image001.jpg"></td>
+						<td>
+							<p>
+								গণপ্রজাতন্ত্রীবাংলাদেশ সরকার<br>
+								সমাজসেবা অধিদপ্তর<br>
+								রোহিঙ্গা শিশুসুরক্ষা কার্যক্রম<br>
+								সোনারপাড়া, উখিয়া কক্সবাজার
+							</p>  
+						</td>
+						<td><img src="<?php echo base_url();?>/assets/images/cashgrants/image002.jpg"></td> 
+						
+					</tr>
+				</table>
+				
+				<!--table class="table table-border">
+					<thead>
+						<tr>
+							<th>ক্রমিক নং</th>
+							<th>ক্যাম্প নং</td>
+							<th>উপকারভোগী  শিশুর সংখ্যা</th> 
+							<th>ফোস্টার  কেয়ারগিবার সংখ্যা</th> 
+							<th>নগদ সহায়তার পরিমান</th>  
+							<th>মাসের সংখ্যা</th> 
+							<th>নগদ সহায়তার বিতরনের জন্য অর্থ সহায়তা</th>   
+						</tr> 
+					</thead>
+					<tbody>
+						<tr>
+							<td>ক্রমিক নং</td>
+							<td>ক্যাম্প নং</td>
+							<td>উপকারভোগী  শিশুর সংখ্যা</td> 
+							<td>ফোস্টার  কেয়ারগিবার সংখ্যা</td> 
+							<td>নগদ সহায়তার পরিমান</td>  
+							<td>মাসের সংখ্যা</td> 
+							<td>নগদ সহায়তার বিতরনের জন্য অর্থ সহায়তা</td>   
+						</tr>
+					</tbody>
+				</table-->
+				<table class="table table-border">
+					
+					<thead>
+						<tr>
+							<td>
+						</tr>
+					</thead>
+					<thead>
+						<tr></tr>
+					</thead>
+					<tbody>
+						
+					</tbody>
+				</table>
 			</div>
-		</body>
-	</html>';
-
-			  echo $html;
+			</body>
+			</html>
+			<?php 
 		}
 	}
 
