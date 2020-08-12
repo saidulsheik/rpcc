@@ -97,7 +97,7 @@
 								<select class="form-control select_group product" data-row-id="row_1" id="camp_id_1" name="camp_id[]" style="width:100%;" onchange="getval(1);" required>
 									<option value="">Select a Camp</option>
 									<?php foreach ($camps as $k => $v): ?>
-									<option value="<?php echo $v['id'] ?>"><?php echo $v['carea'] ?></option>
+									<option value="<?php echo $v['id'] ?>"><?php echo $v['carea'] ?>(<?php echo $v['camp_id'] ?>)</option>
 									<?php endforeach ?>
 								</select>
 							</td>
@@ -176,7 +176,7 @@
                     '<select class="form-control select_group product" data-row-id="'+row_id+'" id="camp_id_'+row_id+'" name="camp_id[]" onchange="getval('+row_id+');" style="width:100%;" required>'+
                         '<option value="">Select Camp</option>';
                         $.each(response, function(index, value) {
-                          html += '<option value="'+value.id+'">'+value.carea+'</option>';             
+                          html += '<option value="'+value.id+'">'+value.carea+'('+value.camp_id+')</option>';             
                         });
                       html += '</select>'+
                     '</td>'+ 
