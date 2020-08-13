@@ -7,7 +7,7 @@ class Model_cashgrant extends CI_Model
 		parent::__construct();
 	}
 
-	/* get the orders data */
+	/* get cash grant master data */
 	public function getCashGrantData($id = null){
 		if($id) {
 			$sql = "SELECT * FROM cg_master WHERE id = ?";
@@ -20,7 +20,7 @@ class Model_cashgrant extends CI_Model
 		return $query->result_array();
 	}
 
-	// get the orders item data
+	/* Get cash grant details data */
 	public function getcgDetailsData($cg_id = null){
 		if(!$cg_id) {
 			return false;
@@ -29,9 +29,8 @@ class Model_cashgrant extends CI_Model
 		$query = $this->db->query($sql, array($cg_id));
 		return $query->result_array();
 	}
-
-	public function create()
-	{
+	/* Create new cash grant */
+	public function create(){
 		$this->db->trans_begin();
 		$user_id = $this->session->userdata('id');
     	$data = array(
@@ -66,22 +65,10 @@ class Model_cashgrant extends CI_Model
 		return ($cg_id) ? $cg_id : false;
 	}
 
-	public function countOrderItem($order_id)
-	{
-		if($order_id) {
-			$sql = "SELECT * FROM orders_item WHERE order_id = ?";
-			$query = $this->db->query($sql, array($order_id));
-			return $query->num_rows();
-		}
-	}
 
-	public function update($id)
-	{
+	/* update cash grant */
+	public function update($id){
 		if($id) {
-			/* echo '<pre>';
-			print_r($_POST);
-			echo '</pre>';
-			exit;   */ 
 			$this->db->trans_begin();
 			$user_id = $this->session->userdata('id');
 			$data = array(
@@ -94,11 +81,8 @@ class Model_cashgrant extends CI_Model
 
 			$this->db->where('id', $id);
 			$update = $this->db->update('cg_master', $data);
-			
 			$this->db->where('cg_id', $id);
 			$this->db->delete('cg_details');
-
-			// now decrease the product qty
 			$count_camp_id = count($this->input->post('camp_id'));
 			for($x = 0; $x < $count_camp_id; $x++) {
 				$details = array(
@@ -111,36 +95,14 @@ class Model_cashgrant extends CI_Model
 
 				$this->db->insert('cg_details', $details);
 			}
-
 			if ($this->db->trans_status() === FALSE){
 				$this->db->trans_rollback();
 			}else{
 				$this->db->trans_commit();
 			}
-
 			return true;
 		}
 	}
 
-
-
-	public function remove($id)
-	{
-		if($id) {
-			$this->db->where('id', $id);
-			$delete = $this->db->delete('orders');
-
-			$this->db->where('order_id', $id);
-			$delete_item = $this->db->delete('orders_item');
-			return ($delete == true && $delete_item) ? true : false;
-		}
-	}
-
-	public function countTotalPaidOrders()
-	{
-		$sql = "SELECT * FROM orders WHERE paid_status = ?";
-		$query = $this->db->query($sql, array(1));
-		return $query->num_rows();
-	}
 
 }
