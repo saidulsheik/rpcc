@@ -227,9 +227,9 @@ class Cashgrants extends Admin_Controller
 										cg_details.cg_id =	$id
 							")->result();
 							
-							echo '<pre>';
-							print_r($cashgrant_master);
-							echo '</pre>';
+							/* echo '<pre>';
+							print_r($cashgrant_data);
+							echo '</pre>'; */
 							
 			?>
 			<!DOCTYPE html>
@@ -239,10 +239,13 @@ class Cashgrants extends Admin_Controller
 			  <meta charset="utf-8">
 			  <meta name="viewport" content="width=device-width, initial-scale=1">
 			  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+			  
 			  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 			  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 			</head>
 			<body>
+			<br>
+			<br>
 			<div class="container center">
 			  <div class="row">
 				<table class="table table-border">
@@ -289,14 +292,34 @@ class Cashgrants extends Admin_Controller
 					
 					<thead>
 						<tr>
-							<td>
+							<th>Month Name : <?php echo $cashgrant_master[0]->month_name;?></th>
+							<th>Description : <?php echo $cashgrant_master[0]->cg_desc;?></th>
+							<th>Total Amount : <?php echo $cashgrant_master[0]->total_amout;?></th>
+							<th>Created Date : <?php echo $cashgrant_master[0]->created_at;?></th>
+							<th colspan="2"></th>
 						</tr>
 					</thead>
 					<thead>
-						<tr></tr>
+						<tr>
+							<th>Upzilla Name</th>
+							<th>Area Name</th>
+							<th>Camp ID</th>
+							<th>No. of Child</th>
+							<th>No. of Care</th>
+							<th>Amount</th>
+						</tr>
 					</thead>
 					<tbody>
-						
+						<?php foreach($cashgrant_data as $cashgrant_value): ?>
+							<tr>
+								<td><?php echo $cashgrant_value->upailla; ?></td>
+								<td><?php echo $cashgrant_value->carea; ?></td>
+								<td><?php echo $cashgrant_value->camp_id; ?></td>	
+								<td><?php echo $cashgrant_value->no_of_child; ?></td>	
+								<td><?php echo $cashgrant_value->no_of_care; ?></td>	
+								<td><?php echo $cashgrant_value->amount; ?></td>	
+							</tr>
+						<?php	endforeach; ?>
 					</tbody>
 				</table>
 			</div>
