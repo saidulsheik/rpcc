@@ -73,47 +73,13 @@
                         <td><input type="checkbox" name="permission[]" id="permission" value="viewGroup" class="minimal"></td>
                         <td><input type="checkbox" name="permission[]" id="permission" value="deleteGroup" class="minimal"></td>
                       </tr>
+                     
                       <tr>
-                        <td>Brands</td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="createBrand" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="updateBrand" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="viewBrand" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="deleteBrand" class="minimal"></td>
-                      </tr>
-                      <tr>
-                        <td>Category</td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="createCategory" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="updateCategory" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="viewCategory" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="deleteCategory" class="minimal"></td>
-                      </tr>
-                      <tr>
-                        <td>Stores</td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="createStore" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="updateStore" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="viewStore" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="deleteStore" class="minimal"></td>
-                      </tr>
-                      <tr>
-                        <td>Attributes</td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="createAttribute" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="updateAttribute" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="viewAttribute" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="deleteAttribute" class="minimal"></td>
-                      </tr>
-                      <tr>
-                        <td>Products</td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="createProduct" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="updateProduct" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="viewProduct" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="deleteProduct" class="minimal"></td>
-                      </tr>
-                      <tr>
-                        <td>Orders</td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="createOrder" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="updateOrder" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="viewOrder" class="minimal"></td>
-                        <td><input type="checkbox" name="permission[]" id="permission" value="deleteOrder" class="minimal"></td>
+                        <td>Cash Grant</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="createCashgrant" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="updateCashgrant" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="viewCashgrant" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="deleteCashgrant" class="minimal"></td>
                       </tr>
                       <tr>
                         <td>Reports</td>

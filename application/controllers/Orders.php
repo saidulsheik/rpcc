@@ -17,7 +17,7 @@ class Orders extends Admin_Controller
 	* It only redirects to the manage order page
 	*/
 	public function index(){
-		if(!in_array('viewOrder', $this->permission)) {
+		if(!in_array('viewCashgrant', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
 		$this->data['page_title'] = 'Manage Orders';
@@ -45,15 +45,15 @@ class Orders extends Admin_Controller
 			// button
 			$buttons = '';
 
-			if(in_array('viewOrder', $this->permission)) {
+			if(in_array('viewCashgrant', $this->permission)) {
 				$buttons .= '<a target="__blank" href="'.base_url('orders/printDiv/'.$value['id']).'" class="btn btn-default"><i class="fa fa-print"></i></a>';
 			}
 
-			if(in_array('updateOrder', $this->permission)) {
+			if(in_array('updateCashgrant', $this->permission)) {
 				$buttons .= ' <a href="'.base_url('orders/update/'.$value['id']).'" class="btn btn-default"><i class="fa fa-pencil"></i></a>';
 			}
 
-			if(in_array('deleteOrder', $this->permission)) {
+			if(in_array('deleteCashgrant', $this->permission)) {
 				$buttons .= ' <button type="button" class="btn btn-default" onclick="removeFunc('.$value['id'].')" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i></button>';
 			}
 
@@ -86,7 +86,7 @@ class Orders extends Admin_Controller
 	*/
 	public function create()
 	{
-		if(!in_array('createOrder', $this->permission)) {
+		if(!in_array('createCashgrant', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
 
@@ -153,7 +153,7 @@ class Orders extends Admin_Controller
 	*/
 	public function update($id)
 	{
-		if(!in_array('updateOrder', $this->permission)) {
+		if(!in_array('updateCashgrant', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
 
@@ -210,7 +210,7 @@ class Orders extends Admin_Controller
 	*/
 	public function remove()
 	{
-		if(!in_array('deleteOrder', $this->permission)) {
+		if(!in_array('deleteCashgrant', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
 
@@ -242,7 +242,7 @@ class Orders extends Admin_Controller
 	*/
 	public function printDiv($id)
 	{
-		if(!in_array('viewOrder', $this->permission)) {
+		if(!in_array('viewCashgrant', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
         

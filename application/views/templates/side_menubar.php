@@ -53,7 +53,7 @@
             </li>
           <?php endif; ?>
 
-          <?php /* if(in_array('createOrder', $user_permission) || in_array('updateOrder', $user_permission) || in_array('viewOrder', $user_permission) || in_array('deleteOrder', $user_permission)): ?>
+          <?php /* if(in_array('createCashgrant', $user_permission) || in_array('updateCashgrant', $user_permission) || in_array('viewCashgrant', $user_permission) || in_array('deleteCashgrant', $user_permission)): ?>
             <li class="treeview" id="mainOrdersNav">
               <a href="#">
                 <i class="fa fa-dollar"></i>
@@ -63,17 +63,17 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <?php if(in_array('createOrder', $user_permission)): ?>
+                <?php if(in_array('createCashgrant', $user_permission)): ?>
                   <li id="addOrderNav"><a href="<?php echo base_url('orders/create') ?>"><i class="fa fa-circle-o"></i> Add Order</a></li>
                 <?php endif; ?>
-                <?php if(in_array('updateOrder', $user_permission) || in_array('viewOrder', $user_permission) || in_array('deleteOrder', $user_permission)): ?>
+                <?php if(in_array('updateCashgrant', $user_permission) || in_array('viewCashgrant', $user_permission) || in_array('deleteCashgrant', $user_permission)): ?>
                 <li id="manageOrdersNav"><a href="<?php echo base_url('orders') ?>"><i class="fa fa-circle-o"></i> Manage Orders</a></li>
                 <?php endif; ?>
               </ul>
             </li>
           <?php endif; */?>
 		  <!-- Cash Grant Start-->
-		   <?php if(in_array('createOrder', $user_permission) || in_array('updateOrder', $user_permission) || in_array('viewOrder', $user_permission) || in_array('deleteOrder', $user_permission)): ?>
+		   <?php if(in_array('createCashgrant', $user_permission) || in_array('updateCashgrant', $user_permission) || in_array('viewCashgrant', $user_permission) || in_array('deleteCashgrant', $user_permission)): ?>
             <li class="treeview" id="mainOrdersNav">
               <a href="#">
                 <i class="fa fa-dollar"></i>
@@ -83,10 +83,10 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <?php if(in_array('createOrder', $user_permission)): ?>
+                <?php if(in_array('createCashgrant', $user_permission)): ?>
                   <li id="addOrderNav"><a href="<?php echo base_url('Cashgrants/create') ?>"><i class="fa fa-circle-o"></i> Add Cash Grant</a></li>
                 <?php endif; ?>
-                <?php if(in_array('updateOrder', $user_permission) || in_array('viewOrder', $user_permission) || in_array('deleteOrder', $user_permission)): ?>
+                <?php if(in_array('updateCashgrant', $user_permission) || in_array('viewCashgrant', $user_permission) || in_array('deleteCashgrant', $user_permission)): ?>
                 <li id="manageOrdersNav"><a href="<?php echo base_url('cashgrants') ?>"><i class="fa fa-circle-o"></i> Manage Cash Grant</a></li>
                 <?php endif; ?>
               </ul>
