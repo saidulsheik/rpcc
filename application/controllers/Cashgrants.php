@@ -241,7 +241,7 @@ class Cashgrants extends Admin_Controller
 					</tbody>
 				</table-->
 				<table class="table table-border">
-					
+					<?php if(!empty($cashgrant_master)): ?>
 					<thead>
 						<tr>
 							<th>Month Name : <?php echo $cashgrant_master[0]->month_name;?></th>
@@ -251,6 +251,7 @@ class Cashgrants extends Admin_Controller
 							<th colspan="2"></th>
 						</tr>
 					</thead>
+					<?php endif; ?>
 					<thead>
 						<tr>
 							<th>Upzilla Name</th>
@@ -262,16 +263,28 @@ class Cashgrants extends Admin_Controller
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach($cashgrant_data as $cashgrant_value): ?>
-							<tr>
-								<td><?php echo $cashgrant_value->upailla; ?></td>
-								<td><?php echo $cashgrant_value->carea; ?></td>
-								<td><?php echo $cashgrant_value->camp_id; ?></td>	
-								<td><?php echo $cashgrant_value->no_of_child; ?></td>	
-								<td><?php echo $cashgrant_value->no_of_care; ?></td>	
-								<td><?php echo $cashgrant_value->amount; ?></td>	
-							</tr>
-						<?php	endforeach; ?>
+						<?php 
+							if(!empty($cashgrant_data)):
+								foreach($cashgrant_data as $cashgrant_value): 
+									//print_r($cashgrant_value);
+									?>
+										<tr>
+											<td><?php echo $cashgrant_value->upailla; ?></td>
+											<td><?php echo $cashgrant_value->carea; ?></td>
+											<td><?php echo $cashgrant_value->camp_id; ?></td>	
+											<td><?php echo $cashgrant_value->no_of_child; ?></td>	
+											<td><?php echo $cashgrant_value->no_of_care; ?></td>	
+											<td><?php echo $cashgrant_value->amount; ?></td>	
+										</tr>
+									<?php	
+								endforeach; 
+							else:
+
+						?>
+						<tr>
+							<th colspan="6" >No Data Found</th>
+						</tr>
+						<?php endif; ?>
 					</tbody>
 				</table>
 			</div>
