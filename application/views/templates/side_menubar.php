@@ -53,25 +53,31 @@
             </li>
           <?php endif; ?>
 
-          <?php /* if(in_array('createCashgrant', $user_permission) || in_array('updateCashgrant', $user_permission) || in_array('viewCashgrant', $user_permission) || in_array('deleteCashgrant', $user_permission)): ?>
-            <li class="treeview" id="mainOrdersNav">
+          <!-- Budget Start-->
+		      <?php if(in_array('createBudget', $user_permission) || in_array('updateBudget', $user_permission) || in_array('viewBudget', $user_permission) || in_array('deleteBudget', $user_permission)): ?>
+            <li class="treeview" id="mainBudgetsNav">
               <a href="#">
                 <i class="fa fa-dollar"></i>
-                <span>Orders</span>
+                <span>Budget</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
-                <?php if(in_array('createCashgrant', $user_permission)): ?>
-                  <li id="addOrderNav"><a href="<?php echo base_url('orders/create') ?>"><i class="fa fa-circle-o"></i> Add Order</a></li>
+                <?php if(in_array('createBudget', $user_permission)): ?>
+                  <li id="addBudgetNav"><a href="<?php echo base_url('Budgets/create') ?>"><i class="fa fa-circle-o"></i> Add Budget</a></li>
                 <?php endif; ?>
-                <?php if(in_array('updateCashgrant', $user_permission) || in_array('viewCashgrant', $user_permission) || in_array('deleteCashgrant', $user_permission)): ?>
-                <li id="manageOrdersNav"><a href="<?php echo base_url('orders') ?>"><i class="fa fa-circle-o"></i> Manage Orders</a></li>
+                <?php if(in_array('updateBudget', $user_permission) || in_array('viewBudget', $user_permission) || in_array('deleteBudget', $user_permission)): ?>
+                <li id="manageBudgetsNav"><a href="<?php echo base_url('Budgets') ?>"><i class="fa fa-circle-o"></i> Manage Budget</a></li>
                 <?php endif; ?>
               </ul>
             </li>
-          <?php endif; */?>
+          <?php endif; ?>
+		   <!-- Budget End-->
+
+
+
+
 		  <!-- Cash Grant Start-->
 		   <?php if(in_array('createCashgrant', $user_permission) || in_array('updateCashgrant', $user_permission) || in_array('viewCashgrant', $user_permission) || in_array('deleteCashgrant', $user_permission)): ?>
             <li class="treeview" id="mainOrdersNav">

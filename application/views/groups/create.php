@@ -81,6 +81,16 @@
                         <td><input type="checkbox" name="permission[]" id="permission" value="viewCashgrant" class="minimal"></td>
                         <td><input type="checkbox" name="permission[]" id="permission" value="deleteCashgrant" class="minimal"></td>
                       </tr>
+
+                      <tr>
+                        <td>Budget</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="createBudget" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="updateBudget" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="viewBudget" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="deleteBudget" class="minimal"></td>
+                      </tr>
+
+
                       <tr>
                         <td>Reports</td>
                         <td> - </td>

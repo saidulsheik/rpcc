@@ -2,58 +2,58 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Cashgrants extends Admin_Controller 
+class Budgets extends Admin_Controller 
 {
 	public function __construct(){
 		parent::__construct();
 		$this->not_logged_in();
-		$this->data['page_title'] = 'Add Cash Grants';
-		$this->load->model('model_cashgrant');
-		$this->load->model('model_camps');
-		$this->load->model('model_company');
+		$this->data['page_title'] = 'Budgets';
+		$this->load->model('model_budget');
 	}
 
 	/* 
-	* It only redirects to the manage cashgrants page
+	* It only redirects to the manage budgets page
 	*/
 	public function index(){
-		if(!in_array('viewCashgrant', $this->permission)) {
+		if(!in_array('viewBudget', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
-		$this->data['page_title'] = 'Manage Cash Grants';
-		$this->render_template('cashgrant/index', $this->data);		
+		$this->data['page_title'] = 'Manage Budget';
+		$this->render_template('budget/index', $this->data);		
 	}
 
 	/*
-	* Fetch cash grant data
+	* Fetch Budget  data
 	* this function is called from the datatable ajax function
 	*/
-	public function fetchCashGrantData(){
+	public function fetchbudgetData(){
 		$result = array('data' => array());
-		$data = $this->model_cashgrant->getCashGrantData();
+        $data = $this->model_budget->getbudgetData();
+        $i=0;
 		foreach ($data as $key => $value) {
+            $i++;
 			$buttons = '';
-			if(in_array('viewCashgrant', $this->permission)) {
+			if(in_array('viewBudget', $this->permission)) {
 				//.base_url('orders/printDiv/'.$value['id']).
-				$buttons.= '<a target="__blank" href="'.base_url('cashgrants/printDiv/'.$value['id']).'" class="btn btn-default"><i class="fa fa-print"></i></a>';
+				$buttons.= '<a target="__blank" href="'.base_url('budgets/printDiv/'.$value['budget_id']).'" class="btn btn-default"><i class="fa fa-print"></i></a>';
 			}
 
-			if(in_array('updateCashgrant', $this->permission)) {
-				$buttons .= ' <a href="'.base_url('cashgrants/update/'.$value['id']).'" class="btn btn-default"><i class="fa fa-pencil"></i></a>';
+			if(in_array('updateBudget', $this->permission)) {
+				$buttons .= ' <a href="'.base_url('budgets/update/'.$value['budget_id']).'" class="btn btn-default"><i class="fa fa-pencil"></i></a>';
 			}
 
-			if(in_array('deleteCashgrant', $this->permission)) {
-				$buttons .= ' <button type="button" class="btn btn-default" onclick="removeFunc('.$value['id'].')" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i></button>';
+			if(in_array('deleteBudget', $this->permission)) {
+				$buttons .= ' <button type="button" class="btn btn-default" onclick="removeFunc('.$value['budget_id'].')" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i></button>';
 			}
 
 			
 
 			$result['data'][$key] = array(
-				$value['month_name'],
-				$value['cg_desc'],
-				$value['total_amout'],
+				$i,
+                $value['budget_desc'],
+                $value['start_month'],
+				$value['end_month'],
 				$value['status'],
-				$value['created_at'],
 				$buttons
 			);
 		} // /foreach
@@ -62,30 +62,31 @@ class Cashgrants extends Admin_Controller
 	}
 
 	/*
-	* Create Cash grant
+	* Create Budget 
 	*/
 	public function create(){
-		if(!in_array('createCashgrant', $this->permission)) {
+		if(!in_array('createBudget', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
-		$this->data['page_title'] = 'Add Cash Grant';
-		$this->form_validation->set_rules('camp_id[]', 'Camp name', 'trim|required');
-		$this->form_validation->set_rules('no_of_care[]', 'No of Care name', 'trim|required');
-		$this->form_validation->set_rules('no_of_child[]', 'No of Child', 'trim|required');
+		
+		$this->data['page_title'] = 'Add Budget ';
+		$this->form_validation->set_rules('budget_desc', 'Budget Description', 'trim|required');
+		$this->form_validation->set_rules('from_date', 'From Date', 'trim|required');
+		$this->form_validation->set_rules('to_date', 'To Date', 'trim|required');
         if ($this->form_validation->run() == TRUE) { 
-        	$success_id = $this->model_cashgrant->create();
+        	$success_id = $this->model_budget->create();
         	if($success_id) {
         		$this->session->set_flashdata('success', 'Successfully created');
-        		redirect('cashgrants/', 'refresh');
+        		redirect('budgets/', 'refresh');
         	}
         	else {
         		$this->session->set_flashdata('errors', 'Error occurred!!');
-        		redirect('cashgrants/', 'refresh');
+        		redirect('budgets/', 'refresh');
         	} 
         }
         else {
-        	$this->data['camps'] = $this->model_camps->getActiveCampsData(); 
-            $this->render_template('cashgrant/create', $this->data);
+        	$this->data['account_head'] = $this->model_budget->getAccountsHeadData(); 
+            $this->render_template('budget/create', $this->data);
         }	
 	}
 
@@ -108,27 +109,27 @@ class Cashgrants extends Admin_Controller
 	* and it stores the operation message into the session flashdata and display on the manage group page
 	*/
 	public function update($id){
-		if(!in_array('updateCashgrant', $this->permission)) {
+		if(!in_array('updateBudget', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
 		if(!$id) {
 			redirect('dashboard', 'refresh');
 		}
 		
-		$this->data['page_title'] = 'Update Cash Grant';
+		$this->data['page_title'] = 'Update Budget ';
 		$this->form_validation->set_rules('camp_id[]', 'Camp name', 'trim|required');
 		$this->form_validation->set_rules('no_of_care[]', 'No of Care name', 'trim|required');
 		$this->form_validation->set_rules('no_of_child[]', 'No of Child', 'trim|required');
 		
         if ($this->form_validation->run() == TRUE) {  
-        	$update = $this->model_cashgrant->update($id);
+        	$update = $this->model_budget->update($id);
         	if($update == true) {
         		$this->session->set_flashdata('success', 'Successfully updated');
-        		redirect('cashgrants/update/'.$id, 'refresh');
+        		redirect('budgets/update/'.$id, 'refresh');
         	}
         	else {
         		$this->session->set_flashdata('errors', 'Error occurred!!');
-        		redirect('cashgrants/update/'.$id, 'refresh');
+        		redirect('budgets/update/'.$id, 'refresh');
         	}
         }
         else {
@@ -136,33 +137,33 @@ class Cashgrants extends Admin_Controller
         	$company = $this->model_company->getCompanyData(1);
         	$this->data['company_data'] = $company;
         	$result = array();
-        	$cg_master = $this->model_cashgrant->getCashGrantData($id);
+        	$cg_master = $this->model_budget->getbudgetData($id);
     		$result['cg_master'] = $cg_master;
-    		$cg_details = $this->model_cashgrant->getcgDetailsData($cg_master['id']);
+    		$cg_details = $this->model_budget->getcgDetailsData($cg_master['id']);
 			
     		foreach($cg_details as $k => $v) {
     			$result['cg_details'][] = $v;
     		}
     		$this->data['cg'] = $result;
         	$this->data['camps'] = $this->model_camps->getActiveCampsData(); 
-            $this->render_template('cashgrant/edit', $this->data);
+            $this->render_template('budget/edit', $this->data);
         }
 	}
 
 	
 
 	/*
-	*  Print Cash Grant Report
+	*  Print Budget  Report
 	*/
 	public function printDiv($id)
 	{
-		if(!in_array('viewCashgrant', $this->permission)) {
+		if(!in_array('viewBudget', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
         
 		if($id) {
-			$cashgrant_master=$this->db->query(" SELECT * FROM cg_master WHERE id = $id")->result();
-			$cashgrant_data=$this->db->query("
+			$budget_master=$this->db->query(" SELECT * FROM cg_master WHERE id = $id")->result();
+			$budget_data=$this->db->query("
 									SELECT
 										cg_details.no_of_child,
 										cg_details.no_of_care,
@@ -178,14 +179,14 @@ class Cashgrants extends Admin_Controller
 							")->result();
 							
 							/* echo '<pre>';
-							print_r($cashgrant_data);
+							print_r($budget_data);
 							echo '</pre>'; */
 							
 			?>
 			<!DOCTYPE html>
 			<html lang="en">
 			<head>
-			  <title>Cash Grant Report</title>
+			  <title>Budget  Report</title>
 			  <meta charset="utf-8">
 			  <meta name="viewport" content="width=device-width, initial-scale=1">
 			  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -200,7 +201,7 @@ class Cashgrants extends Admin_Controller
 			  <div class="row">
 				<table class="table table-border">
 					<tr>
-						<td><img src="<?php echo base_url();?>/assets/images/cashgrants/image001.jpg"></td>
+						<td><img src="<?php echo base_url();?>/assets/images/budgets/image001.jpg"></td>
 						<td>
 							<p>
 								গণপ্রজাতন্ত্রীবাংলাদেশ সরকার<br>
@@ -209,7 +210,7 @@ class Cashgrants extends Admin_Controller
 								সোনারপাড়া, উখিয়া কক্সবাজার
 							</p>  
 						</td>
-						<td><img src="<?php echo base_url();?>/assets/images/cashgrants/image002.jpg"></td> 
+						<td><img src="<?php echo base_url();?>/assets/images/budgets/image002.jpg"></td> 
 						
 					</tr>
 				</table>
@@ -239,13 +240,13 @@ class Cashgrants extends Admin_Controller
 					</tbody>
 				</table-->
 				<table class="table table-border">
-					<?php if(!empty($cashgrant_master)): ?>
+					<?php if(!empty($budget_master)): ?>
 					<thead>
 						<tr>
-							<th>Month Name : <?php echo $cashgrant_master[0]->month_name;?></th>
-							<th>Description : <?php echo $cashgrant_master[0]->cg_desc;?></th>
-							<th>Total Amount : <?php echo $cashgrant_master[0]->total_amout;?></th>
-							<th>Created Date : <?php echo $cashgrant_master[0]->created_at;?></th>
+							<th>Month Name : <?php echo $budget_master[0]->month_name;?></th>
+							<th>Description : <?php echo $budget_master[0]->cg_desc;?></th>
+							<th>Total Amount : <?php echo $budget_master[0]->total_amout;?></th>
+							<th>Created Date : <?php echo $budget_master[0]->created_at;?></th>
 							<th colspan="2"></th>
 						</tr>
 					</thead>
@@ -262,17 +263,17 @@ class Cashgrants extends Admin_Controller
 					</thead>
 					<tbody>
 						<?php 
-							if(!empty($cashgrant_data)):
-								foreach($cashgrant_data as $cashgrant_value): 
-									//print_r($cashgrant_value);
+							if(!empty($budget_data)):
+								foreach($budget_data as $budget_value): 
+									//print_r($budget_value);
 									?>
 										<tr>
-											<td><?php echo $cashgrant_value->upailla; ?></td>
-											<td><?php echo $cashgrant_value->carea; ?></td>
-											<td><?php echo $cashgrant_value->camp_id; ?></td>	
-											<td><?php echo $cashgrant_value->no_of_child; ?></td>	
-											<td><?php echo $cashgrant_value->no_of_care; ?></td>	
-											<td><?php echo $cashgrant_value->amount; ?></td>	
+											<td><?php echo $budget_value->upailla; ?></td>
+											<td><?php echo $budget_value->carea; ?></td>
+											<td><?php echo $budget_value->camp_id; ?></td>	
+											<td><?php echo $budget_value->no_of_child; ?></td>	
+											<td><?php echo $budget_value->no_of_care; ?></td>	
+											<td><?php echo $budget_value->amount; ?></td>	
 										</tr>
 									<?php	
 								endforeach; 

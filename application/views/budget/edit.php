@@ -5,12 +5,12 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Add
+      Manage
       <small>Cash Grant</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Orders</li>
+      <li class="active">Cash Grant</li>
     </ol>
   </section>
 
@@ -18,29 +18,30 @@
   <section class="content">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-      <div class="col-md-12 col-xs-12">
-
-        <div id="messages"></div>
-
-        <?php if($this->session->flashdata('success')): ?>
-          <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $this->session->flashdata('success'); ?>
-          </div>
-        <?php elseif($this->session->flashdata('error')): ?>
-          <div class="alert alert-error alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $this->session->flashdata('error'); ?>
-          </div>
-        <?php endif; ?>
-
-
-        <div class="box box-primary">
-          <div class="box-header">
-            <h3 class="box-title">Add Cash Grant</h3>
-          </div>
-          <!-- /.box-header -->
-			<form role="form" action="<?php base_url('cashgrants/create') ?>" method="post" class="form-horizontal">
+		<div class="col-md-12 col-xs-12">
+			<div id="messages"></div>
+			<?php if($this->session->flashdata('success')): ?>
+			  <div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<?php echo $this->session->flashdata('success'); ?>
+			  </div>
+			<?php elseif($this->session->flashdata('error')): ?>
+			  <div class="alert alert-error alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<?php echo $this->session->flashdata('error'); ?>
+			  </div>
+			<?php endif; ?>
+			<div class="box">
+			  <div class="box-header">
+				<h3 class="box-title">Edit Cash Grant</h3>
+			  </div>
+			  <!-- /.box-header -->
+			  <?php 
+				/* echo '<pre>';
+				print_r($cg['cg_master']);
+				echo '</pre>'; */
+			  ?>
+			  <form role="form" action="<?php base_url('cashgrants/update') ?>"  method="post" class="form-horizontal">
               <div class="box-body">
 
 				<div class="row">
@@ -54,7 +55,7 @@
 					  <div class="form-group">
 						<label for="gross_amount" class="col-sm-5 control-label">Cash Grant Name</label>
 						<div class="col-sm-7">
-						  <input type="text" class="form-control" id="cg_desc" required name="cg_desc" placeholder=""  autocomplete="on">
+						  <input type="text" class="form-control" id="cg_desc" required name="cg_desc" value="<?php echo $cg['cg_master']['cg_desc']; ?>" placeholder=""  autocomplete="on">
 						</div>
 					  </div>
 					</div>
@@ -69,7 +70,7 @@
 							<select class="form-control select_group"  id="month" name="month_name" style="width:100%;" required>
 								<option value="">Select a Month</option>
 								<?php foreach ($months as $month): ?>
-								<option <?php echo $curr_month==$month?'selected':''; ?> value="<?php echo  $month; ?>"><?php echo $month; ?></option>
+								<option <?php echo $cg['cg_master']['month_name']==$month?'selected':''; ?> value="<?php echo  $month; ?>"><?php echo $month; ?></option>
 								<?php endforeach ?>
 							</select>
 						</div>
@@ -92,29 +93,35 @@
                   </thead>
 
 					<tbody>
-						<tr id="row_1">
-							<td>
-								<select class="form-control select_group product" data-row-id="row_1" id="camp_id_1" name="camp_id[]" style="width:100%;" onchange="getval(1);" required>
-									<option value="">Select a Camp</option>
-									<?php foreach ($camps as $k => $v): ?>
-									<option value="<?php echo $v['id'] ?>"><?php echo $v['carea'] ?>(<?php echo $v['camp_id'] ?>)</option>
-									<?php endforeach ?>
-								</select>
-							</td>
-							<td>
-								<input type="number"  name="no_of_care[]" id="no_of_care_1" class="form-control" required onkeyup="getTotal(1)">
-							</td>
-							<td><input type="number"  name="no_of_child[]" id="no_of_child_1" class="form-control" required ></td>
-							<td>
-							  <input type="text" name="rate[]" id="rate_1" class="form-control" value="2000" readonly autocomplete="off">
-							  <input type="hidden" name="rate_value[]" id="rate_value_1" class="form-control" autocomplete="off">
-							</td>
-							<td>
-								<input type="text" name="amount[]" id="amount_1" class="form-control" readonly autocomplete="off">
-								 <input type="hidden" name="amount_value[]" id="amount_value_1" class="form-control" autocomplete="off">
-							</td>
-							<td><button type="button" class="btn btn-default" onclick="removeRow('1')"><i class="fa fa-close"></i></button></td>
-						</tr>
+						<?php if(isset($cg['cg_details'])): ?>
+						<?php $x = 1; ?>
+						<?php foreach ($cg['cg_details'] as $key => $val): ?>
+							<tr id="row_<?php echo $x; ?>">
+								<td>
+									<select class="form-control select_group product" data-row-id="row_<?php echo $x; ?>" id="camp_id_<?php echo $x; ?>" name="camp_id[]" style="width:100%;" onchange="getval(<?php echo $x; ?>);" required>
+										<option value="">Select a Camp</option>
+										<?php foreach ($camps as $k => $v): ?>
+										<option <?php echo $val['camp_id']==$v['id']?'selected':''; ?> value="<?php echo $v['id'] ?>"><?php echo $v['carea'] ?></option>
+										<?php endforeach ?>
+									</select>
+								</td>
+								<td>
+									<input type="number"  name="no_of_care[]" id="no_of_care_<?php echo $x; ?>" class="form-control" value="<?php echo $val['no_of_care'];?>" required onkeyup="getTotal('<?php echo $x; ?>')">
+								</td>
+								<td><input type="number"  name="no_of_child[]" id="no_of_child_<?php echo $x; ?>" class="form-control" value="<?php echo $val['no_of_child'];?>" required ></td>
+								<td>
+								  <input type="text" name="rate[]" id="rate_<?php echo $x; ?>" class="form-control" value="2000" readonly autocomplete="off">
+								  
+								</td>
+								<td>
+									<input type="text" name="amount[]" id="amount_<?php echo $x;?>" class="form-control" readonly value="<?php echo $val['amount'];?>" autocomplete="off">
+									 
+								</td>
+								<td><button type="button" class="btn btn-default" onclick="removeRow('<?php echo $x; ?>')"><i class="fa fa-close"></i></button></td>
+							</tr>
+						 <?php $x++; ?>
+                     <?php endforeach; ?>
+                   <?php endif; ?>
 					</tbody>
                 </table>
 
@@ -124,7 +131,7 @@
                   <div class="form-group">
                     <label for="gross_amount" class="col-sm-5 control-label">Gross Amount</label>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control" id="gross_amount" name="gross_amount" disabled autocomplete="off">
+                      <input type="number" class="form-control" id="gross_amount" name="gross_amount" value="<?php  echo $cg['cg_master']['total_amout']; ?>" readonly autocomplete="off">
                       <input type="hidden" class="form-control" id="gross_amount_value" name="gross_amount_value" autocomplete="off">
                     </div>
                   </div>
@@ -133,16 +140,17 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
                 <a href="<?php echo base_url('cashgrants/') ?>" class="btn btn-warning">Back</a>
               </div>
 			 
             </form>
-          <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-      </div>
-      <!-- col-md-12 -->
+			
+			  <!-- /.box-body -->
+			</div>
+			<!-- /.box -->
+		</div>
+		<!-- col-md-12 -->
     </div>
     <!-- /.row -->
     
@@ -152,13 +160,14 @@
 </div>
 <!-- /.content-wrapper -->
 
+
 <script type="text/javascript">
   var base_url = "<?php echo base_url(); ?>";
 
   jQuery(document).ready(function() {
     $(".select_group").select2();
     $("#mainOrdersNav").addClass('active');
-    $("#addOrderNav").addClass('active');
+    $("#manageOrdersNav").addClass('active');
     // Add new row in the table 
     $("#add_row").unbind('click').bind('click', function() {
 		
@@ -176,14 +185,14 @@
                     '<select class="form-control select_group product" data-row-id="'+row_id+'" id="camp_id_'+row_id+'" name="camp_id[]" onchange="getval('+row_id+');" style="width:100%;" required>'+
                         '<option value="">Select Camp</option>';
                         $.each(response, function(index, value) {
-                          html += '<option value="'+value.id+'">'+value.carea+'('+value.camp_id+')</option>';             
+                          html += '<option value="'+value.id+'">'+value.carea+'</option>';             
                         });
                       html += '</select>'+
                     '</td>'+ 
                     '<td><input type="number"  name="no_of_care[]" id="no_of_care_'+row_id+'" class="form-control" onkeyup="getTotal('+row_id+')" required></td>'+
                     '<td><input type="number"  name="no_of_child[]" id="no_of_child_'+row_id+'" class="form-control" required></td>'+
-                    '<td><input type="text" name="rate[]" id="rate_'+row_id+'" value="2000" class="form-control" disabled><input type="hidden" name="rate_value[]" id="rate_value_1" class="form-control" autocomplete="off"></td>'+
-                    '<td><input type="text" name="amount[]" id="amount_'+row_id+'" class="form-control" disabled><input type="hidden" name="amount_value[]" id="amount_value_'+row_id+'" class="form-control"></td>'+
+                    '<td><input type="text" name="rate[]" id="rate_'+row_id+'" value="2000" class="form-control" readonly>'+
+                    '<td><input type="text" name="amount[]" id="amount_'+row_id+'" class="form-control" readonly></td>'+
                     '<td><button type="button" class="btn btn-default" onclick="removeRow(\''+row_id+'\')"><i class="fa fa-close"></i></button></td>'+
                     '</tr>';
                 if(count_table_tbody_tr >= 1) {
@@ -210,8 +219,10 @@
 
   function getTotal(row = null) {
     if(row) {
+	//alert(Number($("#rate_"+row).val()));
       var total = Number($("#no_of_care_"+row).val()) *  Number($("#rate_"+row).val());
-      total = total.toFixed(2);
+     //total = total.toFixed(2);
+	
       $("#amount_"+row).val(total);
       $("#amount_value_"+row).val(total);
       

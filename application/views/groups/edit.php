@@ -122,6 +122,25 @@
                           if(in_array('deleteCashgrant', $serialize_permission)) { echo "checked"; } 
                         } ?>></td>
                       </tr>
+
+                      <!-- Budget start -->
+
+                      <tr>
+                        <td>Budget</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="createBudget" <?php if($serialize_permission) {
+                          if(in_array('createBudget', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="updateBudget" <?php if($serialize_permission) {
+                          if(in_array('updateBudget', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="viewBudget" <?php if($serialize_permission) {
+                          if(in_array('viewBudget', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="deleteBudget" <?php if($serialize_permission) {
+                          if(in_array('deleteBudget', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                      </tr>
+
                       <tr>
                         <td>Reports</td>
                         <td> - </td>
