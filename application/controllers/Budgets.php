@@ -35,15 +35,15 @@ class Budgets extends Admin_Controller
 			$buttons = '';
 			if(in_array('viewBudget', $this->permission)) {
 				//.base_url('orders/printDiv/'.$value['id']).
-				$buttons.= '<a target="__blank" href="'.base_url('budgets/printDiv/'.$value['budget_id']).'" class="btn btn-default"><i class="fa fa-print"></i></a>';
+				$buttons.= '<a target="__blank" href="'.base_url('budgets/budgetDetails/'.$value['budget_id']).'" title="View Details" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>';
 			}
 
 			if(in_array('updateBudget', $this->permission)) {
-				$buttons .= ' <a href="'.base_url('budgets/update/'.$value['budget_id']).'" class="btn btn-default"><i class="fa fa-pencil"></i></a>';
+				$buttons .= ' <a href="'.base_url('budgets/update/'.$value['budget_id']).'"  title="Edit Budget"  class="btn btn-warning"><i class="fa fa-pencil"></i></a>';
 			}
 
 			if(in_array('deleteBudget', $this->permission)) {
-				$buttons .= ' <button type="button" class="btn btn-default" onclick="removeFunc('.$value['budget_id'].')" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i></button>';
+				$buttons .= ' <button type="button" class="btn btn-danger" onclick="removeFunc('.$value['budget_id'].')" title="Delete Budget" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i></button>';
 			}
 
 			
@@ -117,9 +117,9 @@ class Budgets extends Admin_Controller
 		}
 		
 		$this->data['page_title'] = 'Update Budget ';
-		$this->form_validation->set_rules('camp_id[]', 'Camp name', 'trim|required');
-		$this->form_validation->set_rules('no_of_care[]', 'No of Care name', 'trim|required');
-		$this->form_validation->set_rules('no_of_child[]', 'No of Child', 'trim|required');
+		$this->form_validation->set_rules('budget_desc', 'Budget Description', 'trim|required');
+		$this->form_validation->set_rules('from_date', 'From Date', 'trim|required');
+		$this->form_validation->set_rules('to_date', 'To Date', 'trim|required');
 		
         if ($this->form_validation->run() == TRUE) {  
         	$update = $this->model_budget->update($id);
@@ -134,18 +134,17 @@ class Budgets extends Admin_Controller
         }
         else {
             // false case
-        	$company = $this->model_company->getCompanyData(1);
-        	$this->data['company_data'] = $company;
+        	
         	$result = array();
-        	$cg_master = $this->model_budget->getbudgetData($id);
-    		$result['cg_master'] = $cg_master;
-    		$cg_details = $this->model_budget->getcgDetailsData($cg_master['id']);
+        	$budget_master = $this->model_budget->getBudgetData($id);
+    		$result['budget_master'] = $budget_master;
+    		$budget_details = $this->model_budget->getBudgetDetailsData($budget_master['budget_id']);
 			
-    		foreach($cg_details as $k => $v) {
-    			$result['cg_details'][] = $v;
+    		foreach($budget_details as $k => $v) {
+    			$result['budget_details'][] = $v;
     		}
-    		$this->data['cg'] = $result;
-        	$this->data['camps'] = $this->model_camps->getActiveCampsData(); 
+    		$this->data['budgets'] = $result;
+        	$this->data['account_head'] = $this->model_budget->getAccountsHeadData(); 
             $this->render_template('budget/edit', $this->data);
         }
 	}
@@ -290,6 +289,31 @@ class Budgets extends Admin_Controller
 			</body>
 			</html>
 			<?php 
+		}
+	}
+
+
+	public function budgetDetails($id){
+		if(!in_array('viewBudget', $this->permission)) {
+            redirect('dashboard', 'refresh');
+		}
+		
+		if($id) {
+			$this->data['page_title'] = 'Budget Report';
+			$result = array();
+        	$budget_master = $this->model_budget->getBudgetData($id);
+    		$result['budget_master'] = $budget_master;
+    		$budget_details = $this->model_budget->getBudgetDetailsReport($id);
+			/* echo '<pre>';
+			print_r($result);
+			echo '</pre>';
+			exit;  */
+    		foreach($budget_details as $k => $v) {
+    			$result['budget_details'][] = $v;
+    		}
+			$this->data['budgets'] = $result;
+			
+			$this->render_template('budget/viewBudgetDetails', $this->data);
 		}
 	}
 

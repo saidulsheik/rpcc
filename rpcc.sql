@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2020 at 09:13 AM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Aug 15, 2020 at 05:22 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -235,7 +235,80 @@ INSERT INTO `budget_details` (`id`, `acc_id`, `acc_code`, `budget_id`, `qty`, `n
 (70, 70, '5.2.5', 12, 80, 1, 1500),
 (71, 71, '5.2.6', 12, 1, 18, 180000),
 (72, 72, '5.2.7', 12, 1, 18, 5000),
-(73, 73, '5.2.8', 12, 1, 18, 10000);
+(73, 73, '5.2.8', 12, 1, 18, 10000),
+(220, 1, '1.1.1', 14, 50, 20, 100),
+(221, 2, '1.1.2', 14, 500, 100, 100),
+(222, 3, '1.1.3', 14, 100, 100, 120),
+(223, 4, '1.1.4', 14, 12, 15, 150),
+(224, 5, '1.1.5', 14, 0, 0, 0),
+(225, 6, '1.1.6', 14, 0, 0, 0),
+(226, 7, '1.1.7', 14, 0, 0, 0),
+(227, 8, '1.1.8', 14, 0, 0, 0),
+(228, 9, '1.1.9', 14, 0, 0, 0),
+(229, 10, '1.1.10', 14, 0, 0, 0),
+(230, 11, '1.1.11', 14, 0, 0, 0),
+(231, 12, '1.1.12', 14, 0, 0, 0),
+(232, 13, '1.1.13', 14, 0, 0, 0),
+(233, 14, '1.1.14', 14, 0, 0, 0),
+(234, 15, '1.1.15', 14, 0, 0, 0),
+(235, 16, '1.2.1', 14, 0, 0, 0),
+(236, 17, '1.2.2', 14, 0, 0, 0),
+(237, 18, '1.2.3', 14, 0, 0, 0),
+(238, 19, '1.2.4', 14, 0, 0, 0),
+(239, 20, '1.2.5', 14, 0, 0, 0),
+(240, 21, '1.2.6', 14, 0, 0, 0),
+(241, 22, '1.2.7', 14, 0, 0, 0),
+(242, 23, '1.2.8', 14, 0, 0, 0),
+(243, 24, '1.2.9', 14, 0, 0, 0),
+(244, 25, '1.2.10', 14, 0, 0, 0),
+(245, 26, '1.2.11', 14, 0, 0, 0),
+(246, 27, '1.3.1', 14, 0, 0, 0),
+(247, 28, '1.3.2', 14, 0, 0, 0),
+(248, 29, '1.3.3', 14, 0, 0, 0),
+(249, 30, '1.3.4', 14, 0, 0, 0),
+(250, 31, '1.3.5', 14, 0, 0, 0),
+(251, 32, '1.3.6', 14, 0, 0, 0),
+(252, 33, '1.3.7', 14, 0, 0, 0),
+(253, 34, '2.1.1', 14, 0, 0, 0),
+(254, 35, '2.1.2', 14, 0, 0, 0),
+(255, 36, '2.1.3', 14, 0, 0, 0),
+(256, 37, '2.1.4', 14, 0, 0, 0),
+(257, 38, '2.1.5', 14, 0, 0, 0),
+(258, 39, '2.1.6', 14, 0, 0, 0),
+(259, 40, '2.1.7', 14, 0, 0, 0),
+(260, 41, '2.1.8', 14, 0, 0, 0),
+(261, 42, '2.1.9', 14, 0, 0, 0),
+(262, 43, '2.1.10', 14, 0, 0, 0),
+(263, 44, '2.1.11', 14, 0, 0, 0),
+(264, 45, '2.1.12', 14, 0, 0, 0),
+(265, 46, '2.1.13', 14, 0, 0, 0),
+(266, 47, '2.1.14', 14, 0, 0, 0),
+(267, 48, '2.1.15', 14, 0, 0, 0),
+(268, 49, '2.1.16', 14, 0, 0, 0),
+(269, 50, '2.1.17', 14, 0, 0, 0),
+(270, 51, '2.1.18', 14, 0, 0, 0),
+(271, 52, '2.1.19', 14, 0, 0, 0),
+(272, 53, '2.1.20', 14, 0, 0, 0),
+(273, 54, '2.1.21', 14, 0, 0, 0),
+(274, 55, '2.1.22', 14, 0, 0, 0),
+(275, 56, '3.1.1', 14, 0, 0, 0),
+(276, 57, '3.1.2', 14, 0, 0, 0),
+(277, 58, '3.1.3', 14, 0, 0, 0),
+(278, 59, '3.1.4', 14, 0, 0, 0),
+(279, 60, '4.1.1', 14, 0, 0, 0),
+(280, 61, '5.1.1', 14, 0, 0, 0),
+(281, 62, '5.1.2', 14, 0, 0, 0),
+(282, 63, '5.1.3', 14, 0, 0, 0),
+(283, 64, '5.1.4', 14, 0, 0, 0),
+(284, 65, '5.1.5', 14, 0, 0, 0),
+(285, 66, '5.2.1', 14, 0, 0, 0),
+(286, 67, '5.2.2', 14, 0, 0, 0),
+(287, 68, '5.2.3', 14, 0, 0, 0),
+(288, 69, '5.2.4', 14, 0, 0, 0),
+(289, 70, '5.2.5', 14, 0, 0, 0),
+(290, 71, '5.2.6', 14, 0, 0, 0),
+(291, 72, '5.2.7', 14, 0, 0, 0),
+(292, 73, '5.2.8', 14, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -256,7 +329,8 @@ CREATE TABLE `budget_master` (
 --
 
 INSERT INTO `budget_master` (`budget_id`, `budget_desc`, `start_month`, `end_month`, `status`) VALUES
-(12, 'RCPP Budget Proposal for 2020-21', '2020-07-01', '2021-06-30', 1);
+(12, 'RCPP Budget Proposal for 2020-21', '2020-07-01', '2021-06-30', 1),
+(14, 'RPCC Budget', '2020-07-01', '2021-06-30', 1);
 
 -- --------------------------------------------------------
 
@@ -377,7 +451,7 @@ CREATE TABLE `cg_master` (
   `cg_desc` varchar(250) NOT NULL,
   `total_amout` float NOT NULL,
   `status` int(1) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL
@@ -438,8 +512,8 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `group_name`, `permission`) VALUES
-(1, 'Administrator', 'a:16:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:15:\"createCashgrant\";i:9;s:15:\"updateCashgrant\";i:10;s:13:\"viewCashgrant\";i:11;s:15:\"deleteCashgrant\";i:12;s:11:\"viewReports\";i:13;s:13:\"updateCompany\";i:14;s:11:\"viewProfile\";i:15;s:13:\"updateSetting\";}'),
-(4, 'Owners', 'a:36:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:11:\"createBrand\";i:9;s:11:\"updateBrand\";i:10;s:9:\"viewBrand\";i:11;s:11:\"deleteBrand\";i:12;s:14:\"createCategory\";i:13;s:14:\"updateCategory\";i:14;s:12:\"viewCategory\";i:15;s:14:\"deleteCategory\";i:16;s:11:\"createStore\";i:17;s:11:\"updateStore\";i:18;s:9:\"viewStore\";i:19;s:11:\"deleteStore\";i:20;s:15:\"createAttribute\";i:21;s:15:\"updateAttribute\";i:22;s:13:\"viewAttribute\";i:23;s:15:\"deleteAttribute\";i:24;s:13:\"createProduct\";i:25;s:13:\"updateProduct\";i:26;s:11:\"viewProduct\";i:27;s:13:\"deleteProduct\";i:28;s:15:\"createCashgrant\";i:29;s:15:\"updateCashgrant\";i:30;s:13:\"viewCashgrant\";i:31;s:15:\"deleteCashgrant\";i:32;s:11:\"viewReports\";i:33;s:13:\"updateCompany\";i:34;s:11:\"viewProfile\";i:35;s:13:\"updateSetting\";}');
+(1, 'Administrator', 'a:20:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:15:\"createCashgrant\";i:9;s:15:\"updateCashgrant\";i:10;s:13:\"viewCashgrant\";i:11;s:15:\"deleteCashgrant\";i:12;s:12:\"createBudget\";i:13;s:12:\"updateBudget\";i:14;s:10:\"viewBudget\";i:15;s:12:\"deleteBudget\";i:16;s:11:\"viewReports\";i:17;s:13:\"updateCompany\";i:18;s:11:\"viewProfile\";i:19;s:13:\"updateSetting\";}'),
+(4, 'Owners', 'a:36:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:11:\"createBrand\";i:9;s:11:\"updateBrand\";i:10;s:9:\"viewBrand\";i:11;s:11:\"deleteBrand\";i:12;s:14:\"createCategory\";i:13;s:14:\"updateCategory\";i:14;s:12:\"viewCategory\";i:15;s:14:\"deleteCategory\";i:16;s:11:\"createStore\";i:17;s:11:\"updateStore\";i:18;s:9:\"viewStore\";i:19;s:11:\"deleteStore\";i:20;s:15:\"createAttribute\";i:21;s:15:\"updateAttribute\";i:22;s:13:\"viewAttribute\";i:23;s:15:\"deleteAttribute\";i:24;s:13:\"createProduct\";i:25;s:13:\"updateProduct\";i:26;s:11:\"viewProduct\";i:27;s:13:\"deleteProduct\";i:28;s:11:\"createOrder\";i:29;s:11:\"updateOrder\";i:30;s:9:\"viewOrder\";i:31;s:11:\"deleteOrder\";i:32;s:11:\"viewReports\";i:33;s:13:\"updateCompany\";i:34;s:11:\"viewProfile\";i:35;s:13:\"updateSetting\";}');
 
 -- --------------------------------------------------------
 
@@ -659,6 +733,18 @@ ALTER TABLE `user_group`
 --
 ALTER TABLE `acc_head`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+
+--
+-- AUTO_INCREMENT for table `budget_details`
+--
+ALTER TABLE `budget_details`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=293;
+
+--
+-- AUTO_INCREMENT for table `budget_master`
+--
+ALTER TABLE `budget_master`
+  MODIFY `budget_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `cg_details`
