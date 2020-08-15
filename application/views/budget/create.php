@@ -132,8 +132,8 @@
 
   jQuery(document).ready(function() {
     $(".select_group").select2();
-    $("#mainOrdersNav").addClass('active');
-    $("#addOrderNav").addClass('active');
+	$("#mainBudgetsNav").addClass('active');
+    $("#addBudgetNav").addClass('active');
   }); 
 
 </script>

@@ -65,7 +65,7 @@
               </a>
               <ul class="treeview-menu">
                 <?php if(in_array('createBudget', $user_permission)): ?>
-                  <li id="addBudgetNav"><a href="<?php echo base_url('Budgets/create') ?>"><i class="fa fa-circle-o"></i> Add Budget</a></li>
+                  <li id="addBudgetNav"><a href="<?php echo base_url('budgets/create') ?>"><i class="fa fa-circle-o"></i> Add Budget</a></li>
                 <?php endif; ?>
                 <?php if(in_array('updateBudget', $user_permission) || in_array('viewBudget', $user_permission) || in_array('deleteBudget', $user_permission)): ?>
                 <li id="manageBudgetsNav"><a href="<?php echo base_url('Budgets') ?>"><i class="fa fa-circle-o"></i> Manage Budget</a></li>
