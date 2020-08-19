@@ -90,7 +90,14 @@
                         <td><input type="checkbox" name="permission[]" id="permission" value="deleteBudget" class="minimal"></td>
                       </tr>
 
-
+					  <tr>
+                        <td>Office Fund</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="createOfficeFund" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="updateOfficeFund" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="viewOfficeFund" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="deleteOfficeFund" class="minimal"></td>
+                      </tr>
+					  
                       <tr>
                         <td>Reports</td>
                         <td> - </td>

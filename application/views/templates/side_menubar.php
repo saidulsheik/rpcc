@@ -74,7 +74,29 @@
             </li>
           <?php endif; ?>
 		   <!-- Budget End-->
-
+			
+			
+		<!-- Cash Grant Start-->
+		   <?php if(in_array('createOfficeFund', $user_permission) || in_array('updateOfficeFund', $user_permission) || in_array('viewOfficeFund', $user_permission) || in_array('deleteOfficeFund', $user_permission)): ?>
+            <li class="treeview" id="mainOfficeFundNav">
+              <a href="#">
+                <i class="fa fa-dollar"></i>
+                <span>Office Fund</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <?php if(in_array('createOfficeFund', $user_permission)): ?>
+                  <li id="addOfficeFundNav"><a href="<?php echo base_url('officefunds/create') ?>"><i class="fa fa-circle-o"></i> Add Office Fund</a></li>
+                <?php endif; ?>
+                <?php if(in_array('updateOfficeFund', $user_permission) || in_array('viewOfficeFund', $user_permission) || in_array('deleteOfficeFund', $user_permission)): ?>
+                <li id="manageOfficeFundNav"><a href="<?php echo base_url('officefunds') ?>"><i class="fa fa-circle-o"></i> Manage Office Fund</a></li>
+                <?php endif; ?>
+              </ul>
+            </li>
+          <?php endif; ?>
+		 <!-- Cash Grant End-->
 
 
 

@@ -263,7 +263,15 @@ class Cashgrants extends Admin_Controller
 					<tbody>
 						<?php 
 							if(!empty($cashgrant_data)):
+								$campArray=array();
+								$total_child=array();
+								$total_amount=array();
+								$total_care=array();
 								foreach($cashgrant_data as $cashgrant_value): 
+									$total_child[]=$cashgrant_value->no_of_child;
+									$total_amount[]=$cashgrant_value->amount;
+									$total_care[]=$cashgrant_value->no_of_care;
+									$campArray[]=$cashgrant_value->camp_id;
 									//print_r($cashgrant_value);
 									?>
 										<tr>
@@ -276,6 +284,16 @@ class Cashgrants extends Admin_Controller
 										</tr>
 									<?php	
 								endforeach; 
+								?>
+								
+								<tr>
+									<th colspan="3">Grand Total</th>
+									<th><?php echo array_sum($total_child); ?></th>
+									<th><?php echo array_sum($total_care); ?></th>
+									<th><?php echo array_sum($total_amount); ?></th>
+									
+								</tr>
+								<?php 
 							else:
 
 						?>
@@ -284,6 +302,33 @@ class Cashgrants extends Admin_Controller
 						</tr>
 						<?php endif; ?>
 					</tbody>
+				</table>
+				<table class="table table-border">
+					<tr>
+						<td>
+							<p>উপরোক্ত <?php echo count($campArray); ?> টি ক্যাম্পে <?php echo array_sum($total_care); ?> জন কেয়ারগিভারকে 2000 টাকা করে ০২ মাসের নগদ সহায়তা প্রদানের জন্য মোট <?php echo array_sum($total_amount); ?> টাকা প্রয়োজন । </p>
+						</td>
+						
+					</tr>
+				</table>
+				<br>
+				<br>
+				<table class="table table-border">
+					<tr>
+						<td>
+							<p>
+							মহাপরিচালক	<br>						                   
+							সমাজসেবা অধিদফতর	<br>							
+							ই-৮/বি-১, আগারগাও,  শেরেবাংলা নগর <br>
+							ঢাকা-১২০৭ <br>
+							</p>  
+						</td>
+						<td class="pull-right">
+							<p>মোহা: আল-আমিন জামালী <br>
+								বিকল্প ফোকাল পয়েন্ট</p>
+						</td> 
+						
+					</tr>
 				</table>
 			</div>
 			</body>

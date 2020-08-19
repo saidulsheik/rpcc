@@ -140,7 +140,27 @@
                           if(in_array('deleteBudget', $serialize_permission)) { echo "checked"; } 
                         } ?>></td>
                       </tr>
+						
+						<!-- Office Fund -->
 
+                      <tr>
+                        <td>Office Fund</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="createOfficeFund" <?php if($serialize_permission) {
+                          if(in_array('createOfficeFund', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="updateOfficeFund" <?php if($serialize_permission) {
+                          if(in_array('updateOfficeFund', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="viewOfficeFund" <?php if($serialize_permission) {
+                          if(in_array('viewOfficeFund', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="deleteOfficeFund" <?php if($serialize_permission) {
+                          if(in_array('deleteOfficeFund', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                      </tr>
+						
+						
+						
                       <tr>
                         <td>Reports</td>
                         <td> - </td>
