@@ -44,7 +44,7 @@
           </div>
         <?php endif; ?>
 
-	<form role="form" action="<?php base_url('budgets/create') ?>"  method="post" class="">
+	<form role="form" action="<?php base_url('budgets/update') ?>"  method="post" class="">
 		 <div class="row">
 			  <div class="col-md-12">
 				  <?php echo validation_errors('<h4 class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></h4>'); ?>

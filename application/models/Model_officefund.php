@@ -36,6 +36,18 @@ class Model_officefund extends CI_Model
 		return $query->result_array();
 	}
 
+	/* get Office details data */
+	public function getOfficeFundDetailsDataByOfidandAccid($of_id = null, $acc_h_id=null){
+		if($of_id &&  $acc_h_id) {
+			$sql = "SELECT * FROM of_details WHERE of_id = ? and acc_h_id=?";
+			$query = $this->db->query($sql, array($of_id, $acc_h_id));
+			return $query->result_array();
+		}
+
+		$sql = "SELECT * FROM of_details ORDER BY id DESC";
+		$query = $this->db->query($sql);
+		return $query->result_array();
+	}
 
 
 
@@ -113,35 +125,41 @@ class Model_officefund extends CI_Model
 	public function update($id){
 		if($id) {
 			$this->db->trans_begin();
+			$user_id = $this->session->userdata('id');
 			$data = array(
-				'budget_desc' => $this->input->post('budget_desc'),
-				'start_month' => $this->input->post('from_date'),
-				'end_month' => $this->input->post('to_date'),
-				'status' => 1
+				'of_desc' => $this->input->post('of_desc'),
+				'month_name' => $this->input->post('month_name').','. $this->input->post('year'),
+				'total_amout' => $this->input->post('total_amout'),
+				'status' => 1,
+				'updated_by'=>$user_id
 			);
 
-			$this->db->where('budget_id', $id);
-			$update = $this->db->update('budget_master', $data);
-			$this->db->where('budget_id', $id);
-			$this->db->delete('budget_details');
-			$qty_count = count($this->input->post('acc_id'));
+			$this->db->where('id', $id);
+			$update = $this->db->update('of_master', $data);
+			$this->db->where('id', $id);
+			$this->db->delete('of_details');
+			$this->db->where('of_id', $id);
+			$qty_count = count($this->input->post('qty'));
 			for($x = 0; $x < $qty_count; $x++) {
-				$details = array(
-					'acc_id' => $this->input->post('acc_id')[$x],
-					'acc_code' => $this->input->post('acc_code')[$x],
-					'budget_id' =>$id,
-					'qty' => $this->input->post('qty')[$x],
-					'no_of_month' => $this->input->post('no_of_month')[$x],
-					'unit_cost' => $this->input->post('unit_cost')[$x],
-				);
-
-				$this->db->insert('budget_details', $details);
+				if(($this->input->post('qty')[$x]!=0)){
+					$details = array(
+						'of_id' =>$id,
+						'acc_h_id' => $this->input->post('acc_id')[$x],
+						'no_of_child' => $this->input->post('no_of_child')[$x],
+						'qty' => $this->input->post('qty')[$x],
+						'amount' => $this->input->post('amount')[$x],
+					);
+					$this->db->insert('of_details', $details);
+				}
+				
 			}
+	
 			if ($this->db->trans_status() === FALSE){
 				$this->db->trans_rollback();
 			}else{
 				$this->db->trans_commit();
 			}
+			
 			return true;
 		}
 	}

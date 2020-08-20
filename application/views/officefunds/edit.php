@@ -18,11 +18,11 @@
   <section class="content-header">
     <h1>
       Edit
-      <small>Budget</small>
+      <small>Office Fund</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Edit Budget</li>
+      <li class="active">Edit Office Fund</li>
     </ol>
   </section>
 
@@ -44,7 +44,7 @@
           </div>
         <?php endif; ?>
 
-	<form role="form" action="<?php base_url('budgets/create') ?>"  method="post" class="">
+	<form role="form" action="<?php base_url('officefunds/update') ?>"  method="post" class="">
 		 <div class="row">
 			  <div class="col-md-12">
 				  <?php echo validation_errors('<h4 class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></h4>'); ?>
@@ -56,7 +56,7 @@
 						
 						<div class="box-body">
 							<div class="form-group col-sm-4">
-								<label for="budget_desc" class="col-sm-5 control-label">Fund Description</label>
+								<label for="of_desc" class="col-sm-5 control-label">Fund Description</label>
 								<input type="text" class="form-control" id="of_desc" required name="of_desc" placeholder="Fund Description"  value="<?php echo !empty($officefunds['fund_master']['of_desc'])?$officefunds['fund_master']['of_desc']:''; ?>" autocomplete="on">
 							</div>
 
@@ -95,7 +95,7 @@
 			<div class="col-md-12">
 				<div class="box">
 					<div class="box-body">	
-						<table class="table table-bordered" id="product_info_table">
+						<table class="table table-bordered" id="tbl_office_fund">
 						<thead>
 								<tr>
 									<th style="width:10%">Sl No</th>
@@ -111,38 +111,75 @@
 
 							<tbody>
 								<?php 
-								   echo '<pre>';
-								   print_r($officefunds);
-								   echo '</pre>'; 
+								
 									$i=0;
-									
+									$no_of_child=0;
+									$qty=0;
+									$amount=0;
 									foreach($account_head as $account_head_value):
-										echo '<pre>';
-										print_r($account_head_value);
+										$i++;
+										$CI =& get_instance();
+										$CI->load->model('model_officefund');
+										$result = $CI->model_officefund->getOfficeFundDetailsDataByOfidandAccid($officefunds['fund_master']['id'],$account_head_value['acc_id']);
+										if(!empty($result)){
+											$no_of_child=$result[0]['no_of_child'];
+											$qty=$result[0]['qty'];
+											$amount=$result[0]['amount'];
+											if($result[0]['acc_h_id']==$account_head_value['acc_id']){
+												?>
+													<input type="hidden" name="acc_id[]" value="<?php echo $account_head_value['acc_id']; ?>">
+													<input type="hidden" name="acc_code[]" value="<?php echo $account_head_value['acc_code']; ?>">
+													<tr id="row_<?php echo $i; ?>">
+														<td><?php echo $i;?></td>
+														<td><?php echo $account_head_value['acc_head'];?></td>
+														<td><input type="text"  name="unit[]" id="unit_<?php echo $i; ?>" value="<?php echo $account_head_value['unit'];?>" class="form-control" readonly ></td>
+														<td><input type="number"  name="unit_cost[]" id="unit_cost_<?php echo $i; ?>" value="<?php echo $account_head_value['unit_cost']; ?>" class="form-control" readonly ></td>
+														<td><input type="number"  name="qty[]" value="<?php echo $qty; ?>" id="qty_<?php echo $i; ?>" class="form-control" required onkeyup="getTotal(<?php echo $i; ?>)"></td>
+														<td><input type="number"  name="no_of_child[]" id="no_of_child_<?php echo $i; ?>" value="<?php echo $no_of_child; ?>" class="form-control" required ></td>
+														<td><input type="number"  name="amount[]" id="amount_<?php echo $i; ?>" value="<?php echo $amount; ?>" class="form-control" required ></td>
+													</tr>
+												<?php 
+												}
+										}else{
+									
+										?>
+											<input type="hidden" name="acc_id[]" value="<?php echo $account_head_value['acc_id']; ?>">
+											<input type="hidden" name="acc_code[]" value="<?php echo $account_head_value['acc_code']; ?>">
+											<tr id="row_<?php echo $i; ?>">
+												<td><?php echo $i;?></td>
+												<td><?php echo $account_head_value['acc_head'];?></td>
+												<td><input type="text"  name="unit[]" id="unit_<?php echo $i; ?>" value="<?php echo $account_head_value['unit'];?>" class="form-control" readonly ></td>
+												<td><input type="number"  name="unit_cost[]" id="unit_cost_<?php echo $i; ?>" value="<?php echo $account_head_value['unit_cost']; ?>" class="form-control" readonly ></td>
+												<td><input type="number"  name="qty[]" value="<?php echo 0; ?>" id="qty_<?php echo $i; ?>" class="form-control" required onkeyup="getTotal(<?php echo $i; ?>)"></td>
+												<td><input type="number"  name="no_of_child[]" id="no_of_child_<?php echo $i; ?>" value="<?php echo 0; ?>" class="form-control" required ></td>
+												<td><input type="number"  name="amount[]" id="amount_<?php echo $i; ?>" value="<?php echo 0; ?>" class="form-control" required ></td>
+											</tr>
+										<?php 
+									}
 										
 										
 								  ?>
-								  <input type="hidden" name="acc_id[]" value="<?php echo $account_head_value['acc_id']; ?>">
-								  <input type="hidden" name="acc_code[]" value="<?php echo $account_head_value['acc_code']; ?>">
-								  <tr id="row_<?php echo $i; ?>">
-									<td><?php echo $i;?></td>
-									<td><?php echo $account_head_value['acc_head'];?></td>
-									<td><input type="text"  name="unit[]" id="unit_<?php echo $i; ?>" value="<?php echo $account_head_value['unit'];?>" class="form-control" readonly ></td>
-									<td><input type="number"  name="unit_cost[]" id="unit_cost_<?php echo $i; ?>" value="<?php echo $account_head_value['unit_cost']; ?>" class="form-control" readonly ></td>
-									<td><input type="number"  name="qty[]" value="<?php echo $qty; ?>" id="qty_<?php echo $i; ?>" class="form-control" required onkeyup="getTotal(<?php echo $i; ?>)"></td>
-									<td><input type="number"  name="no_of_child[]" id="no_of_child_<?php echo $i; ?>" value="0" class="form-control" required ></td>
-									<td><input type="number"  name="amount[]" id="amount_<?php echo $i; ?>" value="<?php echo $amount; ?>" class="form-control" required ></td>
-								  </tr>
+								  
                   <?php 
-                    $i++;
+                    
                     endforeach; 
                 ?>
 							</tbody>
 						</table>
+						<div class="col-md-6 col-xs-12 pull pull-right">
+							<div class="form-group">
+								<label for="total_amout" class="col-sm-5 control-label">Gross Amount</label>
+								<div class="col-sm-7">
+								<input type="number" class="form-control" id="total_amout" name="total_amout" value="<?php echo $officefunds['fund_master']['total_amout']; ?>" readonly autocomplete="off">
+								</div>
+							</div>
+						</div>
+						
+
 					</div>
 					  <div class="box-footer">
 						<button type="submit" class="btn btn-primary">Submit</button>
-						<a href="<?php echo base_url('budgets/') ?>" class="btn btn-warning">Back</a>
+						<a href="<?php echo base_url('officefunds/') ?>" class="btn btn-warning">Back</a>
 					  </div>
 				</div>
 			</div>
@@ -161,8 +198,34 @@
 
   jQuery(document).ready(function() {
     $(".select_group").select2();
-    $("#mainBudgetsNav").addClass('active');
-    $("#manageBudgetsNav").addClass('active');
+    $("#mainOfficeFundNav").addClass('active');
+    $("#manageOfficeFundNav").addClass('active');
   }); 
+
+  function getTotal(row = null) {
+    if(row) {
+      var total = Number($("#unit_cost_"+row).val()) *  Number($("#qty_"+row).val());
+      total = total.toFixed(2);
+      $("#amount_"+row).val(total);
+	  subAmount();
+    } else {
+      alert('no row !! please refresh the page');
+    }
+  }
+
+  function subAmount() {
+    var tableOfficeFundLength = $("#tbl_office_fund tbody tr").length;
+    var totalSubAmount = 0;
+    for(x = 0; x < tableOfficeFundLength; x++) {
+      var tr = $("#tbl_office_fund tbody tr")[x];
+      var count = $(tr).attr('id');
+      count = count.substring(4);
+      totalSubAmount = Number(totalSubAmount) + Number($("#amount_"+count).val());
+    } // /for
+
+    totalSubAmount = totalSubAmount.toFixed(2);
+    $("#total_amout").val(totalSubAmount);
+  
+  }
 
 </script>
