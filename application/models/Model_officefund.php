@@ -23,7 +23,7 @@ class Model_officefund extends CI_Model
 		return $query->result_array();
 	}
 
-	/* get Office Master data */
+	/* get Office fund details data */
 	public function getOfficeFundDetailsData($id = null){
 		if($id) {
 			$sql = "SELECT * FROM of_details WHERE of_id = ?";
@@ -53,30 +53,31 @@ class Model_officefund extends CI_Model
 
 
 	/* Get budget details and and acc_head with joining data */
-	public function getBudgetDetailsReport($id = null){
+	public function getOfficeDetailsReport($id = null){
 		if(!$id) {
 			return false;
 		}
 			$sql ="SELECT
-					budget_details.*,
+					of_details.*,
+					acc_head.activity_id,
+					acc_head.acc_code,
 					acc_head.acc_head,
-					acc_head.unit
+					activity.output_id,
+					activity.activity_name,
+					output.output_name
 					FROM
-						budget_details
-					LEFT JOIN acc_head ON acc_head.id=budget_details.acc_id
+						of_details
+					LEFT JOIN acc_head ON acc_head.id=of_details.acc_h_id
+					LEFT JOIN activity ON activity.id=acc_head.activity_id
+					LEFT JOIN output ON output.id=activity.output_id
 				WHERE
-					budget_details.budget_id = ?";
+					of_details.of_id = ?";
 		$query = $this->db->query($sql, array($id));
 		return $query->result_array();
 	}
 
-	/* Get acc_head data */
-	public function getAccountsHeadData(){
-		$sql = "SELECT acc_head.id as acc_id, acc_head.acc_code, acc_head.acc_head, acc_head.unit, activity.activity_name FROM acc_head LEFT JOIN activity on activity.id=acc_head.activity_id";
-		$query = $this->db->query($sql);
-		return $query->result_array();
-	}
-	/* Create new Budget */
+	
+	/* Create new Office Fund */
 	public function create(){
 
 	/* 	echo '<pre>';

@@ -148,6 +148,32 @@ class Officefunds extends Admin_Controller
         }
 	}
 
+	public function officefundsDetails($id){
+		if(!in_array('viewOfficeFund', $this->permission)) {
+            redirect('dashboard', 'refresh');
+		}
+
+		if($id) {
+			$this->data['page_title'] = 'Office Fund Report';
+			$result = array();
+        	$of_master = $this->model_officefund->getOfficeFundData($id);
+    		$result['of_master'] = $of_master;
+			
+    		$of_details = $this->model_officefund->getOfficeDetailsReport($of_master['id']);
+			/* echo '<pre>';
+			print_r($of_details);
+			echo '</pre>';
+			exit;  */ 
+    		foreach($of_details as $k => $v) {
+    			$result['of_details'][] = $v;
+    		}
+			$this->data['officefunds'] = $result;
+
+			$this->render_template('officefunds/viewOfficeFundDetails', $this->data);
+		}
+	}
+
+	
 
 
 	/*
