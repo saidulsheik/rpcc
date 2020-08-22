@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 15, 2020 at 05:22 PM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Generation Time: Aug 22, 2020 at 04:53 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -451,7 +450,7 @@ CREATE TABLE `cg_master` (
   `cg_desc` varchar(250) NOT NULL,
   `total_amout` float NOT NULL,
   `status` int(1) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL
@@ -512,8 +511,109 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `group_name`, `permission`) VALUES
-(1, 'Administrator', 'a:20:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:15:\"createCashgrant\";i:9;s:15:\"updateCashgrant\";i:10;s:13:\"viewCashgrant\";i:11;s:15:\"deleteCashgrant\";i:12;s:12:\"createBudget\";i:13;s:12:\"updateBudget\";i:14;s:10:\"viewBudget\";i:15;s:12:\"deleteBudget\";i:16;s:11:\"viewReports\";i:17;s:13:\"updateCompany\";i:18;s:11:\"viewProfile\";i:19;s:13:\"updateSetting\";}'),
+(1, 'Administrator', 'a:24:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:15:\"createCashgrant\";i:9;s:15:\"updateCashgrant\";i:10;s:13:\"viewCashgrant\";i:11;s:15:\"deleteCashgrant\";i:12;s:12:\"createBudget\";i:13;s:12:\"updateBudget\";i:14;s:10:\"viewBudget\";i:15;s:12:\"deleteBudget\";i:16;s:16:\"createOfficeFund\";i:17;s:16:\"updateOfficeFund\";i:18;s:14:\"viewOfficeFund\";i:19;s:16:\"deleteOfficeFund\";i:20;s:11:\"viewReports\";i:21;s:13:\"updateCompany\";i:22;s:11:\"viewProfile\";i:23;s:13:\"updateSetting\";}'),
 (4, 'Owners', 'a:36:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:11:\"createBrand\";i:9;s:11:\"updateBrand\";i:10;s:9:\"viewBrand\";i:11;s:11:\"deleteBrand\";i:12;s:14:\"createCategory\";i:13;s:14:\"updateCategory\";i:14;s:12:\"viewCategory\";i:15;s:14:\"deleteCategory\";i:16;s:11:\"createStore\";i:17;s:11:\"updateStore\";i:18;s:9:\"viewStore\";i:19;s:11:\"deleteStore\";i:20;s:15:\"createAttribute\";i:21;s:15:\"updateAttribute\";i:22;s:13:\"viewAttribute\";i:23;s:15:\"deleteAttribute\";i:24;s:13:\"createProduct\";i:25;s:13:\"updateProduct\";i:26;s:11:\"viewProduct\";i:27;s:13:\"deleteProduct\";i:28;s:11:\"createOrder\";i:29;s:11:\"updateOrder\";i:30;s:9:\"viewOrder\";i:31;s:11:\"deleteOrder\";i:32;s:11:\"viewReports\";i:33;s:13:\"updateCompany\";i:34;s:11:\"viewProfile\";i:35;s:13:\"updateSetting\";}');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `of_details`
+--
+
+CREATE TABLE `of_details` (
+  `id` int(4) NOT NULL,
+  `of_id` int(4) NOT NULL,
+  `acc_h_id` int(11) NOT NULL,
+  `no_of_child` int(11) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `amount` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `of_details`
+--
+
+INSERT INTO `of_details` (`id`, `of_id`, `acc_h_id`, `no_of_child`, `qty`, `amount`) VALUES
+(2, 1, 1, 36, 26, 0),
+(3, 1, 3, 24, 20, 0),
+(4, 1, 6, 8, 7, 0),
+(5, 1, 7, 23, 15, 0),
+(6, 1, 9, 9, 8, 0),
+(7, 1, 13, 31, 29, 0),
+(8, 1, 14, 16, 14, 0),
+(9, 1, 15, 34, 28, 0),
+(10, 1, 16, 12, 5, 0),
+(11, 1, 17, 23, 18, 0),
+(12, 1, 18, 15, 10, 0),
+(13, 1, 19, 26, 25, 0),
+(14, 1, 20, 11, 9, 0),
+(15, 1, 21, 4, 3, 0),
+(16, 1, 22, 9, 7, 0),
+(17, 1, 24, 7, 5, 0),
+(18, 1, 25, 7, 5, 0),
+(19, 1, 26, 43, 33, 0),
+(20, 1, 27, 13, 8, 0),
+(21, 3, 32, 11, 10, 20000),
+(22, 3, 30, 15, 14, 28000),
+(23, 4, 32, 10, 10, 20000),
+(24, 4, 31, 10, 2, 4000),
+(25, 4, 28, 10, 4, 8000),
+(29, 6, 32, 11, 10, 20000),
+(30, 6, 31, 11, 10, 20000),
+(31, 7, 32, 11, 10, 20000),
+(32, 7, 31, 12, 10, 20000),
+(117, 8, 32, 10, 10, 20000),
+(118, 8, 30, 10, 10, 20000),
+(119, 8, 26, 10, 10, 20000),
+(120, 5, 31, 11, 10, 20000),
+(121, 5, 32, 11, 10, 20000),
+(122, 5, 30, 11, 10, 20000),
+(123, 1, 1, 22, 2, 181000),
+(124, 1, 2, 0, 1, 560900),
+(125, 1, 3, 24, 20, 0),
+(126, 1, 4, 0, 5, 2500),
+(127, 1, 6, 8, 7, 0),
+(128, 1, 7, 23, 15, 0),
+(129, 1, 9, 9, 8, 0),
+(130, 1, 13, 31, 29, 0),
+(131, 1, 14, 16, 14, 0),
+(132, 1, 15, 34, 28, 0),
+(133, 1, 16, 12, 5, 0),
+(134, 1, 17, 23, 18, 0),
+(135, 1, 18, 15, 10, 0),
+(136, 1, 19, 26, 25, 0),
+(137, 1, 20, 11, 9, 0),
+(138, 1, 21, 4, 3, 0),
+(139, 1, 22, 9, 7, 0),
+(140, 1, 24, 7, 5, 0),
+(141, 1, 25, 7, 5, 0),
+(142, 1, 26, 43, 33, 0),
+(143, 1, 27, 13, 8, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `of_master`
+--
+
+CREATE TABLE `of_master` (
+  `id` int(4) NOT NULL,
+  `month_name` varchar(250) NOT NULL,
+  `of_desc` varchar(250) NOT NULL,
+  `total_amout` float NOT NULL,
+  `status` int(1) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `updated_by` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `of_master`
+--
+
+INSERT INTO `of_master` (`id`, `month_name`, `of_desc`, `total_amout`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(1, 'February,2020', 'For the month of January, 2020.', 744400, 1, '2020-08-21 23:29:29', '0000-00-00 00:00:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -692,6 +792,22 @@ ALTER TABLE `groups`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `of_details`
+--
+ALTER TABLE `of_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`),
+  ADD KEY `cg_id` (`of_id`),
+  ADD KEY `camp_id` (`acc_h_id`);
+
+--
+-- Indexes for table `of_master`
+--
+ALTER TABLE `of_master`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id` (`id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -769,6 +885,18 @@ ALTER TABLE `company`
 --
 ALTER TABLE `groups`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `of_details`
+--
+ALTER TABLE `of_details`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+
+--
+-- AUTO_INCREMENT for table `of_master`
+--
+ALTER TABLE `of_master`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `orders`

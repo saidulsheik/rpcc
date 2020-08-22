@@ -116,8 +116,8 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-        $("#mainBudgetsNav").addClass('active');
-        $("#manageBudgetsNav").addClass('active');
+        $("#mainOfficeFundNav").addClass('active');
+        $("#manageOfficeFundNav").addClass('active');
 	   $(".select_group").select2(); 
     }); 
   </script>
