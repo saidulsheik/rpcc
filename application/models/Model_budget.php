@@ -40,10 +40,17 @@ class Model_budget extends CI_Model
 			$sql ="SELECT
 					budget_details.*,
 					acc_head.acc_head,
-					acc_head.unit
+					acc_head.activity_id,
+					acc_head.unit,
+					activity.output_id,
+					activity.activity_code,
+					activity.activity_name,
+					output.output_name
 					FROM
 						budget_details
 					LEFT JOIN acc_head ON acc_head.id=budget_details.acc_id
+					LEFT JOIN activity ON activity.id=acc_head.activity_id
+					LEFT JOIN output ON output.id=activity.output_id
 				WHERE
 					budget_details.budget_id = ?";
 		$query = $this->db->query($sql, array($id));

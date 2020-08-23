@@ -50,10 +50,12 @@
                                     <table id="tbl_budget_report" style="">
                                         <thead>
                                             <tr>
-                                                <th colspan="8"><?php echo $budgets['budget_master']['budget_desc'];?> for <?php  echo date('F Y', strtotime($budgets['budget_master']['start_month']));?> to  <?php  echo date('F Y', strtotime($budgets['budget_master']['end_month']));?></th>
+                                                <th colspan="10"><?php echo $budgets['budget_master']['budget_desc'];?> for <?php  echo date('F Y', strtotime($budgets['budget_master']['start_month']));?> to  <?php  echo date('F Y', strtotime($budgets['budget_master']['end_month']));?></th>
                                             </tr>
                                             <tr>
                                                 <th>Sl No</th>
+                                                <th>Output Name</th>
+                                                <th>Activity Name</th>
                                                 <th>Account Code</th>
                                                 <th>Account Head</th>
                                                 <th>Unit Name</th>
@@ -67,10 +69,26 @@
                                             <?php 
                                                 $gross_total=0;
                                                 $i=0; 
-                                            ?>
-                                            <?php foreach($budgets['budget_details'] as $value): ?>
+												$dataArray=array();
+												foreach($budgets['budget_details'] as $value):
+												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['output_id']=$value['output_id'];
+												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['output_name']=$value['output_name'];
+												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['activity_name']=$value['activity_name'];
+												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['acc_code']=$value['acc_code'];
+												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['acc_head']=$value['acc_head'];
+												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['unit']=$value['unit'];
+												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['qty']=$value['qty'];
+												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['no_of_month']=$value['no_of_month'];
+												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['unit_cost']=$value['unit_cost'];
+												
+
+
+
+											?>
                                                 <tr>
                                                     <td><?php $i++; echo $i; ?></td>
+                                                    <td><?php echo $value['output_name'];?></td>
+                                                    <td><?php echo $value['activity_name'];?></td>
                                                     <td><?php echo $value['acc_code'];?></td>
                                                     <td><?php echo $value['acc_head'];?></td>
                                                     <td><?php echo $value['unit'];?></td>
@@ -85,11 +103,15 @@
                                                 
                                             <?php endforeach; ?>
                                             <tr>
-                                                <th colspan="7"> Total Gross</th>
+                                                <th colspan="9"> Gross Total</th>
                                                 <th><?php echo $gross_total; ?></th>
                                             </tr>
                                         </tbody>
-                                       
+                                       <?php 
+											echo '<pre>';
+											print_r($dataArray);
+											echo '</pre>';
+									   ?>
                                     </table>
                                 </div>
                             </div>
