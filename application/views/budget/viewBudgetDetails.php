@@ -67,10 +67,12 @@
                                         </thead>
                                         <tbody>
                                             <?php 
-                                                $gross_total=0;
-                                                $i=0; 
 												$dataArray=array();
+												$outputArray=array();
+												$activityArray=array();
 												foreach($budgets['budget_details'] as $value):
+												$outputArray[$value['output_id']][]=$value['acc_code'];
+												$activityArray[$value['output_id']][$value['activity_id']][]=$value['activity_code'];
 												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['output_id']=$value['output_id'];
 												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['output_name']=$value['output_name'];
 												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['activity_name']=$value['activity_name'];
@@ -80,10 +82,36 @@
 												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['qty']=$value['qty'];
 												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['no_of_month']=$value['no_of_month'];
 												$dataArray[$value['output_id']][$value['activity_code']][$value['acc_code']]['unit_cost']=$value['unit_cost'];
+												endforeach;
 												
-
-
-
+												
+													echo '<pre>';
+													//echo count($outputArray[$key]);
+													print_r($activityArray);
+													echo '</pre>';
+													
+													
+												foreach($dataArray as $key=>$dataValues):
+													/* echo '<pre>';
+													echo count($outputArray[$key]);
+													echo '</pre>';  */
+													foreach($dataValues as $key2=>$dataValues1):
+														/* echo '<pre>';
+														print_r($key2);
+														echo '</pre>'; */ 
+													endforeach;
+												endforeach;
+											
+											
+											
+											
+                                                $gross_total=0;
+                                                $i=0; 
+												
+												foreach($budgets['budget_details'] as $value):
+														echo '<pre>';
+														print_r($value);
+														echo '</pre>'; 
 											?>
                                                 <tr>
                                                     <td><?php $i++; echo $i; ?></td>
@@ -107,11 +135,7 @@
                                                 <th><?php echo $gross_total; ?></th>
                                             </tr>
                                         </tbody>
-                                       <?php 
-											echo '<pre>';
-											print_r($dataArray);
-											echo '</pre>';
-									   ?>
+                                       
                                     </table>
                                 </div>
                             </div>
