@@ -103,7 +103,7 @@ class Model_officefund extends CI_Model
 				$details = array(
 					'of_id' =>$of_id,
 					'acc_h_id' => $this->input->post('acc_id')[$x],
-					'no_of_child' => $this->input->post('no_of_child')[$x],
+					'bill_no' => $this->input->post('bill_no')[$x],
 					'qty' => $this->input->post('qty')[$x],
 					'amount' => $this->input->post('amount')[$x],
 				);
@@ -127,6 +127,10 @@ class Model_officefund extends CI_Model
 		if($id) {
 			$this->db->trans_begin();
 			$user_id = $this->session->userdata('id');
+			/* echo '<pre>';
+			print_r($_POST);
+			echo '</pre>';
+			exit;  */
 			$data = array(
 				'of_desc' => $this->input->post('of_desc'),
 				'month_name' => $this->input->post('month_name').','. $this->input->post('year'),
@@ -137,19 +141,19 @@ class Model_officefund extends CI_Model
 
 			$this->db->where('id', $id);
 			$update = $this->db->update('of_master', $data);
-			$this->db->where('id', $id);
-			$this->db->delete('of_details');
 			$this->db->where('of_id', $id);
+			$this->db->delete('of_details');
 			$qty_count = count($this->input->post('qty'));
 			for($x = 0; $x < $qty_count; $x++) {
 				if(($this->input->post('qty')[$x]!=0)){
 					$details = array(
 						'of_id' =>$id,
 						'acc_h_id' => $this->input->post('acc_id')[$x],
-						'no_of_child' => $this->input->post('no_of_child')[$x],
+						'bill_no' => $this->input->post('bill_no')[$x],
 						'qty' => $this->input->post('qty')[$x],
 						'amount' => $this->input->post('amount')[$x],
 					);
+					//echo $this->db->last_query();
 					$this->db->insert('of_details', $details);
 				}
 				

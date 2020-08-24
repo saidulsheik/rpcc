@@ -83,7 +83,7 @@
 									<th style="width:15%">Unit</th>
 									<th style="width:15%">Unit Cost</th>
 									<th style="width:10%">Quantity</th>
-									<th style="width:10%">No. of Child</th>
+									<th style="width:10%">Bill No.</th>
 									<th style="width:15%">Amount</th>
 
 								</tr>
@@ -109,7 +109,7 @@
 									<td><input type="text"  name="unit[]" id="unit_<?php echo $i; ?>" value="<?php echo $account_head_value['unit'];?>" class="form-control" readonly ></td>
 									<td><input type="number"  name="unit_cost[]" id="unit_cost_<?php echo $i; ?>" value="<?php echo $account_head_value['unit_cost']; ?>" class="form-control" readonly ></td>
 									<td><input type="number"  name="qty[]" value="0" id="qty_<?php echo $i; ?>" class="form-control" required onkeyup="getTotal(<?php echo $i; ?>)"></td>
-									<td><input type="number"  name="no_of_child[]" id="no_of_child_<?php echo $i; ?>" value="0" class="form-control" required ></td>
+									<td><input type="text"  name="bill_no[]" id="bill_no_<?php echo $i; ?>" value="0" class="form-control" required ></td>
 									<td><input type="number"  name="amount[]" id="amount_<?php echo $i; ?>" value="0" class="form-control" required ></td>
 									
 								  </tr>

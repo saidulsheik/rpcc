@@ -103,7 +103,7 @@
 									<th style="width:15%">Unit</th>
 									<th style="width:15%">Unit Cost</th>
 									<th style="width:10%">Quantity</th>
-									<th style="width:10%">No. of Child</th>
+									<th style="width:10%">Bill No.</th>
 									<th style="width:15%">Amount</th>
 
 								</tr>
@@ -113,7 +113,7 @@
 								<?php 
 								
 									$i=0;
-									$no_of_child=0;
+									$bill_no=0;
 									$qty=0;
 									$amount=0;
 									foreach($account_head as $account_head_value):
@@ -122,7 +122,7 @@
 										$CI->load->model('model_officefund');
 										$result = $CI->model_officefund->getOfficeFundDetailsDataByOfidandAccid($officefunds['fund_master']['id'],$account_head_value['acc_id']);
 										if(!empty($result)){
-											$no_of_child=$result[0]['no_of_child'];
+											$bill_no=$result[0]['bill_no'];
 											$qty=$result[0]['qty'];
 											$amount=$result[0]['amount'];
 											if($result[0]['acc_h_id']==$account_head_value['acc_id']){
@@ -135,8 +135,8 @@
 														<td><input type="text"  name="unit[]" id="unit_<?php echo $i; ?>" value="<?php echo $account_head_value['unit'];?>" class="form-control" readonly ></td>
 														<td><input type="number"  name="unit_cost[]" id="unit_cost_<?php echo $i; ?>" value="<?php echo $account_head_value['unit_cost']; ?>" class="form-control" readonly ></td>
 														<td><input type="number"  name="qty[]" value="<?php echo $qty; ?>" id="qty_<?php echo $i; ?>" class="form-control" required onkeyup="getTotal(<?php echo $i; ?>)"></td>
-														<td><input type="number"  name="no_of_child[]" id="no_of_child_<?php echo $i; ?>" value="<?php echo $no_of_child; ?>" class="form-control" required ></td>
-														<td><input type="number"  name="amount[]" id="amount_<?php echo $i; ?>" value="<?php echo $amount; ?>" class="form-control" required ></td>
+														<td><input type="text"  name="bill_no[]" id="bill_no_<?php echo $i; ?>" value="<?php echo $bill_no; ?>" class="form-control" required ></td>
+														<td><input type="number"  readonly name="amount[]" id="amount_<?php echo $i; ?>" value="<?php echo $amount; ?>" class="form-control" required ></td>
 													</tr>
 												<?php 
 												}
@@ -151,8 +151,8 @@
 												<td><input type="text"  name="unit[]" id="unit_<?php echo $i; ?>" value="<?php echo $account_head_value['unit'];?>" class="form-control" readonly ></td>
 												<td><input type="number"  name="unit_cost[]" id="unit_cost_<?php echo $i; ?>" value="<?php echo $account_head_value['unit_cost']; ?>" class="form-control" readonly ></td>
 												<td><input type="number"  name="qty[]" value="<?php echo 0; ?>" id="qty_<?php echo $i; ?>" class="form-control" required onkeyup="getTotal(<?php echo $i; ?>)"></td>
-												<td><input type="number"  name="no_of_child[]" id="no_of_child_<?php echo $i; ?>" value="<?php echo 0; ?>" class="form-control" required ></td>
-												<td><input type="number"  name="amount[]" id="amount_<?php echo $i; ?>" value="<?php echo 0; ?>" class="form-control" required ></td>
+												<td><input type="text"  name="bill_no[]" id="bill_no_<?php echo $i; ?>" value="<?php echo 0; ?>" class="form-control" required ></td>
+												<td><input type="number"  readonly name="amount[]" id="amount_<?php echo $i; ?>" value="<?php echo 0; ?>" class="form-control" required ></td>
 											</tr>
 										<?php 
 									}
