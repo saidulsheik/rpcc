@@ -46,17 +46,29 @@
                         <div class="box">
                             
                             <div class="box-body">
-                                <div class="table-responsive">
-								<?php 
-									if(!empty($officefunds)){
-										/* echo '<pre>';
-										print_r($officefunds);
-										echo '</pre>'; */ 
-								?>
-                                    <table id="tbl_office_fund_report" style="">
-										<caption style="border: 1px  solid black; text-align:center;">
+                                <div class="table-responsive" id="tbl_office_fund_report">
+									
+								
+								
+								<?php  if(!empty($officefunds)){ ?>
+								<table>
+									<tr>
+										<td><img src="<?php echo base_url();?>assets/images/cashgrants/officefund.jpg"></td>
+										<td>
+											<p>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার <br>
+											সমাজসেবা অধিদফতর, সমাজকল্যান মন্ত্রনালয়<br>
+											রোহিঙ্গা শিশু সুরক্ষা কার্যক্রম<br>
+											সোনারপাড়া, উখিয়া, কক্সবাজার-৪৭০০</p>
+										</td>
+									</tr>
+								</table>
+								
+								
+                                    <table  style="">
+										
+										<!--caption style="border: 1px  solid black; text-align:center;">
 											<strong> <?php echo $officefunds['of_master']['of_desc'];?> &nbsp; Month Name : <?php $month_year=explode(',', $officefunds['of_master']['month_name']); echo !empty($month_year[0])?$month_year[0]:'';?> , Year: <?php echo !empty($month_year[1])?$month_year[1]:''; ?></strong>
-										</caption>
+										</caption-->
                                         <thead>
                                             <tr>
                                                 <th style="border: 1px  solid black; text-align:center;">Sl No</th>
@@ -65,7 +77,7 @@
                                                 <th style="border: 1px  solid black; text-align:center;">Account Code</th>
                                                 <th style="border: 1px  solid black; text-align:center;">Account Name</th>
                                                 <th style="border: 1px  solid black; text-align:center;">Quantity</th>
-                                                <th style="border: 1px  solid black; text-align:center;">No. of Child</th>
+                                                <th style="border: 1px  solid black; text-align:center;">Bill No.</th>
                                                 <th style="border: 1px  solid black; text-align:center;">Amount</th>
                                             </tr>
                                         </thead>
@@ -82,7 +94,7 @@
                                                     <td><?php echo $value['acc_code'];?></td>
                                                     <td><?php echo $value['acc_head'];?></td>
                                                     <td><?php echo $value['qty'];?></td>
-                                                    <td><?php echo $value['no_of_child'];?></td>
+                                                    <td><?php echo $value['bill_no'];?></td>
                                                     <td><?php echo $value['amount'];?></td>
                                                 </tr>
                                                 <?php 
