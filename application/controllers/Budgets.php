@@ -19,7 +19,7 @@ class Budgets extends Admin_Controller
             redirect('dashboard', 'refresh');
         }
 		$this->data['page_title'] = 'Manage Budget';
-		$this->render_template('budget/index', $this->data);
+		$this->render_template('budget/saidul', $this->data);
 	}
 
 	/*

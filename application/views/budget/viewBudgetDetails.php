@@ -1,5 +1,10 @@
 
+<?php 
+/* 
+	header("Content-type: application/vnd.ms-excel");
+header("Content-Disposition: attachment; filename=excel.xls"); */
 
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -36,7 +41,10 @@
                         <div class="col-sm-2">
                             <a href="<?php echo base_url('budgets/') ?>" class="btn btn-warning">Back</a>
                         </div>
-                        <div class="col-sm-10">
+						 <div class="col-sm-4">
+							<a href="<?php echo base_url('budgets/excelExport') ?>" class="btn btn-primary pull-right">Excel Export</a>
+                        </div>
+                        <div class="col-sm-4">
                             <button id="button" class="btn btn-info  pull-right" onclick="printData()"><i class="fa fa-print" aria-hidden="true"></i></button>
                         </div>
                     </div>
