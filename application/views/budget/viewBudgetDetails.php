@@ -42,7 +42,7 @@ header("Content-Disposition: attachment; filename=excel.xls"); */
                             <a href="<?php echo base_url('budgets/') ?>" class="btn btn-warning">Back</a>
                         </div>
 						 <div class="col-sm-4">
-							<a href="<?php echo base_url('budgets/excelExport') ?>" class="btn btn-primary pull-right">Excel Export</a>
+							<a href="<?php echo base_url('budgets/excelExport/').$budgets['budget_master']['budget_id'] ?>" class="btn btn-primary pull-right">Excel Export</a>
                         </div>
                         <div class="col-sm-4">
                             <button id="button" class="btn btn-info  pull-right" onclick="printData()"><i class="fa fa-print" aria-hidden="true"></i></button>

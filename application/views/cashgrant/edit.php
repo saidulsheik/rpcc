@@ -95,13 +95,18 @@
 					<tbody>
 						<?php if(isset($cg['cg_details'])): ?>
 						<?php $x = 1; ?>
-						<?php foreach ($cg['cg_details'] as $key => $val): ?>
+						<?php foreach ($cg['cg_details'] as $key => $val): 
+							/* echo '<pre>';
+							print_r($val);
+							echo '</pre>'; */
+						
+						?>
 							<tr id="row_<?php echo $x; ?>">
 								<td>
 									<select class="form-control select_group product" data-row-id="row_<?php echo $x; ?>" id="camp_id_<?php echo $x; ?>" name="camp_id[]" style="width:100%;" onchange="getval(<?php echo $x; ?>);" required>
 										<option value="">Select a Camp</option>
 										<?php foreach ($camps as $k => $v): ?>
-										<option <?php echo $val['camp_id']==$v['id']?'selected':''; ?> value="<?php echo $v['id'] ?>"><?php echo $v['carea'] ?></option>
+										<option <?php echo $val['camp_id']==$v['id']?'selected':''; ?> value="<?php echo $v['id'] ?>"><?php echo $v['carea'] ?>(<?php echo $val['camp_id']; ?>)</option>
 										<?php endforeach ?>
 									</select>
 								</td>

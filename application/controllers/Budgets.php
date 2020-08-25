@@ -19,7 +19,7 @@ class Budgets extends Admin_Controller
             redirect('dashboard', 'refresh');
         }
 		$this->data['page_title'] = 'Manage Budget';
-		$this->render_template('budget/saidul', $this->data);
+		$this->render_template('budget/index', $this->data);
 	}
 
 	/*
@@ -175,6 +175,27 @@ class Budgets extends Admin_Controller
 			$this->data['budgets'] = $result;
 
 			$this->render_template('budget/viewBudgetDetails', $this->data);
+		}
+	}
+	
+		public function excelExport($id){
+		if(!in_array('viewBudget', $this->permission)) {
+            redirect('dashboard', 'refresh');
+		}
+
+		if($id) {
+			$this->data['page_title'] = 'Budget Report';
+			$result = array();
+        	$budget_master = $this->model_budget->getBudgetData($id);
+    		$result['budget_master'] = $budget_master;
+    		$budget_details = $this->model_budget->getBudgetDetailsReport($id);
+			  
+    		foreach($budget_details as $k => $v) {
+    			$result['budget_details'][] = $v;
+    		}
+			$this->data['budgets'] = $result;
+			$this->load->view('budget/viewBudgetDetailsExcel', $this->data);
+			//$this->render_template('budget/viewBudgetDetailsExcel', $this->data);
 		}
 	}
 
