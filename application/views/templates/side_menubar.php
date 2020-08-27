@@ -122,6 +122,31 @@
           <?php endif; ?>
 		   <!-- Cash Grant End-->
 
+         <!-- Pre Settings Menu-->
+		   <?php if(in_array('createAccountHead', $user_permission) || in_array('updateAccountHead', $user_permission) || in_array('viewAccountHead', $user_permission) || in_array('deleteAccountHead', $user_permission)): ?>
+            <li class="treeview" id="mainPreSetupMenu">
+              <a href="#">
+              <i class="fa fa-cogs" aria-hidden="true"></i>
+                <span>Pre-Setup</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <?php if(in_array('createAccountHead', $user_permission)): ?>
+                  <li id="manageAccountHead"><a href="<?php echo base_url('accounts/') ?>"><i class="fa fa-circle-o"></i> Manage Account Head</a></li>
+                <?php endif; ?>
+
+                
+
+              </ul>
+            </li>
+          <?php endif; ?>
+		   <!-- Pre Setting Menu End-->
+
+
+
+
           <?php if(in_array('viewReports', $user_permission)): ?>
             <li id="reportNav">
               <a href="<?php echo base_url('reports/') ?>">
@@ -134,7 +159,7 @@
 		<?php if(in_array('updateCompany', $user_permission) || in_array('viewProfile', $user_permission) || in_array('updateSetting', $user_permission) || in_array('deleteGroup', $user_permission)): ?>
             <li class="treeview" id="mainSettingNav">
               <a href="#">
-                <i class="fa fa-files-o"></i>
+              <i class="fa fa-cog" aria-hidden="true"></i>
                 <span>Settings</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>

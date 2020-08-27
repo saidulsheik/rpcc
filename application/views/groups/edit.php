@@ -141,7 +141,7 @@
                         } ?>></td>
                       </tr>
 						
-						<!-- Office Fund -->
+					        	<!-- Office Fund -->
 
                       <tr>
                         <td>Office Fund</td>
@@ -159,7 +159,23 @@
                         } ?>></td>
                       </tr>
 						
-						
+                        <!--Account Head -->
+
+                      <tr>
+                        <td>Account Head</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="createAccountHead" <?php if($serialize_permission) {
+                          if(in_array('createAccountHead', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="updateAccountHead" <?php if($serialize_permission) {
+                          if(in_array('updateAccountHead', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="viewAccountHead" <?php if($serialize_permission) {
+                          if(in_array('viewAccountHead', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="deleteAccountHead" <?php if($serialize_permission) {
+                          if(in_array('deleteAccountHead', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                      </tr>
 						
                       <tr>
                         <td>Reports</td>

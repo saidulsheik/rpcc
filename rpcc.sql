@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2020 at 04:53 PM
+-- Generation Time: Aug 27, 2020 at 10:42 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -40,10 +40,10 @@ CREATE TABLE `acc_head` (
 --
 
 INSERT INTO `acc_head` (`id`, `activity_id`, `acc_code`, `acc_head`, `unit`) VALUES
-(1, 1, '1.1.1', 'Training and Material cost on Case Management and Referral Pathway (8 Supervisor+30 New Social Workers)  (detailed annex)', 'Nos.'),
+(1, 1, '1.1.1', 'Training and Material cost on Case Management and Referral Pathway (8 Supervisor+30 New Social Workers)  (detailed annex)', 'NOS'),
 (2, 1, '1.1.2', 'Training and Material cost on National  Case Management tools  ( 92  Social Workers +8 Supervisor ) (detailed annex)', 'Nos.'),
 (3, 1, '1.1.3', 'Travel and referral cost for identify unaccompanied & separated children, OVC and case management Existing)', 'Nos.'),
-(4, 1, '1.1.4', 'Travel and referral cost for identify unaccompanied & separated children, OVC and case management (New)', 'Nos.'),
+(4, 1, '1.1.4', 'Travel and referral cost for identify unaccompanied & separated children, OVC and case management (New)', 'sai'),
 (5, 1, '1.1.5', 'Emergency response/referral support for children at risk with emergency response services 34 camps and 9 union at host community (as per need)', 'Nos.'),
 (6, 1, '1.1.6', 'Salary (15 month+2 Month as Festival bonus) of Senior Program Manager (Child Protection) (New post)', 'Person-month'),
 (7, 1, '1.1.7', 'Salary (15 month+2 Month as Festival bonus) of Case Management Expert (New post)', 'Person-month'),
@@ -112,7 +112,8 @@ INSERT INTO `acc_head` (`id`, `activity_id`, `acc_code`, `acc_head`, `unit`) VAL
 (70, 8, '5.2.5', 'Daily Allowances (DA)  Focal Persons,  Coordinator and other designated Officer for this program (Estimated 3 types officials 80 times man day Details in Annex)', 'No. DSA'),
 (71, 8, '5.2.6', 'Renting transportation for monitoring and supervision and for other office use ', 'Month'),
 (72, 8, '5.2.7', 'Local Conveyance for Project Office based staff', 'Month'),
-(73, 8, '5.2.8', 'Office Maintenance (refreshment, bank charge, and other petty expenses)', 'no.');
+(73, 8, '5.2.8', 'Office Maintenance (refreshment, bank charge, and other petty expenses)', 'no.'),
+(74, 2, '1.1.1', 'test', 'test');
 
 -- --------------------------------------------------------
 
@@ -235,79 +236,79 @@ INSERT INTO `budget_details` (`id`, `acc_id`, `acc_code`, `budget_id`, `qty`, `n
 (71, 71, '5.2.6', 12, 1, 18, 180000),
 (72, 72, '5.2.7', 12, 1, 18, 5000),
 (73, 73, '5.2.8', 12, 1, 18, 10000),
-(220, 1, '1.1.1', 14, 50, 20, 100),
-(221, 2, '1.1.2', 14, 500, 100, 100),
-(222, 3, '1.1.3', 14, 100, 100, 120),
-(223, 4, '1.1.4', 14, 12, 15, 150),
-(224, 5, '1.1.5', 14, 0, 0, 0),
-(225, 6, '1.1.6', 14, 0, 0, 0),
-(226, 7, '1.1.7', 14, 0, 0, 0),
-(227, 8, '1.1.8', 14, 0, 0, 0),
-(228, 9, '1.1.9', 14, 0, 0, 0),
-(229, 10, '1.1.10', 14, 0, 0, 0),
-(230, 11, '1.1.11', 14, 0, 0, 0),
-(231, 12, '1.1.12', 14, 0, 0, 0),
-(232, 13, '1.1.13', 14, 0, 0, 0),
-(233, 14, '1.1.14', 14, 0, 0, 0),
-(234, 15, '1.1.15', 14, 0, 0, 0),
-(235, 16, '1.2.1', 14, 0, 0, 0),
-(236, 17, '1.2.2', 14, 0, 0, 0),
-(237, 18, '1.2.3', 14, 0, 0, 0),
-(238, 19, '1.2.4', 14, 0, 0, 0),
-(239, 20, '1.2.5', 14, 0, 0, 0),
-(240, 21, '1.2.6', 14, 0, 0, 0),
-(241, 22, '1.2.7', 14, 0, 0, 0),
-(242, 23, '1.2.8', 14, 0, 0, 0),
-(243, 24, '1.2.9', 14, 0, 0, 0),
-(244, 25, '1.2.10', 14, 0, 0, 0),
-(245, 26, '1.2.11', 14, 0, 0, 0),
-(246, 27, '1.3.1', 14, 0, 0, 0),
-(247, 28, '1.3.2', 14, 0, 0, 0),
-(248, 29, '1.3.3', 14, 0, 0, 0),
-(249, 30, '1.3.4', 14, 0, 0, 0),
-(250, 31, '1.3.5', 14, 0, 0, 0),
-(251, 32, '1.3.6', 14, 0, 0, 0),
-(252, 33, '1.3.7', 14, 0, 0, 0),
-(253, 34, '2.1.1', 14, 0, 0, 0),
-(254, 35, '2.1.2', 14, 0, 0, 0),
-(255, 36, '2.1.3', 14, 0, 0, 0),
-(256, 37, '2.1.4', 14, 0, 0, 0),
-(257, 38, '2.1.5', 14, 0, 0, 0),
-(258, 39, '2.1.6', 14, 0, 0, 0),
-(259, 40, '2.1.7', 14, 0, 0, 0),
-(260, 41, '2.1.8', 14, 0, 0, 0),
-(261, 42, '2.1.9', 14, 0, 0, 0),
-(262, 43, '2.1.10', 14, 0, 0, 0),
-(263, 44, '2.1.11', 14, 0, 0, 0),
-(264, 45, '2.1.12', 14, 0, 0, 0),
-(265, 46, '2.1.13', 14, 0, 0, 0),
-(266, 47, '2.1.14', 14, 0, 0, 0),
-(267, 48, '2.1.15', 14, 0, 0, 0),
-(268, 49, '2.1.16', 14, 0, 0, 0),
-(269, 50, '2.1.17', 14, 0, 0, 0),
-(270, 51, '2.1.18', 14, 0, 0, 0),
-(271, 52, '2.1.19', 14, 0, 0, 0),
-(272, 53, '2.1.20', 14, 0, 0, 0),
-(273, 54, '2.1.21', 14, 0, 0, 0),
-(274, 55, '2.1.22', 14, 0, 0, 0),
-(275, 56, '3.1.1', 14, 0, 0, 0),
-(276, 57, '3.1.2', 14, 0, 0, 0),
-(277, 58, '3.1.3', 14, 0, 0, 0),
-(278, 59, '3.1.4', 14, 0, 0, 0),
-(279, 60, '4.1.1', 14, 0, 0, 0),
-(280, 61, '5.1.1', 14, 0, 0, 0),
-(281, 62, '5.1.2', 14, 0, 0, 0),
-(282, 63, '5.1.3', 14, 0, 0, 0),
-(283, 64, '5.1.4', 14, 0, 0, 0),
-(284, 65, '5.1.5', 14, 0, 0, 0),
-(285, 66, '5.2.1', 14, 0, 0, 0),
-(286, 67, '5.2.2', 14, 0, 0, 0),
-(287, 68, '5.2.3', 14, 0, 0, 0),
-(288, 69, '5.2.4', 14, 0, 0, 0),
-(289, 70, '5.2.5', 14, 0, 0, 0),
-(290, 71, '5.2.6', 14, 0, 0, 0),
-(291, 72, '5.2.7', 14, 0, 0, 0),
-(292, 73, '5.2.8', 14, 0, 0, 0);
+(366, 1, '1.1.1', 14, 50, 20, 100),
+(367, 2, '1.1.2', 14, 500, 100, 100),
+(368, 3, '1.1.3', 14, 100, 100, 120),
+(369, 4, '1.1.4', 14, 12, 15, 150),
+(370, 5, '1.1.5', 14, 0, 0, 0),
+(371, 6, '1.1.6', 14, 0, 0, 0),
+(372, 7, '1.1.7', 14, 0, 0, 0),
+(373, 8, '1.1.8', 14, 0, 0, 0),
+(374, 9, '1.1.9', 14, 0, 0, 0),
+(375, 10, '1.1.10', 14, 0, 0, 0),
+(376, 11, '1.1.11', 14, 0, 0, 0),
+(377, 12, '1.1.12', 14, 0, 0, 0),
+(378, 13, '1.1.13', 14, 0, 0, 0),
+(379, 14, '1.1.14', 14, 0, 0, 0),
+(380, 15, '1.1.15', 14, 0, 0, 0),
+(381, 16, '1.2.1', 14, 0, 0, 0),
+(382, 17, '1.2.2', 14, 0, 0, 0),
+(383, 18, '1.2.3', 14, 0, 0, 0),
+(384, 19, '1.2.4', 14, 0, 0, 0),
+(385, 20, '1.2.5', 14, 0, 0, 0),
+(386, 21, '1.2.6', 14, 0, 0, 0),
+(387, 22, '1.2.7', 14, 0, 0, 0),
+(388, 23, '1.2.8', 14, 0, 0, 0),
+(389, 24, '1.2.9', 14, 0, 0, 0),
+(390, 25, '1.2.10', 14, 0, 0, 0),
+(391, 26, '1.2.11', 14, 0, 0, 0),
+(392, 27, '1.3.1', 14, 0, 0, 0),
+(393, 28, '1.3.2', 14, 0, 0, 0),
+(394, 29, '1.3.3', 14, 0, 0, 0),
+(395, 30, '1.3.4', 14, 0, 0, 0),
+(396, 31, '1.3.5', 14, 0, 0, 0),
+(397, 32, '1.3.6', 14, 0, 0, 0),
+(398, 33, '1.3.7', 14, 0, 0, 0),
+(399, 34, '2.1.1', 14, 0, 0, 0),
+(400, 35, '2.1.2', 14, 10, 20, 20000),
+(401, 36, '2.1.3', 14, 0, 0, 0),
+(402, 37, '2.1.4', 14, 0, 0, 0),
+(403, 38, '2.1.5', 14, 0, 0, 0),
+(404, 39, '2.1.6', 14, 0, 0, 0),
+(405, 40, '2.1.7', 14, 0, 0, 0),
+(406, 41, '2.1.8', 14, 0, 0, 0),
+(407, 42, '2.1.9', 14, 0, 0, 0),
+(408, 43, '2.1.10', 14, 0, 0, 0),
+(409, 44, '2.1.11', 14, 0, 0, 0),
+(410, 45, '2.1.12', 14, 0, 0, 0),
+(411, 46, '2.1.13', 14, 0, 0, 0),
+(412, 47, '2.1.14', 14, 0, 0, 0),
+(413, 48, '2.1.15', 14, 0, 0, 0),
+(414, 49, '2.1.16', 14, 0, 0, 0),
+(415, 50, '2.1.17', 14, 0, 0, 0),
+(416, 51, '2.1.18', 14, 0, 0, 0),
+(417, 52, '2.1.19', 14, 0, 0, 0),
+(418, 53, '2.1.20', 14, 0, 0, 0),
+(419, 54, '2.1.21', 14, 0, 0, 0),
+(420, 55, '2.1.22', 14, 0, 0, 0),
+(421, 56, '3.1.1', 14, 0, 0, 0),
+(422, 57, '3.1.2', 14, 0, 0, 0),
+(423, 58, '3.1.3', 14, 0, 0, 0),
+(424, 59, '3.1.4', 14, 0, 0, 0),
+(425, 60, '4.1.1', 14, 0, 0, 0),
+(426, 61, '5.1.1', 14, 0, 0, 0),
+(427, 62, '5.1.2', 14, 0, 0, 0),
+(428, 63, '5.1.3', 14, 0, 0, 0),
+(429, 64, '5.1.4', 14, 0, 0, 0),
+(430, 65, '5.1.5', 14, 0, 0, 0),
+(431, 66, '5.2.1', 14, 0, 0, 0),
+(432, 67, '5.2.2', 14, 0, 0, 0),
+(433, 68, '5.2.3', 14, 0, 0, 0),
+(434, 69, '5.2.4', 14, 0, 0, 0),
+(435, 70, '5.2.5', 14, 0, 0, 0),
+(436, 71, '5.2.6', 14, 0, 0, 0),
+(437, 72, '5.2.7', 14, 0, 0, 0),
+(438, 73, '5.2.8', 14, 2, 2, 2000);
 
 -- --------------------------------------------------------
 
@@ -320,7 +321,7 @@ CREATE TABLE `budget_master` (
   `budget_desc` varchar(256) NOT NULL,
   `start_month` date NOT NULL,
   `end_month` date NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` tinyint(1) NOT NULL COMMENT 'Status=0 active budget'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -328,7 +329,7 @@ CREATE TABLE `budget_master` (
 --
 
 INSERT INTO `budget_master` (`budget_id`, `budget_desc`, `start_month`, `end_month`, `status`) VALUES
-(12, 'RCPP Budget Proposal for 2020-21', '2020-07-01', '2021-06-30', 1),
+(12, 'RCPP Budget Proposal for 2020-21', '2020-07-01', '2021-06-30', 0),
 (14, 'RPCC Budget', '2020-07-01', '2021-06-30', 1);
 
 -- --------------------------------------------------------
@@ -427,16 +428,19 @@ INSERT INTO `cg_details` (`id`, `cg_id`, `camp_id`, `no_of_child`, `no_of_care`,
 (23, 4, 32, 10, 10, 20000),
 (24, 4, 31, 10, 2, 4000),
 (25, 4, 28, 10, 4, 8000),
-(26, 5, 31, 11, 10, 20000),
-(27, 5, 32, 11, 10, 20000),
-(28, 5, 30, 11, 10, 20000),
 (29, 6, 32, 11, 10, 20000),
 (30, 6, 31, 11, 10, 20000),
-(31, 7, 32, 11, 10, 20000),
-(32, 7, 31, 12, 10, 20000),
-(117, 8, 32, 10, 10, 20000),
-(118, 8, 30, 10, 10, 20000),
-(119, 8, 26, 10, 10, 20000);
+(120, 8, 32, 10, 10, 20000),
+(121, 8, 30, 10, 10, 20000),
+(122, 8, 26, 10, 10, 20000),
+(123, 7, 32, 11, 10, 20000),
+(124, 7, 31, 12, 10, 20000),
+(125, 7, 27, 10, 10, 20000),
+(130, 5, 31, 11, 10, 20000),
+(131, 5, 32, 11, 10, 20000),
+(132, 5, 28, 11, 10, 20000),
+(133, 5, 30, 10, 10, 20000),
+(134, 5, 13, 10, 10, 20000);
 
 -- --------------------------------------------------------
 
@@ -464,9 +468,9 @@ INSERT INTO `cg_master` (`id`, `month_name`, `cg_desc`, `total_amout`, `status`,
 (1, '2020-04-01', 'test data', 0, 1, '2020-08-10 12:33:03', '0000-00-00 00:00:00', 1, NULL),
 (3, 'August', 'test', 48000, 1, '2020-08-11 16:14:22', '0000-00-00 00:00:00', 1, NULL),
 (4, 'August', 'For the mon', 32000, 1, '2020-08-11 17:04:52', '0000-00-00 00:00:00', 1, NULL),
-(5, 'August', 'For the mon', 60000, 1, '2020-08-11 17:07:14', '0000-00-00 00:00:00', 1, NULL),
+(5, 'August', 'For the mon', 100000, 1, '2020-08-11 17:07:14', '0000-00-00 00:00:00', 1, 1),
 (6, 'August', 'For the month of August', 40000, 1, '2020-08-11 17:15:04', '0000-00-00 00:00:00', 1, NULL),
-(7, 'August', 'Test data for August', 40000, 1, '2020-08-11 17:24:05', '0000-00-00 00:00:00', 1, NULL),
+(7, 'August', 'Test data for August', 60000, 1, '2020-08-11 17:24:05', '0000-00-00 00:00:00', 1, 1),
 (8, 'July', 'test cash allowance', 60000, 1, '2020-08-11 19:06:39', '0000-00-00 00:00:00', 1, 1);
 
 -- --------------------------------------------------------
@@ -511,7 +515,7 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `group_name`, `permission`) VALUES
-(1, 'Administrator', 'a:24:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:15:\"createCashgrant\";i:9;s:15:\"updateCashgrant\";i:10;s:13:\"viewCashgrant\";i:11;s:15:\"deleteCashgrant\";i:12;s:12:\"createBudget\";i:13;s:12:\"updateBudget\";i:14;s:10:\"viewBudget\";i:15;s:12:\"deleteBudget\";i:16;s:16:\"createOfficeFund\";i:17;s:16:\"updateOfficeFund\";i:18;s:14:\"viewOfficeFund\";i:19;s:16:\"deleteOfficeFund\";i:20;s:11:\"viewReports\";i:21;s:13:\"updateCompany\";i:22;s:11:\"viewProfile\";i:23;s:13:\"updateSetting\";}'),
+(1, 'Administrator', 'a:28:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:15:\"createCashgrant\";i:9;s:15:\"updateCashgrant\";i:10;s:13:\"viewCashgrant\";i:11;s:15:\"deleteCashgrant\";i:12;s:12:\"createBudget\";i:13;s:12:\"updateBudget\";i:14;s:10:\"viewBudget\";i:15;s:12:\"deleteBudget\";i:16;s:16:\"createOfficeFund\";i:17;s:16:\"updateOfficeFund\";i:18;s:14:\"viewOfficeFund\";i:19;s:16:\"deleteOfficeFund\";i:20;s:17:\"createAccountHead\";i:21;s:17:\"updateAccountHead\";i:22;s:15:\"viewAccountHead\";i:23;s:17:\"deleteAccountHead\";i:24;s:11:\"viewReports\";i:25;s:13:\"updateCompany\";i:26;s:11:\"viewProfile\";i:27;s:13:\"updateSetting\";}'),
 (4, 'Owners', 'a:36:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:11:\"createBrand\";i:9;s:11:\"updateBrand\";i:10;s:9:\"viewBrand\";i:11;s:11:\"deleteBrand\";i:12;s:14:\"createCategory\";i:13;s:14:\"updateCategory\";i:14;s:12:\"viewCategory\";i:15;s:14:\"deleteCategory\";i:16;s:11:\"createStore\";i:17;s:11:\"updateStore\";i:18;s:9:\"viewStore\";i:19;s:11:\"deleteStore\";i:20;s:15:\"createAttribute\";i:21;s:15:\"updateAttribute\";i:22;s:13:\"viewAttribute\";i:23;s:15:\"deleteAttribute\";i:24;s:13:\"createProduct\";i:25;s:13:\"updateProduct\";i:26;s:11:\"viewProduct\";i:27;s:13:\"deleteProduct\";i:28;s:11:\"createOrder\";i:29;s:11:\"updateOrder\";i:30;s:9:\"viewOrder\";i:31;s:11:\"deleteOrder\";i:32;s:11:\"viewReports\";i:33;s:13:\"updateCompany\";i:34;s:11:\"viewProfile\";i:35;s:13:\"updateSetting\";}');
 
 -- --------------------------------------------------------
@@ -524,7 +528,7 @@ CREATE TABLE `of_details` (
   `id` int(4) NOT NULL,
   `of_id` int(4) NOT NULL,
   `acc_h_id` int(11) NOT NULL,
-  `no_of_child` int(11) NOT NULL,
+  `bill_no` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
   `qty` int(11) NOT NULL,
   `amount` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -533,62 +537,35 @@ CREATE TABLE `of_details` (
 -- Dumping data for table `of_details`
 --
 
-INSERT INTO `of_details` (`id`, `of_id`, `acc_h_id`, `no_of_child`, `qty`, `amount`) VALUES
-(2, 1, 1, 36, 26, 0),
-(3, 1, 3, 24, 20, 0),
-(4, 1, 6, 8, 7, 0),
-(5, 1, 7, 23, 15, 0),
-(6, 1, 9, 9, 8, 0),
-(7, 1, 13, 31, 29, 0),
-(8, 1, 14, 16, 14, 0),
-(9, 1, 15, 34, 28, 0),
-(10, 1, 16, 12, 5, 0),
-(11, 1, 17, 23, 18, 0),
-(12, 1, 18, 15, 10, 0),
-(13, 1, 19, 26, 25, 0),
-(14, 1, 20, 11, 9, 0),
-(15, 1, 21, 4, 3, 0),
-(16, 1, 22, 9, 7, 0),
-(17, 1, 24, 7, 5, 0),
-(18, 1, 25, 7, 5, 0),
-(19, 1, 26, 43, 33, 0),
-(20, 1, 27, 13, 8, 0),
-(21, 3, 32, 11, 10, 20000),
-(22, 3, 30, 15, 14, 28000),
-(23, 4, 32, 10, 10, 20000),
-(24, 4, 31, 10, 2, 4000),
-(25, 4, 28, 10, 4, 8000),
-(29, 6, 32, 11, 10, 20000),
-(30, 6, 31, 11, 10, 20000),
-(31, 7, 32, 11, 10, 20000),
-(32, 7, 31, 12, 10, 20000),
-(117, 8, 32, 10, 10, 20000),
-(118, 8, 30, 10, 10, 20000),
-(119, 8, 26, 10, 10, 20000),
-(120, 5, 31, 11, 10, 20000),
-(121, 5, 32, 11, 10, 20000),
-(122, 5, 30, 11, 10, 20000),
-(123, 1, 1, 22, 2, 181000),
-(124, 1, 2, 0, 1, 560900),
-(125, 1, 3, 24, 20, 0),
-(126, 1, 4, 0, 5, 2500),
-(127, 1, 6, 8, 7, 0),
-(128, 1, 7, 23, 15, 0),
-(129, 1, 9, 9, 8, 0),
-(130, 1, 13, 31, 29, 0),
-(131, 1, 14, 16, 14, 0),
-(132, 1, 15, 34, 28, 0),
-(133, 1, 16, 12, 5, 0),
-(134, 1, 17, 23, 18, 0),
-(135, 1, 18, 15, 10, 0),
-(136, 1, 19, 26, 25, 0),
-(137, 1, 20, 11, 9, 0),
-(138, 1, 21, 4, 3, 0),
-(139, 1, 22, 9, 7, 0),
-(140, 1, 24, 7, 5, 0),
-(141, 1, 25, 7, 5, 0),
-(142, 1, 26, 43, 33, 0),
-(143, 1, 27, 13, 8, 0);
+INSERT INTO `of_details` (`id`, `of_id`, `acc_h_id`, `bill_no`, `qty`, `amount`) VALUES
+(649, 1, 1, '3636', 10, 905000),
+(650, 1, 2, '22', 10, 5609000),
+(651, 1, 3, '2222', 14, 7000),
+(652, 1, 4, '5000', 500, 250000),
+(653, 1, 5, '2323', 3, 1000),
+(654, 1, 6, '8', 7, 0),
+(655, 1, 7, '23', 15, 0),
+(656, 1, 9, '9', 8, 0),
+(657, 1, 13, '31', 29, 0),
+(658, 1, 14, '16', 14, 0),
+(659, 1, 15, '34', 28, 0),
+(660, 1, 16, '12', 5, 0),
+(661, 1, 17, '23', 18, 0),
+(662, 1, 18, '15', 10, 0),
+(663, 1, 19, '26', 25, 0),
+(664, 1, 20, '11', 9, 0),
+(665, 1, 21, '4', 3, 0),
+(666, 1, 22, '9', 7, 0),
+(667, 1, 24, '7', 5, 0),
+(668, 1, 25, '7', 5, 0),
+(669, 1, 26, '43', 33, 0),
+(670, 1, 27, '13', 8, 0),
+(671, 1, 29, '0', 10, 500000),
+(672, 1, 39, '0', 2, 140000),
+(673, 1, 70, '4444', 44, 66000),
+(674, 1, 71, '0', 4, 720000),
+(675, 1, 72, '0', 2, 10000),
+(676, 1, 73, '0', 2, 20000);
 
 -- --------------------------------------------------------
 
@@ -598,8 +575,8 @@ INSERT INTO `of_details` (`id`, `of_id`, `acc_h_id`, `no_of_child`, `qty`, `amou
 
 CREATE TABLE `of_master` (
   `id` int(4) NOT NULL,
-  `month_name` varchar(250) NOT NULL,
-  `of_desc` varchar(250) NOT NULL,
+  `month_name` varchar(250) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `of_desc` varchar(250) CHARACTER SET utf8 NOT NULL,
   `total_amout` float NOT NULL,
   `status` int(1) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
@@ -613,7 +590,7 @@ CREATE TABLE `of_master` (
 --
 
 INSERT INTO `of_master` (`id`, `month_name`, `of_desc`, `total_amout`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, 'February,2020', 'For the month of January, 2020.', 744400, 1, '2020-08-21 23:29:29', '0000-00-00 00:00:00', 1, 1);
+(1, 'February,2020', 'রোহিঙ্গা শিশু সুরক্ষা কার্যক্রমের আওতায় বরাদ্দকৃত অর্থ ছাড় করা প্রসংগে।', 8228000, 1, '2020-08-21 23:29:29', '0000-00-00 00:00:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -675,6 +652,36 @@ INSERT INTO `output` (`id`, `output_name`) VALUES
 (4, 'In case of emergency due to natural disaster (heavy rains, cyclone etc.) risk of family separation is reduced and separated children receive appropriate care and facilities are renovated (Emergency Contingency Plan).'),
 (1, 'Number of children and adolescent boys and girls supported with trained case worker.'),
 (5, 'Programme management ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `uncef_fund_details`
+--
+
+CREATE TABLE `uncef_fund_details` (
+  `id` int(8) NOT NULL,
+  `acc_id` int(4) NOT NULL,
+  `acc_code` varchar(6) DEFAULT NULL,
+  `unicef_fund_id` int(4) DEFAULT NULL,
+  `qty` int(8) DEFAULT NULL,
+  `no_of_month` int(2) DEFAULT NULL,
+  `amount` int(8) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `unief_fund_master`
+--
+
+CREATE TABLE `unief_fund_master` (
+  `unicef_fund_id` int(11) NOT NULL,
+  `unicef_fund_desc` varchar(256) NOT NULL,
+  `start_month` date NOT NULL,
+  `end_month` date NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -829,6 +836,22 @@ ALTER TABLE `output`
   ADD KEY `id_2` (`id`);
 
 --
+-- Indexes for table `uncef_fund_details`
+--
+ALTER TABLE `uncef_fund_details`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_2` (`id`),
+  ADD KEY `id` (`id`),
+  ADD KEY `budget_id` (`unicef_fund_id`);
+
+--
+-- Indexes for table `unief_fund_master`
+--
+ALTER TABLE `unief_fund_master`
+  ADD PRIMARY KEY (`unicef_fund_id`),
+  ADD KEY `budget_id` (`unicef_fund_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -848,13 +871,13 @@ ALTER TABLE `user_group`
 -- AUTO_INCREMENT for table `acc_head`
 --
 ALTER TABLE `acc_head`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `budget_details`
 --
 ALTER TABLE `budget_details`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=293;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=439;
 
 --
 -- AUTO_INCREMENT for table `budget_master`
@@ -866,7 +889,7 @@ ALTER TABLE `budget_master`
 -- AUTO_INCREMENT for table `cg_details`
 --
 ALTER TABLE `cg_details`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- AUTO_INCREMENT for table `cg_master`
@@ -890,7 +913,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `of_details`
 --
 ALTER TABLE `of_details`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=677;
 
 --
 -- AUTO_INCREMENT for table `of_master`
@@ -909,6 +932,18 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `orders_item`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `uncef_fund_details`
+--
+ALTER TABLE `uncef_fund_details`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `unief_fund_master`
+--
+ALTER TABLE `unief_fund_master`
+  MODIFY `unicef_fund_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
