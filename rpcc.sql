@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2020 at 10:42 AM
+-- Generation Time: Aug 27, 2020 at 10:52 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -515,7 +515,7 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `group_name`, `permission`) VALUES
-(1, 'Administrator', 'a:28:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:15:\"createCashgrant\";i:9;s:15:\"updateCashgrant\";i:10;s:13:\"viewCashgrant\";i:11;s:15:\"deleteCashgrant\";i:12;s:12:\"createBudget\";i:13;s:12:\"updateBudget\";i:14;s:10:\"viewBudget\";i:15;s:12:\"deleteBudget\";i:16;s:16:\"createOfficeFund\";i:17;s:16:\"updateOfficeFund\";i:18;s:14:\"viewOfficeFund\";i:19;s:16:\"deleteOfficeFund\";i:20;s:17:\"createAccountHead\";i:21;s:17:\"updateAccountHead\";i:22;s:15:\"viewAccountHead\";i:23;s:17:\"deleteAccountHead\";i:24;s:11:\"viewReports\";i:25;s:13:\"updateCompany\";i:26;s:11:\"viewProfile\";i:27;s:13:\"updateSetting\";}'),
+(1, 'Administrator', 'a:32:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:15:\"createCashgrant\";i:9;s:15:\"updateCashgrant\";i:10;s:13:\"viewCashgrant\";i:11;s:15:\"deleteCashgrant\";i:12;s:12:\"createBudget\";i:13;s:12:\"updateBudget\";i:14;s:10:\"viewBudget\";i:15;s:12:\"deleteBudget\";i:16;s:16:\"createOfficeFund\";i:17;s:16:\"updateOfficeFund\";i:18;s:14:\"viewOfficeFund\";i:19;s:16:\"deleteOfficeFund\";i:20;s:17:\"createAccountHead\";i:21;s:17:\"updateAccountHead\";i:22;s:15:\"viewAccountHead\";i:23;s:17:\"deleteAccountHead\";i:24;s:12:\"createOutput\";i:25;s:12:\"updateOutput\";i:26;s:10:\"viewOutput\";i:27;s:12:\"deleteOutput\";i:28;s:11:\"viewReports\";i:29;s:13:\"updateCompany\";i:30;s:11:\"viewProfile\";i:31;s:13:\"updateSetting\";}'),
 (4, 'Owners', 'a:36:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:11:\"createBrand\";i:9;s:11:\"updateBrand\";i:10;s:9:\"viewBrand\";i:11;s:11:\"deleteBrand\";i:12;s:14:\"createCategory\";i:13;s:14:\"updateCategory\";i:14;s:12:\"viewCategory\";i:15;s:14:\"deleteCategory\";i:16;s:11:\"createStore\";i:17;s:11:\"updateStore\";i:18;s:9:\"viewStore\";i:19;s:11:\"deleteStore\";i:20;s:15:\"createAttribute\";i:21;s:15:\"updateAttribute\";i:22;s:13:\"viewAttribute\";i:23;s:15:\"deleteAttribute\";i:24;s:13:\"createProduct\";i:25;s:13:\"updateProduct\";i:26;s:11:\"viewProduct\";i:27;s:13:\"deleteProduct\";i:28;s:11:\"createOrder\";i:29;s:11:\"updateOrder\";i:30;s:9:\"viewOrder\";i:31;s:11:\"deleteOrder\";i:32;s:11:\"viewReports\";i:33;s:13:\"updateCompany\";i:34;s:11:\"viewProfile\";i:35;s:13:\"updateSetting\";}');
 
 -- --------------------------------------------------------

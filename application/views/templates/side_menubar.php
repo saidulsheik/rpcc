@@ -123,7 +123,17 @@
 		   <!-- Cash Grant End-->
 
          <!-- Pre Settings Menu-->
-		   <?php if(in_array('createAccountHead', $user_permission) || in_array('updateAccountHead', $user_permission) || in_array('viewAccountHead', $user_permission) || in_array('deleteAccountHead', $user_permission)): ?>
+       <?php if(
+                in_array('createAccountHead', $user_permission) || 
+                in_array('updateAccountHead', $user_permission) ||
+                in_array('viewAccountHead', $user_permission) || 
+                in_array('deleteAccountHead', $user_permission) || 
+                in_array('createOutput', $user_permission) || 
+                in_array('updateOutput', $user_permission) || 
+                in_array('viewOutput', $user_permission) ||
+                in_array('deleteOutput', $user_permission) 
+              ): 
+        ?>
             <li class="treeview" id="mainPreSetupMenu">
               <a href="#">
               <i class="fa fa-cogs" aria-hidden="true"></i>
@@ -133,11 +143,15 @@
                 </span>
               </a>
               <ul class="treeview-menu">
+
                 <?php if(in_array('createAccountHead', $user_permission)): ?>
                   <li id="manageAccountHead"><a href="<?php echo base_url('accounts/') ?>"><i class="fa fa-circle-o"></i> Manage Account Head</a></li>
                 <?php endif; ?>
-
                 
+                <?php if(in_array('createOutput', $user_permission)): ?>
+                  <li id="manageOutput"><a href="<?php echo base_url('outputs/') ?>"><i class="fa fa-circle-o"></i> Manage Output</a></li>
+                <?php endif; ?>
+
 
               </ul>
             </li>

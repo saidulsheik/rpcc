@@ -105,6 +105,14 @@
                         <td><input type="checkbox" name="permission[]" id="permission" value="viewAccountHead" class="minimal"></td>
                         <td><input type="checkbox" name="permission[]" id="permission" value="deleteAccountHead" class="minimal"></td>
                       </tr>
+
+                      <tr>
+                        <td>Output</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="createOutput" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="updateOutput" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="viewOutput" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="deleteOutput" class="minimal"></td>
+                      </tr>
 					  
 					  
                       <tr>

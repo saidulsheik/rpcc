@@ -176,7 +176,26 @@
                           if(in_array('deleteAccountHead', $serialize_permission)) { echo "checked"; } 
                         } ?>></td>
                       </tr>
+                        
+                       <!--Output -->
+
+                       <tr>
+                        <td>Account Head</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="createOutput" <?php if($serialize_permission) {
+                          if(in_array('createOutput', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="updateOutput" <?php if($serialize_permission) {
+                          if(in_array('updateOutput', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="viewOutput" <?php if($serialize_permission) {
+                          if(in_array('viewOutput', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="deleteOutput" <?php if($serialize_permission) {
+                          if(in_array('deleteOutput', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                      </tr>
 						
+
                       <tr>
                         <td>Reports</td>
                         <td> - </td>
