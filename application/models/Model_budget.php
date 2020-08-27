@@ -114,6 +114,7 @@ class Model_budget extends CI_Model
 			$update = $this->db->update('budget_master', $data);
 			$this->db->where('budget_id', $id);
 			$this->db->delete('budget_details');
+			
 			$this->db->where('budget_id', $id);
 			$count_acc_id = count($this->input->post('acc_id'));
 			for($x = 0; $x < $count_acc_id; $x++) {
