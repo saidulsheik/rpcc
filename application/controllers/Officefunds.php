@@ -85,7 +85,8 @@ class Officefunds extends Admin_Controller
         	}
         }
         else {
-        	$this->data['account_head'] = $this->model_budget->getBudgetDetailsReport(12);
+			$result = $this->db->query("SELECT budget_id FROM budget_master WHERE status = ?", array(0))->result();
+        	$this->data['account_head'] = $this->model_budget->getBudgetDetailsReport($result[0]->budget_id);
             $this->render_template('officefunds/create', $this->data);
         }
 	}
@@ -143,7 +144,8 @@ class Officefunds extends Admin_Controller
     			$result['fund_details'][] = $v;
 			}
     		$this->data['officefunds'] = $result;
-			$this->data['account_head'] = $this->model_budget->getBudgetDetailsReport(12);
+			$result = $this->db->query("SELECT budget_id FROM budget_master WHERE status = ?", array(0))->result();
+			$this->data['account_head'] = $this->model_budget->getBudgetDetailsReport($result[0]->budget_id);
             $this->render_template('officefunds/edit', $this->data);
         }
 	}
