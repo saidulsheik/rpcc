@@ -149,7 +149,12 @@ class Budgets extends Admin_Controller
         }
 	}
 
-
+	public function number_to_bangla($number=null){
+		if($number){
+			return $this->number_to_bangla($number);
+		}
+	}
+	
 
 	
 
@@ -173,7 +178,7 @@ class Budgets extends Admin_Controller
     			$result['budget_details'][] = $v;
     		}
 			$this->data['budgets'] = $result;
-
+			
 			$this->render_template('budget/viewBudgetDetails', $this->data);
 		}
 	}

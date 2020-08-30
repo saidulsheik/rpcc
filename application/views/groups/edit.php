@@ -158,6 +158,25 @@
                           if(in_array('deleteOfficeFund', $serialize_permission)) { echo "checked"; } 
                         } ?>></td>
                       </tr>
+
+
+                      	<!-- Unicef Office Fund -->
+
+                      <tr>
+                        <td>Unicef Fund</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="createUnicefFund" <?php if($serialize_permission) {
+                          if(in_array('createUnicefFund', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="updateUnicefFund" <?php if($serialize_permission) {
+                          if(in_array('updateUnicefFund', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="viewUnicefFund" <?php if($serialize_permission) {
+                          if(in_array('viewUnicefFund', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="deleteUnicefFund" <?php if($serialize_permission) {
+                          if(in_array('deleteUnicefFund', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                      </tr>
 						
                         <!--Account Head -->
 
@@ -180,7 +199,7 @@
                        <!--Output -->
 
                        <tr>
-                        <td>Account Head</td>
+                        <td>Output</td>
                         <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="createOutput" <?php if($serialize_permission) {
                           if(in_array('createOutput', $serialize_permission)) { echo "checked"; } 
                         } ?>></td>

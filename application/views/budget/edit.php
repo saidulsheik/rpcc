@@ -69,6 +69,13 @@
 							  <label for="to_date" class="control-label">To Date</label>
 							  <input type="date" name="to_date" value="<?php echo !empty($budgets['budget_master']['end_month'])? date('Y-m-d', strtotime($budgets['budget_master']['end_month'])): date('Y-m-d'); ?>"  class="form-control">
 							</div>
+							
+							<div class="form-group col-sm-2 pull-right">
+								<label for="button" class="control-label">&nbsp;</label>
+								<button type="submit" class="btn btn-primary">Submit</button>
+								<a href="<?php echo base_url('budgets/') ?>" class="btn btn-warning">Back</a>
+							</div>
+							
 						</div>	
 					</div>	
 				</div>	

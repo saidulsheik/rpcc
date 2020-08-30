@@ -76,11 +76,11 @@
 		   <!-- Budget End-->
 			
 			
-		<!-- Cash Grant Start-->
+		<!-- Unicef Fund Start-->
 		   <?php if(in_array('createOfficeFund', $user_permission) || in_array('updateOfficeFund', $user_permission) || in_array('viewOfficeFund', $user_permission) || in_array('deleteOfficeFund', $user_permission)): ?>
             <li class="treeview" id="mainOfficeFundNav">
               <a href="#">
-                <i class="fa fa-dollar"></i>
+              <i class="fa fa-briefcase" aria-hidden="true"></i>
                 <span>Office Fund</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
@@ -96,7 +96,30 @@
               </ul>
             </li>
           <?php endif; ?>
-		 <!-- Cash Grant End-->
+		 <!-- Office Fund End-->
+
+
+     	<!--Unicef Fund Start-->
+		   <?php if(in_array('createUnicefFund', $user_permission) || in_array('updateUnicefFund', $user_permission) || in_array('viewUnicefFund', $user_permission) || in_array('deleteUnicefFund', $user_permission)): ?>
+            <li class="treeview" id="mainUnicefFundNav">
+              <a href="#">
+              <i class="fa fa-sitemap" aria-hidden="true"></i>
+                <span>Unicef Fund</span>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <?php if(in_array('createUnicefFund', $user_permission)): ?>
+                  <li id="addUnicefFundNav"><a href="<?php echo base_url('uniceffunds/create') ?>"><i class="fa fa-circle-o"></i> Add Unicef Fund</a></li>
+                <?php endif; ?>
+                <?php if(in_array('updateUnicefFund', $user_permission) || in_array('viewUnicefFund', $user_permission) || in_array('deleteUnicefFund', $user_permission)): ?>
+                <li id="manageUnicefFundNav"><a href="<?php echo base_url('uniceffunds') ?>"><i class="fa fa-circle-o"></i> Manage Unicef Fund</a></li>
+                <?php endif; ?>
+              </ul>
+            </li>
+          <?php endif; ?>
+		 <!-- Unicef Fund End-->
 
 
 
@@ -104,7 +127,7 @@
 		   <?php if(in_array('createCashgrant', $user_permission) || in_array('updateCashgrant', $user_permission) || in_array('viewCashgrant', $user_permission) || in_array('deleteCashgrant', $user_permission)): ?>
             <li class="treeview" id="mainOrdersNav">
               <a href="#">
-                <i class="fa fa-dollar"></i>
+              <i class="fa fa-money" aria-hidden="true"></i>
                 <span>Cash Grant</span>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>

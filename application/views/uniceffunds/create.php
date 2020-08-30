@@ -6,11 +6,11 @@
   <section class="content-header">
     <h1>
       Add
-      <small>Office Fund</small>
+      <small>Unicef Fund</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li class="active">Office Fund</li>
+      <li class="active">Unicef Fund</li>
     </ol>
   </section>
 
@@ -32,7 +32,7 @@
           </div>
         <?php endif; ?>
 
-	<form role="form" action="<?php base_url('officefunds/create') ?>"  method="post" class="">
+	<form role="form" action="<?php base_url('Uniceffunds/create') ?>"  method="post" class="">
 		 <div class="row">
 			  <div class="col-md-12">
 				  <?php echo validation_errors('<h4 class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></h4>'); ?>
@@ -43,61 +43,39 @@
 					<div class="box box-primary">
 						
 						<div class="box-body">
-							<div class="form-group col-sm-4">
+							<div class="form-group col-sm-3">
 								<label for="budget_desc" class="col-sm-5 control-label">Fund Description</label>
 								<input type="text" class="form-control" id="of_desc" required name="of_desc" placeholder="Fund Description"  autocomplete="on">
 							</div>
 
-							<?php 
-								$curr_month = date('F',mktime(0, 0, 0, date('n')));
-								$months = array("January","February","March","April","May","June","July","August","September","October","November","December");
-							?>
-
-							<div class="form-group col-sm-2">
-							  <label for="from_date" class="control-label">Month Name</label>
-								<select class="form-control"  id="month" name="month_name" style="width:100%;" required>
-									<option value="">Select a Month</option>
-									<?php foreach ($months as $month): ?>
-									<option <?php echo $curr_month==$month?'selected':''; ?> value="<?php echo  $month; ?>"><?php echo $month; ?></option>
-									<?php endforeach ?>
-								</select>
+							<div class="form-group col-sm-3">
+								<label for="start_month" class="col-sm-5 control-label">Start Month</label>
+								<input type="date" class="form-control" id="start_month" required name="start_month"   autocomplete="on">
 							</div>
 
-							<!--div class="container">
-								<div class="row">
-									<div class='col-sm-6'>
-										<div class="form-group">
-											<div class='input-group date' id='datetimepicker2'>
-												<input type='text' class="form-control" />
-												<span class="input-group-addon">
-													<span class="glyphicon glyphicon-calendar"></span>
-												</span>
-											</div>
-										</div>
-									</div>
-									<script type="text/javascript">
-										$(function () {
-											$('#datetimepicker2').datetimepicker({
-												locale: 'ru'
-											});
-										});
-									</script>
-								</div>
-							</div-->
-
-							<div class="form-group col-sm-2">
-							  <label for="year" class="control-label">Year</label>
-							  <input type="number" name="year" value="<?php echo date('Y'); ?>"  class="form-control">
+							<div class="form-group col-sm-3">
+								<label for="end_month" class="col-sm-5 control-label">End Month</label>
+								<input type="date" class="form-control" id="end_month" required name="end_month"   autocomplete="on">
 							</div>
+
+							<div class="form-group col-sm-3">
+								<label for="button" class="col-sm-5 control-label"></label>
+								<button type="submit" class="btn btn-primary">Submit</button>
+								<a href="<?php echo base_url('unicefFunds/') ?>" class="btn btn-warning">Back</a>
+							</div>
+
+							
+
 						</div>	
 					</div>	
 				</div>	
-			</div>	
+			</div>
+				
 		<div class="row">
 			<div class="col-md-12">
 				<div class="box">
 					<div class="box-body">	
-						<table class="table table-bordered" id="tbl_office_fund">
+						<table class="table table-bordered" id="tbl_Unicef_fund">
 							<thead>
 								<tr>
 									<th style="width:10%">Sl No</th>
@@ -105,7 +83,7 @@
 									<th style="width:15%">Unit</th>
 									<th style="width:15%">Unit Cost</th>
 									<th style="width:10%">Quantity</th>
-									<th style="width:10%">Bill No.</th>
+									<th style="width:10%">No. Of Month</th>
 									<th style="width:15%">Amount</th>
 
 								</tr>
@@ -131,7 +109,7 @@
 									<td><input type="text"  name="unit[]" id="unit_<?php echo $i; ?>" value="<?php echo $account_head_value['unit'];?>" class="form-control" readonly ></td>
 									<td><input type="number"  name="unit_cost[]" id="unit_cost_<?php echo $i; ?>" value="<?php echo $account_head_value['unit_cost']; ?>" class="form-control" readonly ></td>
 									<td><input type="number"  name="qty[]" value="0" id="qty_<?php echo $i; ?>" class="form-control" required onkeyup="getTotal(<?php echo $i; ?>)"></td>
-									<td><input type="text"  name="bill_no[]" id="bill_no_<?php echo $i; ?>" value="0" class="form-control" required ></td>
+									<td><input type="text"  name="no_of_month[]" id="no_of_month_<?php echo $i; ?>" value="0" class="form-control" required ></td>
 									<td><input type="number"  name="amount[]" id="amount_<?php echo $i; ?>" value="0" class="form-control" required ></td>
 									
 								  </tr>
@@ -168,8 +146,8 @@
 
   jQuery(document).ready(function() {
     $(".select_group").select2();
-	$("#mainOfficeFundNav").addClass('active');
-    $("#addOfficeFundNav").addClass('active');
+	$("#mainUnicefFundNav").addClass('active');
+    $("#addUnicefFundNav").addClass('active');
 
 	var tableOffset = $("##header-fixed").offset().top;
 	var $header = $("##header-fixed > thead").clone();
@@ -189,10 +167,10 @@
   }
 
   function subAmount() {
-    var tableOfficeFundLength = $("#tbl_office_fund tbody tr").length;
+    var tableUnicefFundLength = $("#tbl_Unicef_fund tbody tr").length;
     var totalSubAmount = 0;
-    for(x = 0; x < tableOfficeFundLength; x++) {
-      var tr = $("#tbl_office_fund tbody tr")[x];
+    for(x = 0; x < tableUnicefFundLength; x++) {
+      var tr = $("#tbl_Unicef_fund tbody tr")[x];
       var count = $(tr).attr('id');
       count = count.substring(4);
       totalSubAmount = Number(totalSubAmount) + Number($("#amount_"+count).val());
