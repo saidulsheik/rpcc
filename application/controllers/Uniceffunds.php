@@ -29,31 +29,30 @@ class Uniceffunds extends Admin_Controller
 	*/
 	public function fetchUnicefFundData(){
 		$result = array('data' => array());
-        $data = $this->model_Uniceffund->getUnicefFundData();
+        $data = $this->model_uniceffund->getUnicefFundData();
         $i=0;
 		foreach ($data as $key => $value) {
             $i++;
 			$buttons = '';
 			if(in_array('viewUnicefFund', $this->permission)) {
 				//.base_url('orders/printDiv/'.$value['id']).
-				$buttons.= '<a target="__blank" href="'.base_url('uniceffunds/uniceffundsDetails/'.$value['id']).'" title="View Details" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>';
+				$buttons.= '<a target="__blank" href="'.base_url('uniceffunds/uniceffundsDetails/'.$value['unicef_fund_id']).'" title="View Details" class="btn btn-primary"><i class="fa fa-eye" aria-hidden="true"></i></a>';
 			}
 
 			if(in_array('updateUnicefFund', $this->permission)) {
-				$buttons .= ' <a href="'.base_url('uniceffunds/update/'.$value['id']).'"  title="Edit Budget"  class="btn btn-warning"><i class="fa fa-pencil"></i></a>';
+				$buttons .= ' <a href="'.base_url('uniceffunds/update/'.$value['unicef_fund_id']).'"  title="Edit"  class="btn btn-warning"><i class="fa fa-pencil"></i></a>';
 			}
 
 			if(in_array('deleteUnicefFund', $this->permission)) {
-				$buttons .= ' <button type="button" class="btn btn-danger" onclick="removeFunc('.$value['id'].')" title="Delete Budget" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i></button>';
+				$buttons .= ' <button type="button" class="btn btn-danger" onclick="removeFunc('.$value['unicef_fund_id'].')" title="Delete Budget" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i></button>';
 			}
 
 			$result['data'][$key] = array(
 				$i,
-                $value['month_name'],
-                $value['of_desc'],
-				$value['total_amout'],
+                $value['unicef_fund_desc'],
+                $value['start_month'],
+				$value['end_month'],
 				$value['status'],
-				$value['created_at'],
 				$buttons
 			);
 		} // /foreach
@@ -68,13 +67,13 @@ class Uniceffunds extends Admin_Controller
 		if(!in_array('createUnicefFund', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
-
+		
 		$this->data['page_title'] = 'Add Unicef Fund';
-		$this->form_validation->set_rules('of_desc', 'Fund Description', 'trim|required');
-		$this->form_validation->set_rules('month_name', 'Month Name', 'trim|required');
-		$this->form_validation->set_rules('year', 'Year', 'trim|required');
+		$this->form_validation->set_rules('unicef_fund_desc', 'Unicef Fund Description', 'trim|required');
+		$this->form_validation->set_rules('start_month', 'Start Month', 'trim|required');
+		$this->form_validation->set_rules('end_month', 'End Month', 'trim|required');
         if ($this->form_validation->run() == TRUE) {
-        	$success_id = $this->model_Uniceffund->create();
+        	$success_id = $this->model_uniceffund->create();
         	if($success_id) {
         		$this->session->set_flashdata('success', 'Successfully created');
         		redirect('uniceffunds/', 'refresh');
@@ -117,13 +116,13 @@ class Uniceffunds extends Admin_Controller
 			redirect('dashboard', 'refresh');
 		}
 
-		$this->data['page_title'] = 'Update Unicef Fund ';
-		$this->form_validation->set_rules('of_desc', 'Fund Description', 'trim|required');
-		$this->form_validation->set_rules('month_name', 'Month Name', 'trim|required');
-		$this->form_validation->set_rules('year', 'Year', 'trim|required');
+		$this->data['page_title'] = 'Update Unicef Fund';
+		$this->form_validation->set_rules('unicef_fund_desc', 'Unicef Fund Description', 'trim|required');
+		$this->form_validation->set_rules('start_month', 'Start Month', 'trim|required');
+		$this->form_validation->set_rules('end_month', 'End Month', 'trim|required');
 
         if ($this->form_validation->run() == TRUE) {
-        	$update = $this->model_Uniceffund->update($id);
+        	$update = $this->model_uniceffund->update($id);
         	if($update == true) {
         		$this->session->set_flashdata('success', 'Successfully updated');
         		redirect('uniceffunds/update/'.$id, 'refresh');
@@ -137,15 +136,16 @@ class Uniceffunds extends Admin_Controller
             // false case
 
 			$result = array();
-			$fund_master = $this->model_Uniceffund->getUnicefFundData($id);
-    		$result['fund_master'] = $fund_master;
-			$fund_details = $this->model_Uniceffund->getUnicefFundDetailsData($fund_master['id']);
-    		foreach($fund_details as $k => $v) {
-    			$result['fund_details'][] = $v;
+			$unief_fund_master = $this->model_uniceffund->getUnicefFundData($id);
+    		$result['unief_fund_master'] = $unief_fund_master;
+			
+			
+			$unicef_fund_details = $this->model_uniceffund->getUnicefFundDetailsData($unief_fund_master['unicef_fund_id']);
+    		foreach($unicef_fund_details as $k => $v) {
+    			$result['unicef_fund_details'][] = $v;
 			}
     		$this->data['uniceffunds'] = $result;
-			$result = $this->db->query("SELECT budget_id FROM budget_master WHERE status = ?", array(0))->result();
-			$this->data['account_head'] = $this->model_budget->getBudgetDetailsReport($result[0]->budget_id);
+			
             $this->render_template('uniceffunds/edit', $this->data);
         }
 	}

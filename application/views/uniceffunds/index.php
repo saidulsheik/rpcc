@@ -50,11 +50,10 @@
               <thead>
               <tr>
                 <th>Sl No.</th>
-                <th>Month Name</th>
                 <th>Fund Description</th>
-                <th>Total Amount</th>
+                <th>Start Date</th>
+                <th>End Date</th>
                 <th>Status</th>
-                <th>Created At</th>
                 <?php if(in_array('updateUnicefFund', $user_permission) || in_array('viewUnicefFund', $user_permission) || in_array('deleteUnicefFund', $user_permission)): ?>
                   <th>Action</th>
                 <?php endif; ?>

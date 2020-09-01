@@ -13,41 +13,52 @@ class Model_uniceffund extends CI_Model
 	/* get Unicef Master data */
 	public function getUnicefFundData($id = null){
 		if($id) {
-			$sql = "SELECT * FROM of_master WHERE id = ?";
+			$sql = "SELECT * FROM unief_fund_master WHERE unicef_fund_id = ?";
 			$query = $this->db->query($sql, array($id));
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM of_master ORDER BY id DESC";
+		$sql = "SELECT * FROM unief_fund_master ORDER BY unicef_fund_id DESC";
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
 
 	/* get Unicef fund details data */
-	public function getUnicefFundDetailsData($id = null){
-		if($id) {
-			$sql = "SELECT * FROM of_details WHERE of_id = ?";
-			$query = $this->db->query($sql, array($id));
+	public function getUnicefFundDetailsData($unicef_fund_id = null){
+		if($unicef_fund_id) {
+			$sql = "
+				SELECT
+					uncef_fund_details.id,
+					uncef_fund_details.acc_id,
+					uncef_fund_details.acc_code,
+					uncef_fund_details.unicef_fund_id,
+					uncef_fund_details.qty,
+					uncef_fund_details.no_of_month,
+					acc_head.acc_head,
+					acc_head.unit,
+					budget_details.unit_cost
+				FROM
+					`uncef_fund_details`
+				LEFT JOIN acc_head ON acc_head.id = uncef_fund_details.acc_id
+				LEFT JOIN budget_details ON budget_details.acc_id = uncef_fund_details.acc_id
+				WHERE
+					uncef_fund_details.unicef_fund_id = ? AND budget_details.budget_id =(
+					SELECT
+						budget_master.budget_id
+					FROM
+						budget_master
+					WHERE
+						budget_master.status = 0
+				)
+			";
+			$query = $this->db->query($sql, array($unicef_fund_id));
 			return $query->result_array();
 		}
 
-		$sql = "SELECT * FROM of_details ORDER BY id DESC";
-		$query = $this->db->query($sql);
-		return $query->result_array();
+		
 	}
 
-	/* get Unicef details data */
-	public function getUnicefFundDetailsDataById($of_id = null, $acc_h_id=null){
-		if($of_id &&  $acc_h_id) {
-			$sql = "SELECT * FROM of_details WHERE of_id = ? and acc_h_id=?";
-			$query = $this->db->query($sql, array($of_id, $acc_h_id));
-			return $query->result_array();
-		}
-
-		$sql = "SELECT * FROM of_details ORDER BY id DESC";
-		$query = $this->db->query($sql);
-		return $query->result_array();
-	}
+	
 
 
 
@@ -80,36 +91,28 @@ class Model_uniceffund extends CI_Model
 	/* Create new Unicef Fund */
 	public function create(){
 
-	/* 	echo '<pre>';
-		print_r($_POST);
-		echo '</pre>';
-		exit; */
-
+		
 		$this->db->trans_begin();
 		$user_id = $this->session->userdata('id');
     	$data = array(
-    		'of_desc' => $this->input->post('of_desc'),
-    		'month_name' => $this->input->post('month_name').','. $this->input->post('year'),
-    		'total_amout' => $this->input->post('total_amout'),
-			'status' => 1,
-			'created_by'=>$user_id
+    		'unicef_fund_desc' => $this->input->post('unicef_fund_desc'),
+    		'start_month' => $this->input->post('start_month'),
+    		'end_month' => $this->input->post('end_month'),
+			'status' => 1
     	);
 
-		$insert = $this->db->insert('of_master', $data);
-		$of_id = $this->db->insert_id();
-		$qty_count = count($this->input->post('qty'));
-    	for($x = 0; $x < $qty_count; $x++) {
-			if(($this->input->post('qty')[$x]!=0)){
+		$insert = $this->db->insert('unief_fund_master', $data);
+		$unicef_fund_id = $this->db->insert_id();
+		$count_acc_id = count($this->input->post('acc_id'));
+    	for($x = 0; $x < $count_acc_id; $x++) {
 				$details = array(
-					'of_id' =>$of_id,
-					'acc_h_id' => $this->input->post('acc_id')[$x],
-					'bill_no' => $this->input->post('bill_no')[$x],
+					'acc_id' => $this->input->post('acc_id')[$x],
+					'acc_code' => $this->input->post('acc_code')[$x],
+					'unicef_fund_id' => $unicef_fund_id,
 					'qty' => $this->input->post('qty')[$x],
-					'amount' => $this->input->post('amount')[$x],
+					'no_of_month' => $this->input->post('no_of_month')[$x],
 				);
-				$this->db->insert('of_details', $details);
-			}
-    		
+				$this->db->insert('uncef_fund_details', $details);
     	}
 
 		if ($this->db->trans_status() === FALSE){
@@ -118,45 +121,36 @@ class Model_uniceffund extends CI_Model
 			$this->db->trans_commit();
 		}
 		
-		return ($of_id) ? $of_id : false;
+		return ($unicef_fund_id) ? $unicef_fund_id : false;
 	}
 
 
 	/* update budget*/
-	public function update($id){
-		if($id) {
+	public function update($unicef_fund_id){
+		if($unicef_fund_id) {
 			$this->db->trans_begin();
 			$user_id = $this->session->userdata('id');
-			/* echo '<pre>';
-			print_r($_POST);
-			echo '</pre>';
-			exit;  */
 			$data = array(
-				'of_desc' => $this->input->post('of_desc'),
-				'month_name' => $this->input->post('month_name').','. $this->input->post('year'),
-				'total_amout' => $this->input->post('total_amout'),
-				'status' => 1,
-				'updated_by'=>$user_id
+				'unicef_fund_desc' => $this->input->post('unicef_fund_desc'),
+				'start_month' => $this->input->post('start_month'),
+				'end_month' => $this->input->post('end_month'),
+				'status' => 1
 			);
 
-			$this->db->where('id', $id);
-			$update = $this->db->update('of_master', $data);
-			$this->db->where('of_id', $id);
-			$this->db->delete('of_details');
-			$qty_count = count($this->input->post('qty'));
-			for($x = 0; $x < $qty_count; $x++) {
-				if(($this->input->post('qty')[$x]!=0)){
+			$this->db->where('unicef_fund_id', $unicef_fund_id);
+			$update = $this->db->update('unief_fund_master', $data);
+			$this->db->where('unicef_fund_id', $unicef_fund_id);
+			$this->db->delete('uncef_fund_details');
+			$count_acc_id = count($this->input->post('acc_id'));
+			for($x = 0; $x < $count_acc_id; $x++) {
 					$details = array(
-						'of_id' =>$id,
-						'acc_h_id' => $this->input->post('acc_id')[$x],
-						'bill_no' => $this->input->post('bill_no')[$x],
+						'acc_id' => $this->input->post('acc_id')[$x],
+						'acc_code' => $this->input->post('acc_code')[$x],
+						'unicef_fund_id' => $unicef_fund_id,
 						'qty' => $this->input->post('qty')[$x],
-						'amount' => $this->input->post('amount')[$x],
+						'no_of_month' => $this->input->post('no_of_month')[$x],
 					);
-					//echo $this->db->last_query();
-					$this->db->insert('of_details', $details);
-				}
-				
+					$this->db->insert('uncef_fund_details', $details);
 			}
 	
 			if ($this->db->trans_status() === FALSE){

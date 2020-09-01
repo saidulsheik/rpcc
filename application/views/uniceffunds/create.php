@@ -44,8 +44,8 @@
 						
 						<div class="box-body">
 							<div class="form-group col-sm-3">
-								<label for="budget_desc" class="col-sm-5 control-label">Fund Description</label>
-								<input type="text" class="form-control" id="of_desc" required name="of_desc" placeholder="Fund Description"  autocomplete="on">
+								<label for="unicef_fund_desc" class="col-sm-5 control-label">Description</label>
+								<input type="text" class="form-control" id="unicef_fund_desc" required name="unicef_fund_desc" placeholder="Unicef Fund Description"  autocomplete="on">
 							</div>
 
 							<div class="form-group col-sm-3">
@@ -63,9 +63,6 @@
 								<button type="submit" class="btn btn-primary">Submit</button>
 								<a href="<?php echo base_url('unicefFunds/') ?>" class="btn btn-warning">Back</a>
 							</div>
-
-							
-
 						</div>	
 					</div>	
 				</div>	
@@ -84,7 +81,6 @@
 									<th style="width:15%">Unit Cost</th>
 									<th style="width:10%">Quantity</th>
 									<th style="width:10%">No. Of Month</th>
-									<th style="width:15%">Amount</th>
 
 								</tr>
 							</thead>
@@ -108,22 +104,12 @@
 									<td><?php echo $account_head_value['acc_head'];?></td>
 									<td><input type="text"  name="unit[]" id="unit_<?php echo $i; ?>" value="<?php echo $account_head_value['unit'];?>" class="form-control" readonly ></td>
 									<td><input type="number"  name="unit_cost[]" id="unit_cost_<?php echo $i; ?>" value="<?php echo $account_head_value['unit_cost']; ?>" class="form-control" readonly ></td>
-									<td><input type="number"  name="qty[]" value="0" id="qty_<?php echo $i; ?>" class="form-control" required onkeyup="getTotal(<?php echo $i; ?>)"></td>
+									<td><input type="number"  name="qty[]" value="0" id="qty_<?php echo $i; ?>" class="form-control" required></td>
 									<td><input type="text"  name="no_of_month[]" id="no_of_month_<?php echo $i; ?>" value="0" class="form-control" required ></td>
-									<td><input type="number"  name="amount[]" id="amount_<?php echo $i; ?>" value="0" class="form-control" required ></td>
-									
 								  </tr>
 								  <?php  endforeach; ?>
 							</tbody>
 						</table>
-						<div class="col-md-6 col-xs-12 pull pull-right">
-						<div class="form-group">
-							<label for="total_amout" class="col-sm-5 control-label">Gross Amount</label>
-							<div class="col-sm-7">
-							<input type="number" class="form-control" id="total_amout" name="total_amout" readonly autocomplete="off">
-							</div>
-						</div>
-						</div>
 					</div>
 					  <div class="box-footer">
 						<button type="submit" class="btn btn-primary">Submit</button>

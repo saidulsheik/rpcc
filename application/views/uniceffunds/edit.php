@@ -44,7 +44,7 @@
           </div>
         <?php endif; ?>
 
-	<form role="form" action="<?php base_url('Uniceffunds/update') ?>"  method="post" class="">
+	<form role="form" action="<?php base_url('uniceffunds/update') ?>"  method="post" class="">
 		 <div class="row">
 			  <div class="col-md-12">
 				  <?php echo validation_errors('<h4 class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></h4>'); ?>
@@ -55,38 +55,28 @@
 					<div class="box box-primary">
 						
 						<div class="box-body">
-							<div class="form-group col-sm-4">
-								<label for="of_desc" class="col-sm-5 control-label">Fund Description</label>
-								<input type="text" class="form-control" id="of_desc" required name="of_desc" placeholder="Fund Description"  value="<?php echo !empty($Uniceffunds['fund_master']['of_desc'])?$Uniceffunds['fund_master']['of_desc']:''; ?>" autocomplete="on">
-							</div>
+							<div class="box-body">
+								<div class="form-group col-sm-3">
+									<label for="unicef_fund_desc" class="col-sm-5 control-label">Description</label>
+									<input type="text" class="form-control" id="unicef_fund_desc" required name="unicef_fund_desc" value="<?php echo !empty($uniceffunds['unief_fund_master']['unicef_fund_desc'])?$uniceffunds['unief_fund_master']['unicef_fund_desc']:''; ?>"  autocomplete="on">
+								</div>
 
-							<?php 
-								$month_year = !empty($Uniceffunds['fund_master']['month_name'])?explode(',', $Uniceffunds['fund_master']['month_name']):'';
-								$curr_month='';
-								$year='';
-								if(!empty($month_year)){
-									$curr_month = $month_year[0];
-									$year = $month_year[1];
-								}
-								
+								<div class="form-group col-sm-3">
+									<label for="start_month" class="col-sm-5 control-label">Start Month</label>
+									<input type="date" class="form-control" id="start_month" required name="start_month"  value="<?php echo !empty($uniceffunds['unief_fund_master']['start_month'])?$uniceffunds['unief_fund_master']['start_month']:''; ?>" >
+								</div>
 
-								$months = array("January","February","March","April","May","June","July","August","September","October","November","December");
-							?>
+								<div class="form-group col-sm-3">
+									<label for="end_month" class="col-sm-5 control-label">End Month</label>
+									<input type="date" class="form-control" id="end_month" required name="end_month"   value="<?php echo !empty($uniceffunds['unief_fund_master']['end_month'])?$uniceffunds['unief_fund_master']['end_month']:''; ?>" >
+								</div>
 
-							<div class="form-group col-sm-2">
-							  <label for="from_date" class="control-label">Month Name</label>
-							  	<select class="form-control"  id="month" name="month_name" style="width:100%;" required>
-								<option value="">Select a Month</option>
-								<?php foreach ($months as $month): ?>
-								<option <?php echo $curr_month==$month?'selected':''; ?> value="<?php echo  $month; ?>"><?php echo $month; ?></option>
-								<?php endforeach ?>
-							</select>
-							</div>
-
-							<div class="form-group col-sm-2">
-							  <label for="year" class="control-label">Year</label>
-							  <input type="number" name="year" value="<?php echo !empty($year)?$year:'';?>"  class="form-control">
-							</div>
+								<div class="form-group col-sm-3">
+									<label for="button" class="col-sm-5 control-label"></label>
+									<button type="submit" class="btn btn-primary">Submit</button>
+									<a href="<?php echo base_url('unicefFunds/') ?>" class="btn btn-warning">Back</a>
+								</div>
+							</div>	
 						</div>	
 					</div>	
 				</div>	
@@ -96,90 +86,46 @@
 				<div class="box">
 					<div class="box-body">	
 						<table class="table table-bordered" id="tbl_Unicef_fund">
-						<thead>
+							<thead>
 								<tr>
 									<th style="width:10%">Sl No</th>
 									<th style="width:25%">Account Head</th>
 									<th style="width:15%">Unit</th>
 									<th style="width:15%">Unit Cost</th>
 									<th style="width:10%">Quantity</th>
-									<th style="width:10%">Bill No.</th>
-									<th style="width:15%">Amount</th>
+									<th style="width:10%">No. Of Month</th>
 
 								</tr>
 							</thead>
 
 							<tbody>
 								<?php 
-								
 									$i=0;
-									$bill_no=0;
-									$qty=0;
-									$amount=0;
-									foreach($account_head as $account_head_value):
-										$i++;
-										$CI =& get_instance();
-										$CI->load->model('model_Uniceffund');
-										$result = $CI->model_Uniceffund->getUnicefFundDetailsDataByOfidandAccid($Uniceffunds['fund_master']['id'],$account_head_value['acc_id']);
-										if(!empty($result)){
-											$bill_no=$result[0]['bill_no'];
-											$qty=$result[0]['qty'];
-											$amount=$result[0]['amount'];
-											if($result[0]['acc_h_id']==$account_head_value['acc_id']){
-												?>
-													<input type="hidden" name="acc_id[]" value="<?php echo $account_head_value['acc_id']; ?>">
-													<input type="hidden" name="acc_code[]" value="<?php echo $account_head_value['acc_code']; ?>">
-													<tr id="row_<?php echo $i; ?>">
-														<td><?php echo $i;?></td>
-														<td><?php echo $account_head_value['acc_head'];?></td>
-														<td><input type="text"  name="unit[]" id="unit_<?php echo $i; ?>" value="<?php echo $account_head_value['unit'];?>" class="form-control" readonly ></td>
-														<td><input type="number"  name="unit_cost[]" id="unit_cost_<?php echo $i; ?>" value="<?php echo $account_head_value['unit_cost']; ?>" class="form-control" readonly ></td>
-														<td><input type="number"  name="qty[]" value="<?php echo $qty; ?>" id="qty_<?php echo $i; ?>" class="form-control" required onkeyup="getTotal(<?php echo $i; ?>)"></td>
-														<td><input type="text"  name="bill_no[]" id="bill_no_<?php echo $i; ?>" value="<?php echo $bill_no; ?>" class="form-control" required ></td>
-														<td><input type="number"  readonly name="amount[]" id="amount_<?php echo $i; ?>" value="<?php echo $amount; ?>" class="form-control" required ></td>
-													</tr>
-												<?php 
-												}
-										}else{
-									
-										?>
-											<input type="hidden" name="acc_id[]" value="<?php echo $account_head_value['acc_id']; ?>">
-											<input type="hidden" name="acc_code[]" value="<?php echo $account_head_value['acc_code']; ?>">
-											<tr id="row_<?php echo $i; ?>">
-												<td><?php echo $i;?></td>
-												<td><?php echo $account_head_value['acc_head'];?></td>
-												<td><input type="text"  name="unit[]" id="unit_<?php echo $i; ?>" value="<?php echo $account_head_value['unit'];?>" class="form-control" readonly ></td>
-												<td><input type="number"  name="unit_cost[]" id="unit_cost_<?php echo $i; ?>" value="<?php echo $account_head_value['unit_cost']; ?>" class="form-control" readonly ></td>
-												<td><input type="number"  name="qty[]" value="<?php echo 0; ?>" id="qty_<?php echo $i; ?>" class="form-control" required onkeyup="getTotal(<?php echo $i; ?>)"></td>
-												<td><input type="text"  name="bill_no[]" id="bill_no_<?php echo $i; ?>" value="<?php echo 0; ?>" class="form-control" required ></td>
-												<td><input type="number"  readonly name="amount[]" id="amount_<?php echo $i; ?>" value="<?php echo 0; ?>" class="form-control" required ></td>
-											</tr>
-										<?php 
-									}
-										
-										
-								  ?>
-								  
-                  <?php 
-                    
-                    endforeach; 
-                ?>
+									foreach($uniceffunds['unicef_fund_details'] as $value):
+									$i++;
+								?>
+									<input type="hidden" name="acc_id[]" value="<?php echo $value['acc_id']; ?>">
+									<input type="hidden" name="acc_code[]" value="<?php echo $value['acc_code']; ?>">
+									<tr id="row_<?php echo $i; ?>">
+										<td><?php echo $i;?></td>
+										<td><?php echo $value['acc_head'];?></td>
+										<td><input type="text"  name="unit[]" id="unit_<?php echo $i; ?>" value="<?php echo $value['unit'];?>" class="form-control" readonly ></td>
+										<td><input type="number"  name="unit_cost[]" id="unit_cost_<?php echo $i; ?>" value="<?php echo $value['unit_cost']; ?>" class="form-control" readonly ></td>
+										<td><input type="number"  name="qty[]" value="<?php echo $value['qty']; ?>" id="qty_<?php echo $i; ?>" class="form-control" required></td>
+										<td><input type="text"  name="no_of_month[]" id="no_of_month_<?php echo $i; ?>" value="<?php echo $value['no_of_month']; ?>" class="form-control" required ></td>
+									</tr>
+								<?php 
+									endforeach;
+								?>
 							</tbody>
 						</table>
-						<div class="col-md-6 col-xs-12 pull pull-right">
-							<div class="form-group">
-								<label for="total_amout" class="col-sm-5 control-label">Gross Amount</label>
-								<div class="col-sm-7">
-								<input type="number" class="form-control" id="total_amout" name="total_amout" value="<?php echo $Uniceffunds['fund_master']['total_amout']; ?>" readonly autocomplete="off">
-								</div>
-							</div>
-						</div>
+						
 						
 
 					</div>
 					  <div class="box-footer">
 						<button type="submit" class="btn btn-primary">Submit</button>
-						<a href="<?php echo base_url('Uniceffunds/') ?>" class="btn btn-warning">Back</a>
+						<a href="<?php echo base_url('uniceffunds/') ?>" class="btn btn-warning">Back</a>
 					  </div>
 				</div>
 			</div>
