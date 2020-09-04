@@ -158,16 +158,15 @@ class Uniceffunds extends Admin_Controller
 		if($id) {
 			$this->data['page_title'] = 'Unicef Fund Report';
 			$result = array();
-        	$of_master = $this->model_Uniceffund->getUnicefFundData($id);
-    		$result['of_master'] = $of_master;
-			
-    		$of_details = $this->model_Uniceffund->getUnicefDetailsReport($of_master['id']);
+        	$unief_fund_master = $this->model_uniceffund->getUnicefFundData($id);
+    		$result['unief_fund_master'] = $unief_fund_master;
+    		$uncef_fund_details = $this->model_uniceffund->getUnicefDetailsReport($unief_fund_master['unicef_fund_id']);
 			/* echo '<pre>';
 			print_r($of_details);
 			echo '</pre>';
 			exit;  */ 
-    		foreach($of_details as $k => $v) {
-    			$result['of_details'][] = $v;
+    		foreach($uncef_fund_details as $k => $v) {
+    			$result['uncef_fund_details'][] = $v;
     		}
 			$this->data['uniceffunds'] = $result;
 
@@ -176,35 +175,28 @@ class Uniceffunds extends Admin_Controller
 	}
 
 	
-
-
-	/*
-	*  Print Budget  Report
-	*/
-	
-
-
-	public function budgetDetails($id){
+	/* Unicef Fund Report Excel export */
+	public function excelExport($id){
 		if(!in_array('viewUnicefFund', $this->permission)) {
             redirect('dashboard', 'refresh');
 		}
 
 		if($id) {
-			$this->data['page_title'] = 'Budget Report';
+			$this->data['page_title'] = 'Unicef Fund Report';
 			$result = array();
-        	$budget_master = $this->model_budget->getBudgetData($id);
-    		$result['budget_master'] = $budget_master;
-    		$budget_details = $this->model_budget->getBudgetDetailsReport($id);
+        	$unief_fund_master = $this->model_uniceffund->getUnicefFundData($id);
+    		$result['unief_fund_master'] = $unief_fund_master;
+    		$uncef_fund_details = $this->model_uniceffund->getUnicefDetailsReport($unief_fund_master['unicef_fund_id']);
 			/* echo '<pre>';
-			print_r($result);
+			print_r($of_details);
 			echo '</pre>';
-			exit;  */
-    		foreach($budget_details as $k => $v) {
-    			$result['budget_details'][] = $v;
+			exit;  */ 
+    		foreach($uncef_fund_details as $k => $v) {
+    			$result['uncef_fund_details'][] = $v;
     		}
-			$this->data['budgets'] = $result;
-
-			$this->render_template('budget/viewUnicefFundDetails', $this->data);
+			$this->data['uniceffunds'] = $result;
+			$this->load->view('uniceffunds/viewUnicefFundDetailsExcel', $this->data);
+			//$this->render_template('uniceffunds/viewUnicefFundDetailsExcel', $this->data);
 		}
 	}
 

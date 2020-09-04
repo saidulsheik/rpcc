@@ -63,26 +63,41 @@ class Model_uniceffund extends CI_Model
 
 
 
-	/* Get budget details and and acc_head with joining data */
+	/* Get unicef fund details and and acc_head with joining data */
 	public function getUnicefDetailsReport($id = null){
 		if(!$id) {
 			return false;
 		}
 			$sql ="SELECT
-					of_details.*,
+					uncef_fund_details.id,
+					uncef_fund_details.acc_id,
+					uncef_fund_details.acc_code,
+					uncef_fund_details.unicef_fund_id,
+					uncef_fund_details.qty,
+					uncef_fund_details.no_of_month,
 					acc_head.activity_id,
-					acc_head.acc_code,
 					acc_head.acc_head,
+					acc_head.unit,
+					budget_details.unit_cost,
 					activity.output_id,
+					activity.activity_code,
 					activity.activity_name,
 					output.output_name
-					FROM
-						of_details
-					LEFT JOIN acc_head ON acc_head.id=of_details.acc_h_id
-					LEFT JOIN activity ON activity.id=acc_head.activity_id
-					LEFT JOIN output ON output.id=activity.output_id
+				FROM
+					`uncef_fund_details`
+				LEFT JOIN acc_head ON acc_head.id = uncef_fund_details.acc_id
+				LEFT JOIN budget_details ON budget_details.acc_id = uncef_fund_details.acc_id
+				LEFT JOIN activity ON activity.id=acc_head.activity_id
+				LEFT JOIN output ON output.id=activity.output_id
 				WHERE
-					of_details.of_id = ?";
+					uncef_fund_details.unicef_fund_id = 3 AND budget_details.budget_id =(
+					SELECT
+						budget_master.budget_id
+					FROM
+						budget_master
+					WHERE
+						budget_master.status = 0
+				)";
 		$query = $this->db->query($sql, array($id));
 		return $query->result_array();
 	}

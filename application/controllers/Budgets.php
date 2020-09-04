@@ -183,7 +183,7 @@ class Budgets extends Admin_Controller
 		}
 	}
 	
-		public function excelExport($id){
+	public function excelExport($id){
 		if(!in_array('viewBudget', $this->permission)) {
             redirect('dashboard', 'refresh');
 		}
