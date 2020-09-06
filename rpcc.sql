@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2020 at 07:57 PM
+-- Generation Time: Sep 06, 2020 at 08:31 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.3.21
 
@@ -498,7 +498,7 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id`, `company_name`, `service_charge_value`, `vat_charge_value`, `address`, `phone`, `country`, `message`, `currency`) VALUES
-(1, 'RPCC', '13', '10', '19 Monipuripara, Farmgate, Tejgoan, Dhaka-1215.', '01750975175', 'Bangladesh', 'Sample message<br>', 'BDT');
+(1, 'RPCC', '13', '10', '19 Monipuripara, Farmgate, Tejgoan, Dhaka-1215.', '01750975175', 'Bangladesh', 'Sample message<br>                  <div>\r\n\r\nSample message\r\n\r\n<br></div>', 'BDT');
 
 -- --------------------------------------------------------
 
@@ -517,7 +517,7 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `group_name`, `permission`) VALUES
-(1, 'Administrator', 'a:36:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:15:\"createCashgrant\";i:9;s:15:\"updateCashgrant\";i:10;s:13:\"viewCashgrant\";i:11;s:15:\"deleteCashgrant\";i:12;s:12:\"createBudget\";i:13;s:12:\"updateBudget\";i:14;s:10:\"viewBudget\";i:15;s:12:\"deleteBudget\";i:16;s:16:\"createOfficeFund\";i:17;s:16:\"updateOfficeFund\";i:18;s:14:\"viewOfficeFund\";i:19;s:16:\"deleteOfficeFund\";i:20;s:16:\"createUnicefFund\";i:21;s:16:\"updateUnicefFund\";i:22;s:14:\"viewUnicefFund\";i:23;s:16:\"deleteUnicefFund\";i:24;s:17:\"createAccountHead\";i:25;s:17:\"updateAccountHead\";i:26;s:15:\"viewAccountHead\";i:27;s:17:\"deleteAccountHead\";i:28;s:12:\"createOutput\";i:29;s:12:\"updateOutput\";i:30;s:10:\"viewOutput\";i:31;s:12:\"deleteOutput\";i:32;s:11:\"viewReports\";i:33;s:13:\"updateCompany\";i:34;s:11:\"viewProfile\";i:35;s:13:\"updateSetting\";}'),
+(1, 'Administrator', 'a:40:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:15:\"createCashgrant\";i:9;s:15:\"updateCashgrant\";i:10;s:13:\"viewCashgrant\";i:11;s:15:\"deleteCashgrant\";i:12;s:12:\"createBudget\";i:13;s:12:\"updateBudget\";i:14;s:10:\"viewBudget\";i:15;s:12:\"deleteBudget\";i:16;s:16:\"createOfficeFund\";i:17;s:16:\"updateOfficeFund\";i:18;s:14:\"viewOfficeFund\";i:19;s:16:\"deleteOfficeFund\";i:20;s:16:\"createUnicefFund\";i:21;s:16:\"updateUnicefFund\";i:22;s:14:\"viewUnicefFund\";i:23;s:16:\"deleteUnicefFund\";i:24;s:17:\"createAccountHead\";i:25;s:17:\"updateAccountHead\";i:26;s:15:\"viewAccountHead\";i:27;s:17:\"deleteAccountHead\";i:28;s:12:\"createOutput\";i:29;s:12:\"updateOutput\";i:30;s:10:\"viewOutput\";i:31;s:12:\"deleteOutput\";i:32;s:16:\"createReportText\";i:33;s:16:\"updateReportText\";i:34;s:14:\"viewReportText\";i:35;s:16:\"deleteReportText\";i:36;s:11:\"viewReports\";i:37;s:13:\"updateCompany\";i:38;s:11:\"viewProfile\";i:39;s:13:\"updateSetting\";}'),
 (4, 'Owners', 'a:36:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:11:\"createBrand\";i:9;s:11:\"updateBrand\";i:10;s:9:\"viewBrand\";i:11;s:11:\"deleteBrand\";i:12;s:14:\"createCategory\";i:13;s:14:\"updateCategory\";i:14;s:12:\"viewCategory\";i:15;s:14:\"deleteCategory\";i:16;s:11:\"createStore\";i:17;s:11:\"updateStore\";i:18;s:9:\"viewStore\";i:19;s:11:\"deleteStore\";i:20;s:15:\"createAttribute\";i:21;s:15:\"updateAttribute\";i:22;s:13:\"viewAttribute\";i:23;s:15:\"deleteAttribute\";i:24;s:13:\"createProduct\";i:25;s:13:\"updateProduct\";i:26;s:11:\"viewProduct\";i:27;s:13:\"deleteProduct\";i:28;s:11:\"createOrder\";i:29;s:11:\"updateOrder\";i:30;s:9:\"viewOrder\";i:31;s:11:\"deleteOrder\";i:32;s:11:\"viewReports\";i:33;s:13:\"updateCompany\";i:34;s:11:\"viewProfile\";i:35;s:13:\"updateSetting\";}');
 
 -- --------------------------------------------------------
@@ -655,6 +655,30 @@ INSERT INTO `output` (`id`, `output_name`) VALUES
 (5, 'Programme management '),
 (3, 'Programme staff enhanced capacity of program to ensure quality and standard programme delivery for the children , adolescents and community.'),
 (6, 'Saidul Islam Sheik');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `report_text`
+--
+
+CREATE TABLE `report_text` (
+  `id` int(4) NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `header1` text CHARACTER SET utf8 NOT NULL,
+  `header2` text CHARACTER SET utf8 NOT NULL,
+  `footer1` text CHARACTER SET utf8 NOT NULL,
+  `footer2` text CHARACTER SET utf8 NOT NULL,
+  `signature_left` text CHARACTER SET utf8 NOT NULL,
+  `signature_right` text CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `report_text`
+--
+
+INSERT INTO `report_text` (`id`, `name`, `header1`, `header2`, `footer1`, `footer2`, `signature_left`, `signature_right`) VALUES
+(1, 'Test Name', 'Test Header 1', 'Test Header 2', 'Test Footer 1', 'Test Footer 2', 'Signature left', 'signature right');
 
 -- --------------------------------------------------------
 
@@ -824,80 +848,80 @@ INSERT INTO `uncef_fund_details` (`id`, `acc_id`, `acc_code`, `unicef_fund_id`, 
 (220, 72, '5.2.7', 2, 0, 0),
 (221, 73, '5.2.8', 2, 0, 0),
 (222, 74, '1.1.1', 2, 0, 0),
-(297, 1, '1.1.1', 3, 5, 5),
-(298, 2, '1.1.2', 3, 10, 10),
-(299, 3, '1.1.3', 3, 0, 0),
-(300, 4, '1.1.4', 3, 0, 0),
-(301, 5, '1.1.5', 3, 0, 0),
-(302, 6, '1.1.6', 3, 0, 0),
-(303, 7, '1.1.7', 3, 0, 0),
-(304, 8, '1.1.8', 3, 0, 0),
-(305, 9, '1.1.9', 3, 0, 0),
-(306, 10, '1.1.10', 3, 0, 0),
-(307, 11, '1.1.11', 3, 0, 0),
-(308, 12, '1.1.12', 3, 0, 0),
-(309, 13, '1.1.13', 3, 0, 0),
-(310, 14, '1.1.14', 3, 0, 0),
-(311, 15, '1.1.15', 3, 0, 0),
-(312, 16, '1.2.1', 3, 0, 0),
-(313, 17, '1.2.2', 3, 0, 0),
-(314, 18, '1.2.3', 3, 0, 0),
-(315, 19, '1.2.4', 3, 0, 0),
-(316, 20, '1.2.5', 3, 0, 0),
-(317, 21, '1.2.6', 3, 0, 0),
-(318, 22, '1.2.7', 3, 0, 0),
-(319, 23, '1.2.8', 3, 0, 0),
-(320, 24, '1.2.9', 3, 0, 0),
-(321, 25, '1.2.10', 3, 0, 0),
-(322, 26, '1.2.11', 3, 0, 0),
-(323, 27, '1.3.1', 3, 0, 0),
-(324, 28, '1.3.2', 3, 0, 0),
-(325, 29, '1.3.3', 3, 0, 0),
-(326, 30, '1.3.4', 3, 0, 0),
-(327, 31, '1.3.5', 3, 0, 0),
-(328, 32, '1.3.6', 3, 0, 0),
-(329, 33, '1.3.7', 3, 0, 0),
-(330, 34, '2.1.1', 3, 0, 0),
-(331, 35, '2.1.2', 3, 0, 0),
-(332, 36, '2.1.3', 3, 0, 0),
-(333, 37, '2.1.4', 3, 0, 0),
-(334, 38, '2.1.5', 3, 0, 0),
-(335, 39, '2.1.6', 3, 0, 0),
-(336, 40, '2.1.7', 3, 0, 0),
-(337, 41, '2.1.8', 3, 0, 0),
-(338, 42, '2.1.9', 3, 0, 0),
-(339, 43, '2.1.10', 3, 0, 0),
-(340, 44, '2.1.11', 3, 0, 0),
-(341, 45, '2.1.12', 3, 0, 0),
-(342, 46, '2.1.13', 3, 0, 0),
-(343, 47, '2.1.14', 3, 0, 0),
-(344, 48, '2.1.15', 3, 0, 0),
-(345, 49, '2.1.16', 3, 0, 0),
-(346, 50, '2.1.17', 3, 0, 0),
-(347, 51, '2.1.18', 3, 0, 0),
-(348, 52, '2.1.19', 3, 0, 0),
-(349, 53, '2.1.20', 3, 0, 0),
-(350, 54, '2.1.21', 3, 0, 0),
-(351, 55, '2.1.22', 3, 0, 0),
-(352, 56, '3.1.1', 3, 0, 0),
-(353, 57, '3.1.2', 3, 0, 0),
-(354, 58, '3.1.3', 3, 0, 0),
-(355, 59, '3.1.4', 3, 0, 0),
-(356, 60, '4.1.1', 3, 0, 0),
-(357, 61, '5.1.1', 3, 0, 0),
-(358, 62, '5.1.2', 3, 0, 0),
-(359, 63, '5.1.3', 3, 0, 0),
-(360, 64, '5.1.4', 3, 0, 0),
-(361, 65, '5.1.5', 3, 0, 0),
-(362, 66, '5.2.1', 3, 0, 0),
-(363, 67, '5.2.2', 3, 0, 0),
-(364, 68, '5.2.3', 3, 0, 0),
-(365, 69, '5.2.4', 3, 0, 0),
-(366, 70, '5.2.5', 3, 0, 0),
-(367, 71, '5.2.6', 3, 0, 0),
-(368, 72, '5.2.7', 3, 0, 0),
-(369, 73, '5.2.8', 3, 20, 20),
-(370, 74, '1.1.1', 3, 15, 15);
+(371, 1, '1.1.1', 3, 5, 5),
+(372, 2, '1.1.2', 3, 10, 10),
+(373, 3, '1.1.3', 3, 3, 4),
+(374, 4, '1.1.4', 3, 0, 0),
+(375, 5, '1.1.5', 3, 0, 0),
+(376, 6, '1.1.6', 3, 0, 0),
+(377, 7, '1.1.7', 3, 0, 0),
+(378, 8, '1.1.8', 3, 0, 0),
+(379, 9, '1.1.9', 3, 0, 0),
+(380, 10, '1.1.10', 3, 0, 0),
+(381, 11, '1.1.11', 3, 0, 0),
+(382, 12, '1.1.12', 3, 0, 0),
+(383, 13, '1.1.13', 3, 0, 0),
+(384, 14, '1.1.14', 3, 0, 0),
+(385, 15, '1.1.15', 3, 0, 0),
+(386, 16, '1.2.1', 3, 0, 0),
+(387, 17, '1.2.2', 3, 0, 0),
+(388, 18, '1.2.3', 3, 0, 0),
+(389, 19, '1.2.4', 3, 0, 0),
+(390, 20, '1.2.5', 3, 0, 0),
+(391, 21, '1.2.6', 3, 0, 0),
+(392, 22, '1.2.7', 3, 0, 0),
+(393, 23, '1.2.8', 3, 0, 0),
+(394, 24, '1.2.9', 3, 0, 0),
+(395, 25, '1.2.10', 3, 0, 0),
+(396, 26, '1.2.11', 3, 0, 0),
+(397, 27, '1.3.1', 3, 0, 0),
+(398, 28, '1.3.2', 3, 0, 0),
+(399, 29, '1.3.3', 3, 0, 0),
+(400, 30, '1.3.4', 3, 0, 0),
+(401, 31, '1.3.5', 3, 0, 0),
+(402, 32, '1.3.6', 3, 0, 0),
+(403, 33, '1.3.7', 3, 0, 0),
+(404, 34, '2.1.1', 3, 0, 0),
+(405, 35, '2.1.2', 3, 0, 0),
+(406, 36, '2.1.3', 3, 0, 0),
+(407, 37, '2.1.4', 3, 0, 0),
+(408, 38, '2.1.5', 3, 0, 0),
+(409, 39, '2.1.6', 3, 0, 0),
+(410, 40, '2.1.7', 3, 0, 0),
+(411, 41, '2.1.8', 3, 0, 0),
+(412, 42, '2.1.9', 3, 0, 0),
+(413, 43, '2.1.10', 3, 0, 0),
+(414, 44, '2.1.11', 3, 0, 0),
+(415, 45, '2.1.12', 3, 0, 0),
+(416, 46, '2.1.13', 3, 0, 0),
+(417, 47, '2.1.14', 3, 0, 0),
+(418, 48, '2.1.15', 3, 0, 0),
+(419, 49, '2.1.16', 3, 0, 0),
+(420, 50, '2.1.17', 3, 0, 0),
+(421, 51, '2.1.18', 3, 0, 0),
+(422, 52, '2.1.19', 3, 0, 0),
+(423, 53, '2.1.20', 3, 0, 0),
+(424, 54, '2.1.21', 3, 0, 0),
+(425, 55, '2.1.22', 3, 0, 0),
+(426, 56, '3.1.1', 3, 0, 0),
+(427, 57, '3.1.2', 3, 0, 0),
+(428, 58, '3.1.3', 3, 0, 0),
+(429, 59, '3.1.4', 3, 0, 0),
+(430, 60, '4.1.1', 3, 0, 0),
+(431, 61, '5.1.1', 3, 0, 0),
+(432, 62, '5.1.2', 3, 0, 0),
+(433, 63, '5.1.3', 3, 0, 0),
+(434, 64, '5.1.4', 3, 0, 0),
+(435, 65, '5.1.5', 3, 0, 0),
+(436, 66, '5.2.1', 3, 0, 0),
+(437, 67, '5.2.2', 3, 0, 0),
+(438, 68, '5.2.3', 3, 0, 0),
+(439, 69, '5.2.4', 3, 0, 0),
+(440, 70, '5.2.5', 3, 0, 0),
+(441, 71, '5.2.6', 3, 0, 0),
+(442, 72, '5.2.7', 3, 0, 0),
+(443, 73, '5.2.8', 3, 20, 20),
+(444, 74, '1.1.1', 3, 15, 15);
 
 -- --------------------------------------------------------
 
@@ -1075,6 +1099,12 @@ ALTER TABLE `output`
   ADD KEY `id_2` (`id`);
 
 --
+-- Indexes for table `report_text`
+--
+ALTER TABLE `report_text`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `uncef_fund_details`
 --
 ALTER TABLE `uncef_fund_details`
@@ -1179,10 +1209,16 @@ ALTER TABLE `output`
   MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `report_text`
+--
+ALTER TABLE `report_text`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `uncef_fund_details`
 --
 ALTER TABLE `uncef_fund_details`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=371;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=445;
 
 --
 -- AUTO_INCREMENT for table `unief_fund_master`

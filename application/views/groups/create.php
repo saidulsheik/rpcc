@@ -123,7 +123,14 @@
                         <td><input type="checkbox" name="permission[]" id="permission" value="viewOutput" class="minimal"></td>
                         <td><input type="checkbox" name="permission[]" id="permission" value="deleteOutput" class="minimal"></td>
                       </tr>
-					  
+
+                      <tr>
+                        <td>Report Text</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="createReportText" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="updateReportText" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="viewReportText" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="deleteReportText" class="minimal"></td>
+                      </tr>
 					  
                       <tr>
                         <td>Reports</td>

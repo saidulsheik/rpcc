@@ -213,7 +213,23 @@
                           if(in_array('deleteOutput', $serialize_permission)) { echo "checked"; } 
                         } ?>></td>
                       </tr>
-						
+                        
+
+                      <tr>
+                        <td>Report Text</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="createReportText" <?php if($serialize_permission) {
+                          if(in_array('createReportText', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="updateReportText" <?php if($serialize_permission) {
+                          if(in_array('updateReportText', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="viewReportText" <?php if($serialize_permission) {
+                          if(in_array('viewReportText', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="deleteReportText" <?php if($serialize_permission) {
+                          if(in_array('deleteReportText', $serialize_permission)) { echo "checked"; } 
+                        } ?>></td>
+                      </tr>
 
                       <tr>
                         <td>Reports</td>

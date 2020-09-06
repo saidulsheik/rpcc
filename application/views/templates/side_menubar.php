@@ -154,7 +154,11 @@
                 in_array('createOutput', $user_permission) || 
                 in_array('updateOutput', $user_permission) || 
                 in_array('viewOutput', $user_permission) ||
-                in_array('deleteOutput', $user_permission) 
+                in_array('deleteOutput', $user_permission) ||
+                in_array('createReportText', $user_permission) ||
+                in_array('viewReportText', $user_permission) ||
+                in_array('updateReportText', $user_permission) ||
+                in_array('deleteReportText', $user_permission)
               ): 
         ?>
             <li class="treeview" id="mainPreSetupMenu">
@@ -174,7 +178,14 @@
                 <?php if(in_array('createOutput', $user_permission)): ?>
                   <li id="manageOutput"><a href="<?php echo base_url('outputs/') ?>"><i class="fa fa-circle-o"></i> Manage Output</a></li>
                 <?php endif; ?>
+                
+                <?php if(in_array('createReportText', $user_permission)): ?>
+                  <li id="createReportText"><a href="<?php echo base_url('reporttext/create') ?>"><i class="fa fa-circle-o"></i> Create Report Text</a></li>
+                <?php endif; ?>
 
+                <?php if(in_array('createReportText', $user_permission)||in_array('viewReportText', $user_permission) || in_array('updateReportText', $user_permission)): ?>
+                  <li id="manageReportText"><a href="<?php echo base_url('reporttext/') ?>"><i class="fa fa-circle-o"></i> Manage Report Text</a></li>
+                <?php endif; ?>
 
               </ul>
             </li>

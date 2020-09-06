@@ -43,11 +43,11 @@
 			<form role="form" action="<?php base_url('cashgrants/create') ?>" method="post" class="form-horizontal">
               <div class="box-body">
 
-				<div class="row">
-                    <div class="col-md-12">
-                        <?php echo validation_errors('<h4 class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></h4>'); ?>
-                    </div>
-                </div>
+            <div class="row">
+              <div class="col-md-12">
+                  <?php echo validation_errors('<h4 class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></h4>'); ?>
+              </div>
+            </div>
 
 				<div class="row">
 					<div class="col-md-4 col-xs-12 pull pull-left">
