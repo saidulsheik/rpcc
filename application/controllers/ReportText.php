@@ -26,26 +26,17 @@ class ReportText extends Admin_Controller
 	* Fetches the reporttext data from the reporttext table 
 	* this function is called from the datatable ajax function
 	*/
-	public function fetchReportTextsData()
-	{
+	public function fetchReportTextsData(){
 		$result = array('data' => array());
-
 		$data = $this->model_reporttext->getReportTextData();
 		$i=0;
 		foreach ($data as $key => $value) {
 			$i++;
-			$count_total_item = $this->model_reporttext->countOrderItem($value['id']);
-			// button
 			$buttons = '';
-
-			if(in_array('viewReportText', $this->permission)) {
-				$buttons .= '<a target="__blank" href="'.base_url('reporttext/printDiv/'.$value['id']).'" class="btn btn-default"><i class="fa fa-print"></i></a>';
-			}
-
+			
 			if(in_array('updateReportText', $this->permission)) {
 				$buttons .= ' <a href="'.base_url('reporttext/update/'.$value['id']).'" class="btn btn-default"><i class="fa fa-pencil"></i></a>';
 			}
-
 			if(in_array('deleteReportText', $this->permission)) {
 				$buttons .= ' <button type="button" class="btn btn-default" onclick="removeFunc('.$value['id'].')" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i></button>';
 			}
@@ -95,7 +86,7 @@ class ReportText extends Admin_Controller
         	
         	if($order_id) {
         		$this->session->set_flashdata('success', 'Successfully created');
-        		redirect('reporttext/update/'.$order_id, 'refresh');
+        		redirect('reporttext/', 'refresh');
         	}
         	else {
         		$this->session->set_flashdata('errors', 'Error occurred!!');
@@ -108,30 +99,7 @@ class ReportText extends Admin_Controller
         }	
 	}
 
-	/*
-	* It gets the product id passed from the ajax method.
-	* It checks retrieves the particular product data from the product id 
-	* and return the data into the json format.
-	*/
-	public function getProductValueById()
-	{
-		$product_id = $this->input->post('product_id');
-		if($product_id) {
-			$product_data = $this->model_products->getProductData($product_id);
-			echo json_encode($product_data);
-		}
-	}
-
-	/*
-	* It gets the all the active product inforamtion from the product table 
-	* This function is used in the order page, for the product selection in the table
-	* The response is return on the json format.
-	*/
-	public function getTableProductRow()
-	{
-		$products = $this->model_products->getActiveProductData();
-		echo json_encode($products);
-	}
+	
 
 	/*
 	* If the validation is not valid, then it redirects to the edit reporttext page 
@@ -140,7 +108,7 @@ class ReportText extends Admin_Controller
 	*/
 	public function update($id)
 	{
-		if(!in_array('updateCashgrant', $this->permission)) {
+		if(!in_array('updateReportText', $this->permission)) {
             redirect('dashboard', 'refresh');
         }
 
@@ -148,18 +116,22 @@ class ReportText extends Admin_Controller
 			redirect('dashboard', 'refresh');
 		}
 
-		$this->data['page_title'] = 'Update Order';
+		$this->data['page_title'] = 'Update Report Text';
 
-		$this->form_validation->set_rules('product[]', 'Product name', 'trim|required');
+		$this->form_validation->set_rules('name', 'Report Name', 'trim|required');
+		$this->form_validation->set_rules('header1', 'Report Header 1', 'trim|required');
+		$this->form_validation->set_rules('header2', 'Report Header 2', 'trim|required');
+		$this->form_validation->set_rules('footer1', 'Report Footer 1', 'trim|required');
+		$this->form_validation->set_rules('footer2', 'Report Footer 2', 'trim|required');
+		$this->form_validation->set_rules('signature_left', 'Report Signature Left', 'trim|required');
+		$this->form_validation->set_rules('signature_right', 'Report Signature Right', 'trim|required');
 		
 	
-        if ($this->form_validation->run() == TRUE) {        	
-        	
-        	$update = $this->model_reporttext->update($id);
-        	
+        if ($this->form_validation->run() == TRUE) {   
+        	$update = $this->model_reporttext->update($id);        	
         	if($update == true) {
         		$this->session->set_flashdata('success', 'Successfully updated');
-        		redirect('reporttext/update/'.$id, 'refresh');
+        		redirect('reporttext/', 'refresh');
         	}
         	else {
         		$this->session->set_flashdata('errors', 'Error occurred!!');
@@ -167,27 +139,8 @@ class ReportText extends Admin_Controller
         	}
         }
         else {
-            // false case
-        	$company = $this->model_company->getCompanyData(1);
-        	$this->data['company_data'] = $company;
-        	$this->data['is_vat_enabled'] = ($company['vat_charge_value'] > 0) ? true : false;
-        	$this->data['is_service_enabled'] = ($company['service_charge_value'] > 0) ? true : false;
-
-        	$result = array();
-        	$reporttext_data = $this->model_reporttext->getreporttextData($id);
-
-    		$result['order'] = $reporttext_data;
-    		$reporttext_item = $this->model_reporttext->getreporttextItemData($reporttext_data['id']);
-
-    		foreach($orders_item as $k => $v) {
-    			$result['order_item'][] = $v;
-    		}
-
-    		$this->data['order_data'] = $result;
-
-        	$this->data['products'] = $this->model_products->getActiveProductData();      	
-
-            $this->render_template('orders/edit', $this->data);
+        	$this->data['reporttext_data'] = $this->model_reporttext->getReportTextData($id); 
+            $this->render_template('reporttext/edit', $this->data);
         }
 	}
 
