@@ -9,6 +9,7 @@ class Budgets extends Admin_Controller
 		$this->not_logged_in();
 		$this->data['page_title'] = 'Budgets';
 		$this->load->model('model_budget');
+		$this->load->model('model_reporttext');
 	}
 
 	/*
@@ -73,6 +74,8 @@ class Budgets extends Admin_Controller
 		$this->form_validation->set_rules('budget_desc', 'Budget Description', 'trim|required');
 		$this->form_validation->set_rules('from_date', 'From Date', 'trim|required');
 		$this->form_validation->set_rules('to_date', 'To Date', 'trim|required');
+		$this->form_validation->set_rules('report_text_id', 'Select Report Text', 'trim|required');
+		
         if ($this->form_validation->run() == TRUE) {
         	$success_id = $this->model_budget->create();
         	if($success_id) {
@@ -85,6 +88,7 @@ class Budgets extends Admin_Controller
         	}
         }
         else {
+			$this->data['report_texts'] = $this->model_reporttext->getReportTextData();
         	$this->data['account_head'] = $this->model_budget->getAccountsHeadData();
             $this->render_template('budget/create', $this->data);
         }
@@ -120,6 +124,7 @@ class Budgets extends Admin_Controller
 		$this->form_validation->set_rules('budget_desc', 'Budget Description', 'trim|required');
 		$this->form_validation->set_rules('from_date', 'From Date', 'trim|required');
 		$this->form_validation->set_rules('to_date', 'To Date', 'trim|required');
+		$this->form_validation->set_rules('report_text_id', 'Select Report Text', 'trim|required');
 
         if ($this->form_validation->run() == TRUE) {
         	$update = $this->model_budget->update($id);
@@ -143,6 +148,7 @@ class Budgets extends Admin_Controller
     		foreach($budget_details as $k => $v) {
     			$result['budget_details'][] = $v;
     		}
+			$this->data['report_texts'] = $this->model_reporttext->getReportTextData();
     		$this->data['budgets'] = $result;
         	$this->data['account_head'] = $this->model_budget->getAccountsHeadData();
             $this->render_template('budget/edit', $this->data);

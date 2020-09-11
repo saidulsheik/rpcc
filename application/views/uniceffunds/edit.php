@@ -70,7 +70,23 @@
 									<label for="end_month" class="col-sm-5 control-label">End Month</label>
 									<input type="date" class="form-control" id="end_month" required name="end_month"   value="<?php echo !empty($uniceffunds['unief_fund_master']['end_month'])?$uniceffunds['unief_fund_master']['end_month']:''; ?>" >
 								</div>
-
+								
+								<div class="form-group col-md-2">
+								  <label for="report_text_id" class="control-label">Select Report Text</label>
+								  <select id="report_text_id" name="report_text_id" class="form-control select_group" required>
+										<option value="">Select Report Text<option>
+										<?php 
+											if(!empty($report_texts)):
+												foreach($report_texts as $report_text):
+										?>
+												<option value="<?php echo $report_text['id']; ?>"  <?php echo $uniceffunds['unief_fund_master']['report_text_id']==$report_text['id']?'selected':''; ?>><?php echo $report_text['name']; ?></option>
+										<?php 
+												endforeach;
+											endif;
+										?>
+								  </select>
+								</div>
+								
 								<div class="form-group col-sm-3">
 									<label for="button" class="col-sm-5 control-label"></label>
 									<button type="submit" class="btn btn-primary">Submit</button>

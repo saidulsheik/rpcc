@@ -63,32 +63,28 @@
 								</select>
 							</div>
 
-							<!--div class="container">
-								<div class="row">
-									<div class='col-sm-6'>
-										<div class="form-group">
-											<div class='input-group date' id='datetimepicker2'>
-												<input type='text' class="form-control" />
-												<span class="input-group-addon">
-													<span class="glyphicon glyphicon-calendar"></span>
-												</span>
-											</div>
-										</div>
-									</div>
-									<script type="text/javascript">
-										$(function () {
-											$('#datetimepicker2').datetimepicker({
-												locale: 'ru'
-											});
-										});
-									</script>
-								</div>
-							</div-->
-
+							
 							<div class="form-group col-sm-2">
 							  <label for="year" class="control-label">Year</label>
 							  <input type="number" name="year" value="<?php echo date('Y'); ?>"  class="form-control">
 							</div>
+							
+							<div class="form-group col-md-2">
+							  <label for="report_text_id" class="control-label">Select Report Text</label>
+							  <select id="report_text_id" name="report_text_id" class="form-control select_group" required>
+									<option value="">Select Report Text<option>
+									<?php 
+										if(!empty($report_texts)):
+											foreach($report_texts as $report_text):
+									?>
+											<option value="<?php echo $report_text['id']; ?>"><?php echo $report_text['name']; ?></option>
+									<?php 
+											endforeach;
+										endif;
+									?>
+							  </select>
+							</div>
+							
 						</div>	
 					</div>	
 				</div>	

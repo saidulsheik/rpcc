@@ -70,6 +70,7 @@ class Model_budget extends CI_Model
     		'budget_desc' => $this->input->post('budget_desc'),
     		'start_month' => $this->input->post('from_date'),
     		'end_month' => $this->input->post('to_date'),
+    		'report_text_id' => $this->input->post('report_text_id'),
     		'status' => 1
     	);
 
@@ -107,7 +108,8 @@ class Model_budget extends CI_Model
 				'budget_desc' => $this->input->post('budget_desc'),
 				'start_month' => $this->input->post('from_date'),
 				'end_month' => $this->input->post('to_date'),
-				'status' => 1
+				'report_text_id' => $this->input->post('report_text_id'),
+				//'status' => 1
 			);
 
 			$this->db->where('budget_id', $id);

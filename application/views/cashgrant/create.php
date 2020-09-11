@@ -40,7 +40,7 @@
             <h3 class="box-title">Add Cash Grant</h3>
           </div>
           <!-- /.box-header -->
-			<form role="form" action="<?php base_url('cashgrants/create') ?>" method="post" class="form-horizontal">
+			<form role="form" action="<?php base_url('cashgrants/create') ?>" method="post" class="form">
               <div class="box-body">
 
             <div class="row">
@@ -50,30 +50,38 @@
             </div>
 
 				<div class="row">
-					<div class="col-md-4 col-xs-12 pull pull-left">
-					  <div class="form-group">
+					<div class="form-group col-md-3">
 						<label for="gross_amount" class="col-sm-5 control-label">Cash Grant Name</label>
-						<div class="col-sm-7">
-						  <input type="text" class="form-control" id="cg_desc" required name="cg_desc" placeholder=""  autocomplete="on">
-						</div>
-					  </div>
+						<input type="text" class="form-control" id="cg_desc" required name="cg_desc" placeholder=""  autocomplete="on">
 					</div>
 					<?php 
 						$curr_month = date('F',mktime(0, 0, 0, date('n')));
 						$months = array("January","February","March","April","May","June","July","August","September","October","November","December");
 					?>
-					<div class="col-md-4 col-xs-12 pull pull-left">
-					  <div class="form-group">
+					<div class="form-group col-md-3">
 						<label for="gross_amount" class="col-sm-5 control-label">Select Month</label>
-						<div class="col-sm-7">
-							<select class="form-control select_group"  id="month" name="month_name" style="width:100%;" required>
-								<option value="">Select a Month</option>
-								<?php foreach ($months as $month): ?>
-								<option <?php echo $curr_month==$month?'selected':''; ?> value="<?php echo  $month; ?>"><?php echo $month; ?></option>
-								<?php endforeach ?>
-							</select>
-						</div>
-					  </div>
+						<select class="form-control select_group"  id="month" name="month_name" style="width:100%;" required>
+							<option value="">Select a Month</option>
+							<?php foreach ($months as $month): ?>
+							<option <?php echo $curr_month==$month?'selected':''; ?> value="<?php echo  $month; ?>"><?php echo $month; ?></option>
+							<?php endforeach ?>
+						</select>
+					</div>
+					
+					<div class="form-group col-md-3">
+						<label for="report_text_id" class="control-label">Select Report Text</label>
+						<select id="report_text_id" name="report_text_id" class="form-control select_group" required>
+							<option value="">Select Report Text<option>
+							<?php 
+								if(!empty($report_texts)):
+									foreach($report_texts as $report_text):
+							?>
+									<option value="<?php echo $report_text['id']; ?>"><?php echo $report_text['name']; ?></option>
+							<?php 
+									endforeach;
+								endif;
+							?>
+						</select>
 					</div>
 					
 					 

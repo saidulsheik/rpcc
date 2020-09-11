@@ -10,6 +10,7 @@ class Officefunds extends Admin_Controller
 		$this->data['page_title'] = 'Office Fund';
 		$this->load->model('model_officefund');
 		$this->load->model('model_budget');
+		$this->load->model('model_reporttext');
 	}
 
 	/*
@@ -73,6 +74,7 @@ class Officefunds extends Admin_Controller
 		$this->form_validation->set_rules('of_desc', 'Fund Description', 'trim|required');
 		$this->form_validation->set_rules('month_name', 'Month Name', 'trim|required');
 		$this->form_validation->set_rules('year', 'Year', 'trim|required');
+		$this->form_validation->set_rules('report_text_id', 'Select Report Text', 'trim|required');
         if ($this->form_validation->run() == TRUE) {
         	$success_id = $this->model_officefund->create();
         	if($success_id) {
@@ -85,6 +87,7 @@ class Officefunds extends Admin_Controller
         	}
         }
         else {
+			$this->data['report_texts'] = $this->model_reporttext->getReportTextData();
 			$result = $this->db->query("SELECT budget_id FROM budget_master WHERE status = ?", array(0))->result();
         	$this->data['account_head'] = $this->model_budget->getBudgetDetailsReport($result[0]->budget_id);
             $this->render_template('officefunds/create', $this->data);
@@ -121,6 +124,7 @@ class Officefunds extends Admin_Controller
 		$this->form_validation->set_rules('of_desc', 'Fund Description', 'trim|required');
 		$this->form_validation->set_rules('month_name', 'Month Name', 'trim|required');
 		$this->form_validation->set_rules('year', 'Year', 'trim|required');
+		$this->form_validation->set_rules('report_text_id', 'Select Report Text', 'trim|required');
 
         if ($this->form_validation->run() == TRUE) {
         	$update = $this->model_officefund->update($id);
@@ -146,6 +150,7 @@ class Officefunds extends Admin_Controller
     		$this->data['officefunds'] = $result;
 			$result = $this->db->query("SELECT budget_id FROM budget_master WHERE status = ?", array(0))->result();
 			$this->data['account_head'] = $this->model_budget->getBudgetDetailsReport($result[0]->budget_id);
+			$this->data['report_texts'] = $this->model_reporttext->getReportTextData();
             $this->render_template('officefunds/edit', $this->data);
         }
 	}

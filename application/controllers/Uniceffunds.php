@@ -10,6 +10,7 @@ class Uniceffunds extends Admin_Controller
 		$this->data['page_title'] = 'Unicef Fund';
 		$this->load->model('model_uniceffund');
 		$this->load->model('model_budget');
+		$this->load->model('model_reporttext');
 	}
 
 	/*
@@ -72,6 +73,7 @@ class Uniceffunds extends Admin_Controller
 		$this->form_validation->set_rules('unicef_fund_desc', 'Unicef Fund Description', 'trim|required');
 		$this->form_validation->set_rules('start_month', 'Start Month', 'trim|required');
 		$this->form_validation->set_rules('end_month', 'End Month', 'trim|required');
+		$this->form_validation->set_rules('report_text_id', 'Select Report Text', 'trim|required');
         if ($this->form_validation->run() == TRUE) {
         	$success_id = $this->model_uniceffund->create();
         	if($success_id) {
@@ -84,6 +86,7 @@ class Uniceffunds extends Admin_Controller
         	}
         }
         else {
+			$this->data['report_texts'] = $this->model_reporttext->getReportTextData();
 			$result = $this->db->query("SELECT budget_id FROM budget_master WHERE status = ?", array(0))->result();
         	$this->data['account_head'] = $this->model_budget->getBudgetDetailsReport($result[0]->budget_id);
             $this->render_template('uniceffunds/create', $this->data);
@@ -120,7 +123,7 @@ class Uniceffunds extends Admin_Controller
 		$this->form_validation->set_rules('unicef_fund_desc', 'Unicef Fund Description', 'trim|required');
 		$this->form_validation->set_rules('start_month', 'Start Month', 'trim|required');
 		$this->form_validation->set_rules('end_month', 'End Month', 'trim|required');
-
+		$this->form_validation->set_rules('report_text_id', 'Select Report Text', 'trim|required');
         if ($this->form_validation->run() == TRUE) {
         	$update = $this->model_uniceffund->update($id);
         	if($update == true) {
@@ -145,7 +148,7 @@ class Uniceffunds extends Admin_Controller
     			$result['unicef_fund_details'][] = $v;
 			}
     		$this->data['uniceffunds'] = $result;
-			
+			$this->data['report_texts'] = $this->model_reporttext->getReportTextData();
             $this->render_template('uniceffunds/edit', $this->data);
         }
 	}

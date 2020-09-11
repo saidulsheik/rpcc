@@ -11,6 +11,7 @@ class Cashgrants extends Admin_Controller
 		$this->load->model('model_cashgrant');
 		$this->load->model('model_camps');
 		$this->load->model('model_company');
+		$this->load->model('model_reporttext');
 	}
 
 	/* 
@@ -84,6 +85,7 @@ class Cashgrants extends Admin_Controller
         	} 
         }
         else {
+			$this->data['report_texts'] = $this->model_reporttext->getReportTextData();
         	$this->data['camps'] = $this->model_camps->getActiveCampsData(); 
             $this->render_template('cashgrant/create', $this->data);
         }	
@@ -145,6 +147,7 @@ class Cashgrants extends Admin_Controller
     		}
     		$this->data['cg'] = $result;
         	$this->data['camps'] = $this->model_camps->getActiveCampsData(); 
+			$this->data['report_texts'] = $this->model_reporttext->getReportTextData();
             $this->render_template('cashgrant/edit', $this->data);
         }
 	}

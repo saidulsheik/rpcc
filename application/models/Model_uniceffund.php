@@ -113,6 +113,7 @@ class Model_uniceffund extends CI_Model
     		'unicef_fund_desc' => $this->input->post('unicef_fund_desc'),
     		'start_month' => $this->input->post('start_month'),
     		'end_month' => $this->input->post('end_month'),
+			'report_text_id' => $this->input->post('report_text_id'),
 			'status' => 1
     	);
 
@@ -149,6 +150,7 @@ class Model_uniceffund extends CI_Model
 				'unicef_fund_desc' => $this->input->post('unicef_fund_desc'),
 				'start_month' => $this->input->post('start_month'),
 				'end_month' => $this->input->post('end_month'),
+				'report_text_id' => $this->input->post('report_text_id'),
 				'status' => 1
 			);
 

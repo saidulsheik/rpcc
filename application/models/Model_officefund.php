@@ -91,6 +91,7 @@ class Model_officefund extends CI_Model
     		'of_desc' => $this->input->post('of_desc'),
     		'month_name' => $this->input->post('month_name').','. $this->input->post('year'),
     		'total_amout' => $this->input->post('total_amout'),
+			'report_text_id' => $this->input->post('report_text_id'),
 			'status' => 1,
 			'created_by'=>$user_id
     	);
@@ -135,6 +136,7 @@ class Model_officefund extends CI_Model
 				'of_desc' => $this->input->post('of_desc'),
 				'month_name' => $this->input->post('month_name').','. $this->input->post('year'),
 				'total_amout' => $this->input->post('total_amout'),
+				'report_text_id' => $this->input->post('report_text_id'),
 				'status' => 1,
 				'updated_by'=>$user_id
 			);

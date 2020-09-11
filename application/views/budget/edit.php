@@ -69,7 +69,21 @@
 							  <label for="to_date" class="control-label">To Date</label>
 							  <input type="date" name="to_date" value="<?php echo !empty($budgets['budget_master']['end_month'])? date('Y-m-d', strtotime($budgets['budget_master']['end_month'])): date('Y-m-d'); ?>"  class="form-control">
 							</div>
-							
+							<div class="form-group col-md-2">
+							  <label for="report_text_id" class="control-label">Select Report Text</label>
+							  <select id="report_text_id" name="report_text_id" class="form-control select_group" required>
+									<option value="">Select Report Text<option>
+									<?php 
+										if(!empty($report_texts)):
+											foreach($report_texts as $report_text):
+									?>
+											<option value="<?php echo $report_text['id']; ?>"  <?php echo $budgets['budget_master']['report_text_id']==$report_text['id']?'selected':''; ?>><?php echo $report_text['name']; ?></option>
+									<?php 
+											endforeach;
+										endif;
+									?>
+							  </select>
+							</div>
 							<div class="form-group col-sm-2 pull-right">
 								<label for="button" class="control-label">&nbsp;</label>
 								<button type="submit" class="btn btn-primary">Submit</button>

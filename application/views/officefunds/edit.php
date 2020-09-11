@@ -87,6 +87,23 @@
 							  <label for="year" class="control-label">Year</label>
 							  <input type="number" name="year" value="<?php echo !empty($year)?$year:'';?>"  class="form-control">
 							</div>
+							
+							<div class="form-group col-md-2">
+								<label for="report_text_id" class="control-label">Select Report Text</label>
+								<select id="report_text_id" name="report_text_id" class="form-control select_group" required>
+									<option value="">Select Report Text<option>
+									<?php 
+										if(!empty($report_texts)):
+											foreach($report_texts as $report_text):
+									?>
+											<option value="<?php echo $report_text['id']; ?>"  <?php echo $officefunds['fund_master']['report_text_id']==$report_text['id']?'selected':''; ?>><?php echo $report_text['name']; ?></option>
+									<?php 
+											endforeach;
+										endif;
+									?>
+								</select>
+							</div>
+							
 						</div>	
 					</div>	
 				</div>	

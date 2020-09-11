@@ -55,20 +55,44 @@
 					<div class="box box-primary">
 						
 						<div class="box-body">
-							<div class="form-group col-sm-4">
+						
+							<?php 
+								/* echo '<pre>';
+								print_r($report_texts);
+								echo '</pre>'; */
+							?>
+							<div class="form-group col-md-4 col-x-12">
 							 <label for="budget_desc" class="col-sm-5 control-label">Budget Description</label>
 							 <input type="text" class="form-control" id="budget_desc" required name="budget_desc" placeholder=""  autocomplete="on">
 							</div>
 							 
-							<div class="form-group col-sm-2">
+							<div class="form-group col-md-2">
 							  <label for="from_date" class="control-label">From Date</label>
 							  <input type="date"  name="from_date" value="<?php echo !empty($from_date)?$from_date:date('Y-m-d'); ?>"   class="form-control">
 							</div>
 
-							<div class="form-group col-sm-2">
+							<div class="form-group col-md-2">
 							  <label for="to_date" class="control-label">To Date</label>
 							  <input type="date" name="to_date" value="<?php echo !empty($to_date)?$to_date:date('Y-m-d'); ?>"  class="form-control">
 							</div>
+							
+							<div class="form-group col-md-2">
+							  <label for="report_text_id" class="control-label">Select Report Text</label>
+							  <select id="report_text_id" name="report_text_id" class="form-control select_group" required>
+									<option value="">Select Report Text<option>
+									<?php 
+										if(!empty($report_texts)):
+											foreach($report_texts as $report_text):
+									?>
+											<option value="<?php echo $report_text['id']; ?>"><?php echo $report_text['name']; ?></option>
+									<?php 
+											endforeach;
+										endif;
+									?>
+							  </select>
+							</div>
+							
+							
 						</div>	
 					</div>	
 				</div>	
