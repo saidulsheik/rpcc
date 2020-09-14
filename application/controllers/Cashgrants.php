@@ -12,6 +12,7 @@ class Cashgrants extends Admin_Controller
 		$this->load->model('model_camps');
 		$this->load->model('model_company');
 		$this->load->model('model_reporttext');
+		$this->load->helper('site');
 	}
 
 	/* 
@@ -210,7 +211,10 @@ class Cashgrants extends Admin_Controller
 								সমাজসেবা অধিদপ্তর<br>
 								রোহিঙ্গা শিশুসুরক্ষা কার্যক্রম<br>
 								সোনারপাড়া, উখিয়া কক্সবাজার
+								
 							</p>  
+							
+							
 						</td>
 						<td><img src="<?php echo base_url();?>/assets/images/cashgrants/image002.jpg"></td> 
 						
@@ -309,7 +313,7 @@ class Cashgrants extends Admin_Controller
 				<table class="table table-border">
 					<tr>
 						<td>
-							<p>উপরোক্ত <?php echo count($campArray); ?> টি ক্যাম্পে <?php echo array_sum($total_care); ?> জন কেয়ারগিভারকে 2000 টাকা করে ০২ মাসের নগদ সহায়তা প্রদানের জন্য মোট <?php echo array_sum($total_amount); ?> টাকা প্রয়োজন । </p>
+							<p>উপরোক্ত <?php echo count($campArray); ?> টি ক্যাম্পে <?php echo array_sum($total_care); ?> জন কেয়ারগিভারকে 2000 টাকা করে ০২ মাসের নগদ সহায়তা প্রদানের জন্য মোট <?php echo $number=array_sum($total_amount); ?>  (কথায়ঃ <?php echo number_to_bangla($number); ?> )টাকা প্রয়োজন । </p>
 						</td>
 						
 					</tr>

@@ -11,6 +11,7 @@ class Officefunds extends Admin_Controller
 		$this->load->model('model_officefund');
 		$this->load->model('model_budget');
 		$this->load->model('model_reporttext');
+		$this->load->helper('site');
 	}
 
 	/*
