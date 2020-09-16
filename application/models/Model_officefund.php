@@ -13,7 +13,21 @@ class Model_officefund extends CI_Model
 	/* get Office Master data */
 	public function getOfficeFundData($id = null){
 		if($id) {
-			$sql = "SELECT * FROM of_master WHERE id = ?";
+			$sql = "SELECT
+						of_master.*,
+						report_text.id AS report_text_id,
+						report_text.name AS report_text_name,
+						report_text.header1,
+						report_text.header2,
+						report_text.footer1,
+						report_text.footer2,
+						report_text.signature_left,
+						report_text.signature_right
+					FROM
+						of_master
+					LEFT JOIN report_text ON report_text.id = of_master.report_text_id
+					WHERE
+						of_master.id =?";
 			$query = $this->db->query($sql, array($id));
 			return $query->row_array();
 		}
@@ -92,6 +106,9 @@ class Model_officefund extends CI_Model
     		'month_name' => $this->input->post('month_name').','. $this->input->post('year'),
     		'total_amout' => $this->input->post('total_amout'),
 			'report_text_id' => $this->input->post('report_text_id'),
+			'sarok_no' => $this->input->post('sarok_no'),
+			'date' => $this->input->post('date'),
+			'subject' => $this->input->post('subject'),
 			'status' => 1,
 			'created_by'=>$user_id
     	);
@@ -137,6 +154,9 @@ class Model_officefund extends CI_Model
 				'month_name' => $this->input->post('month_name').','. $this->input->post('year'),
 				'total_amout' => $this->input->post('total_amout'),
 				'report_text_id' => $this->input->post('report_text_id'),
+				'sarok_no' => $this->input->post('sarok_no'),
+				'date' => $this->input->post('date'),
+				'subject' => $this->input->post('subject'),
 				'status' => 1,
 				'updated_by'=>$user_id
 			);

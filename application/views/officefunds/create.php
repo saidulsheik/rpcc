@@ -18,80 +18,90 @@
   <section class="content">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-      <div class="col-md-12 col-xs-12">
+		<div class="col-md-12 col-xs-12">
         <div id="messages"></div>
-        <?php if($this->session->flashdata('success')): ?>
-          <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $this->session->flashdata('success'); ?>
-          </div>
-        <?php elseif($this->session->flashdata('error')): ?>
-          <div class="alert alert-error alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $this->session->flashdata('error'); ?>
-          </div>
-        <?php endif; ?>
+			<?php if($this->session->flashdata('success')): ?>
+			  <div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<?php echo $this->session->flashdata('success'); ?>
+			  </div>
+			<?php elseif($this->session->flashdata('error')): ?>
+			  <div class="alert alert-error alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<?php echo $this->session->flashdata('error'); ?>
+			  </div>
+			<?php endif; ?>
+		</div>
+	</div>
 
 	<form role="form" action="<?php base_url('officefunds/create') ?>"  method="post" class="">
-		 <div class="row">
-			  <div class="col-md-12">
-				  <?php echo validation_errors('<h4 class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></h4>'); ?>
-			  </div>
+		<div class="row">
+		  <div class="col-md-12">
+			  <?php echo validation_errors('<h4 class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></h4>'); ?>
 		  </div>
-			<div class="row">
-				<div class="col-md-12">
-					<div class="box box-primary">
-						
-						<div class="box-body">
-							<div class="form-group col-sm-4">
-								<label for="budget_desc" class="col-sm-5 control-label">Fund Description</label>
-								<input type="text" class="form-control" id="of_desc" required name="of_desc" placeholder="Fund Description"  autocomplete="on">
-							</div>
+		</div>
+		<div class="box box-primary">
+			<div class="box-body">
+				<div class="row">
+					<div class="form-group col-sm-4">
+						<label for="budget_desc" class="control-label">Fund Description</label>
+						<input type="text" class="form-control" id="of_desc" required name="of_desc" placeholder="Fund Description"  autocomplete="on">
+					</div>
 
+					<?php 
+						$curr_month = date('F',mktime(0, 0, 0, date('n')));
+						$months = array("January","February","March","April","May","June","July","August","September","October","November","December");
+					?>
+
+					<div class="form-group col-sm-2">
+					  <label for="from_date" class="control-label">Month Name</label>
+						<select class="form-control"  id="month" name="month_name" style="width:100%;" required>
+							<option value="">Select a Month</option>
+							<?php foreach ($months as $month): ?>
+							<option <?php echo $curr_month==$month?'selected':''; ?> value="<?php echo  $month; ?>"><?php echo $month; ?></option>
+							<?php endforeach ?>
+						</select>
+					</div>
+
+					
+					<div class="form-group col-sm-2">
+					  <label for="year" class="control-label">Year</label>
+					  <input type="number" name="year" value="<?php echo date('Y'); ?>"  class="form-control">
+					</div>
+					
+					<div class="form-group col-md-2">
+					  <label for="report_text_id" class="control-label">Select Report Text</label>
+					  <select id="report_text_id" name="report_text_id" class="form-control select_group" required>
+							<option value="">Select Report Text<option>
 							<?php 
-								$curr_month = date('F',mktime(0, 0, 0, date('n')));
-								$months = array("January","February","March","April","May","June","July","August","September","October","November","December");
+								if(!empty($report_texts)):
+									foreach($report_texts as $report_text):
 							?>
-
-							<div class="form-group col-sm-2">
-							  <label for="from_date" class="control-label">Month Name</label>
-								<select class="form-control"  id="month" name="month_name" style="width:100%;" required>
-									<option value="">Select a Month</option>
-									<?php foreach ($months as $month): ?>
-									<option <?php echo $curr_month==$month?'selected':''; ?> value="<?php echo  $month; ?>"><?php echo $month; ?></option>
-									<?php endforeach ?>
-								</select>
-							</div>
-
-							
-							<div class="form-group col-sm-2">
-							  <label for="year" class="control-label">Year</label>
-							  <input type="number" name="year" value="<?php echo date('Y'); ?>"  class="form-control">
-							</div>
-							
-							<div class="form-group col-md-2">
-							  <label for="report_text_id" class="control-label">Select Report Text</label>
-							  <select id="report_text_id" name="report_text_id" class="form-control select_group" required>
-									<option value="">Select Report Text<option>
-									<?php 
-										if(!empty($report_texts)):
-											foreach($report_texts as $report_text):
-									?>
-											<option value="<?php echo $report_text['id']; ?>"><?php echo $report_text['name']; ?></option>
-									<?php 
-											endforeach;
-										endif;
-									?>
-							  </select>
-							</div>
-							
-						</div>	
-					</div>	
+									<option value="<?php echo $report_text['id']; ?>"><?php echo $report_text['name']; ?></option>
+							<?php 
+									endforeach;
+								endif;
+							?>
+					  </select>
+					</div>
 				</div>	
-			</div>	
+				<div class="form-group col-md-3">
+					<label for="sarok_no" class="control-label">Sarok No</label>
+					<input type="text" class="form-control" id="sarok_no" required name="sarok_no" placeholder="Enter Sarok No"  autocomplete="on">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="date" class="control-label">Select Date</label>
+					<input type="date" class="form-control" id="date" required name="date">
+				</div>
+				<div class="form-group col-md-6">
+					<label for="subject" class="control-label">Subject</label>
+					<textarea  class="form-control" id="subject" required name="subject"  placeholder="Enter Subject"></textarea>
+				</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<div class="box">
+				<div class="box box-primary">
 					<div class="box-body">	
 						<table class="table table-bordered" id="tbl_office_fund">
 							<thead>
@@ -151,13 +161,8 @@
 			</div>
 		</div>
     </form>
-       
-    
 
   </section>
-  <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
 
 <script type="text/javascript">
   var base_url = "<?php echo base_url(); ?>";

@@ -75,6 +75,9 @@ class Officefunds extends Admin_Controller
 		$this->form_validation->set_rules('of_desc', 'Fund Description', 'trim|required');
 		$this->form_validation->set_rules('month_name', 'Month Name', 'trim|required');
 		$this->form_validation->set_rules('year', 'Year', 'trim|required');
+		$this->form_validation->set_rules('date', 'Select Date', 'trim|required');
+		$this->form_validation->set_rules('sarok_no', 'Sarok No', 'trim|required');
+		$this->form_validation->set_rules('subject', 'Cash Grant Subject', 'trim|required');
 		$this->form_validation->set_rules('report_text_id', 'Select Report Text', 'trim|required');
         if ($this->form_validation->run() == TRUE) {
         	$success_id = $this->model_officefund->create();
@@ -125,6 +128,9 @@ class Officefunds extends Admin_Controller
 		$this->form_validation->set_rules('of_desc', 'Fund Description', 'trim|required');
 		$this->form_validation->set_rules('month_name', 'Month Name', 'trim|required');
 		$this->form_validation->set_rules('year', 'Year', 'trim|required');
+		$this->form_validation->set_rules('date', 'Select Date', 'trim|required');
+		$this->form_validation->set_rules('sarok_no', 'Sarok No', 'trim|required');
+		$this->form_validation->set_rules('subject', 'Cash Grant Subject', 'trim|required');
 		$this->form_validation->set_rules('report_text_id', 'Select Report Text', 'trim|required');
 
         if ($this->form_validation->run() == TRUE) {

@@ -30,31 +30,32 @@
   <section class="content">
     <!-- Small boxes (Stat box) -->
     <div class="row">
-      <div class="col-md-12 col-xs-12">
-        <div id="messages"></div>
-        <?php if($this->session->flashdata('success')): ?>
-          <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $this->session->flashdata('success'); ?>
-          </div>
-        <?php elseif($this->session->flashdata('error')): ?>
-          <div class="alert alert-error alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <?php echo $this->session->flashdata('error'); ?>
-          </div>
-        <?php endif; ?>
+		<div class="col-md-12 col-xs-12">
+			<div id="messages"></div>
+			<?php if($this->session->flashdata('success')): ?>
+			  <div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<?php echo $this->session->flashdata('success'); ?>
+			  </div>
+			<?php elseif($this->session->flashdata('error')): ?>
+			  <div class="alert alert-error alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<?php echo $this->session->flashdata('error'); ?>
+			  </div>
+			<?php endif; ?>
+		</div>
+	</div>
 
 	<form role="form" action="<?php base_url('officefunds/update') ?>"  method="post" class="">
-		 <div class="row">
+			<div class="row">
 			  <div class="col-md-12">
 				  <?php echo validation_errors('<h4 class="alert alert-danger alert-dismissable">', ' <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button></h4>'); ?>
 			  </div>
-		  </div>
-		  <div class="row">
-				<div class="col-md-12">
-					<div class="box box-primary">
-						
-						<div class="box-body">
+			</div>
+			<div class="box box-primary">
+				<div class="box-body">
+					<div class="row">
+						<div class="col-md-12">
 							<div class="form-group col-sm-4">
 								<label for="of_desc" class="col-sm-5 control-label">Fund Description</label>
 								<input type="text" class="form-control" id="of_desc" required name="of_desc" placeholder="Fund Description"  value="<?php echo !empty($officefunds['fund_master']['of_desc'])?$officefunds['fund_master']['of_desc']:''; ?>" autocomplete="on">
@@ -90,8 +91,8 @@
 							
 							<div class="form-group col-md-2">
 								<label for="report_text_id" class="control-label">Select Report Text</label>
-								<select id="report_text_id" name="report_text_id" class="form-control select_group" required>
-									<option value="">Select Report Text<option>
+								<select id="report_text_id" name="report_text_id" class="form-control" required>
+									<option value="">Select Report Text</option>
 									<?php 
 										if(!empty($report_texts)):
 											foreach($report_texts as $report_text):
@@ -103,10 +104,23 @@
 									?>
 								</select>
 							</div>
-							
 						</div>	
-					</div>	
-				</div>	
+					</div>				
+					<div class="form-group col-md-3">
+						<label for="sarok_no" class="control-label">Sarok No</label>
+						<input type="text" class="form-control" id="sarok_no" required name="sarok_no" placeholder="Enter Sarok No" value="<?php echo !empty($officefunds['fund_master']['sarok_no'])?$officefunds['fund_master']['sarok_no']:''; ?>">
+					</div>
+					<div class="form-group col-md-3">
+						<label for="date" class="control-label">Select Date</label>
+						<input type="date" class="form-control" id="date" required name="date" value="<?php echo !empty($officefunds['fund_master']['date'])?$officefunds['fund_master']['date']:''; ?>">
+					</div>
+					<div class="form-group col-md-6">
+						<label for="subject" class="control-label">Subject</label>
+						<textarea  class="form-control" id="subject" required name="subject"  placeholder="Enter Subject"><?php echo !empty($officefunds['fund_master']['subject'])?$officefunds['fund_master']['subject']:''; ?></textarea>
+					</div>
+							
+				</div>
+				
 			</div>	
 		<div class="row">
 			<div class="col-md-12">

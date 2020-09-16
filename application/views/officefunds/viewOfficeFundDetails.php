@@ -14,7 +14,7 @@
     </ol>
   </section>
   <style>
-        table, tr, th, td {
+         tr, th, td {
         border: 1px  solid black;
 		text-align:center; 
         }
@@ -51,18 +51,14 @@
                         <div class="box">
                             
                             <div class="box-body" id="tbl_office_fund_report">
-								
                                 <div class="table-responsive">
-									
-								
-								
-								<?php  if(!empty($officefunds)){
-										
-									?>
-								
-								
+								<?php  if(!empty($officefunds)){ ?>
+								<?php 
+									/* echo '<pre>';
+									print_r($officefunds);
+									echo '</pre>';   */
+								?>
                                     <table  style="">
-										
 											<tr>
 												<td colspan="2" style=" border: 0px; text-align:center;"><img src="<?php echo base_url();?>assets/images/cashgrants/officefund.jpg"></td>
 												<td colspan="3" style=" border: 0px; text-align:center;">
@@ -73,20 +69,18 @@
 												</td>
 											</tr>
 											<tr>
-												<td colspan="2" style=" border: 0px; text-align:center;">স্মারক নং: ৪১.০১.২২০০.০০০.১৬.০০৬.২০.৪০   </td>
-												<td colspan="3" style=" border: 0px; text-align:center;">তারিখ: ০৫/০৭/২০২০</td>
+												<td colspan="2" style=" border: 0px; text-align:center;">স্মারক নং:  <?php echo $officefunds['of_master']['sarok_no']?>   </td>
+												<td colspan="3" style=" border: 0px; text-align:center;">তারিখ:  <?php echo date('d/m/Y', strtotime($officefunds['of_master']['date'])); ?> </td>
 											</tr>
 											
 											<tr>
-												<td colspan="5" style=" border: 0px; text-align:left;"><br> &nbsp;&nbsp;&nbsp; বিষয়: রোহিঙ্গা শিশু সুরক্ষা কার্যক্রমের আওতায় বরাদ্দকৃত অর্থ ছাড় করা প্রসংগে।  <br>&nbsp;</td>
+												<td colspan="5" style=" border: 0px; text-align:left;"><br> &nbsp;&nbsp;&nbsp; বিষয়: <?php echo $officefunds['of_master']['subject']; ?>  <br>&nbsp;</td>
 											</tr>
 											<tr>
 												<td colspan="5" style=" border: 0px; text-align:center;">
-												<p><br>উপর্যুক্ত বিষয়ের আলোকে রোহিঙ্গা শিশু সুরক্ষা কার্যক্রম পরিচালনার জন্য জুন ২০২০ মাসে কর্মীদের বেতন ও যাতায়াত খরচ, প্রনোদনা ভাতা, মোবাইল ও ইন্টারনেট বিল, মিটিং খরচ, ভাড়াকৃত গাড়ীর জ¦ালানী তেল ও গাড়ির মাসিক ভাড়া, স্টেশনারী ক্রয়, রক্ষনাবেক্ষন খরচ, অফিস আপ্যায়ন খরচ, ফোকাল পারসনের দৈনিক ভাতা, মোবাইল ও ইন্টারনেট বিল, ফোকাল পারসনের যাতায়াত খরচ, নগদ সহায়তা বিতরনের খরচ, অফিস ভাড়া ও অন্যান্য আনুষাঙ্গিক খাতে মোট  <?php echo $officefunds['of_master']['total_amout']; ?>/-  টাকা খরচের খাত ভিত্তিক চাহিদা নিম্নরুপ :	</p><br> &nbsp;</td>
+												<p><?php echo $officefunds['of_master']['header1'];?></p> &nbsp;</td>
 											</tr>
-										<!--caption style="border: 1px  solid black; text-align:center;">
-											<strong> <?php echo $officefunds['of_master']['of_desc'];?> &nbsp; Month Name : <?php $month_year=explode(',', $officefunds['of_master']['month_name']); echo !empty($month_year[0])?$month_year[0]:'';?> , Year: <?php echo !empty($month_year[1])?$month_year[1]:''; ?></strong>
-										</caption-->
+										
                                        
                                             <tr>
                                                 <th style="border: 1px  solid black; text-align:center;">Sl No</th>
@@ -119,26 +113,23 @@
                                                 <th><?php echo $gross_total; ?></th>
                                             </tr>
 											<tr>
+                                                <td colspan="5">কথায়ঃ <?php echo number_to_bangla($gross_total); ?>  টাকা। </td>
+                                            </tr>
+											<tr>
 												<td colspan="5">
 													<p>
+														
 														<br>
-														<br>
-														উপরোক্ত ছক মোতাবেক জুন ২০২০ মাসে রোহিঙ্গা শিশু সুরক্ষা কার্যক্রম পরিচালনার জন্য
-														৩০টি খাতের খরচের  (২০২-২২৪)    ) = ২৩ টি বিলে ম্টো চাহিদা <?php echo $officefunds['of_master']['total_amout'];?>( কথায় : <?php echo number_to_bangla($officefunds['of_master']['total_amout']); ?>)/- টাকা সোনালী ব্যাংক লি:, কক্সবাজার শাখার চলতি হিসাব নং : ০৯০৩৫০২০০২১৪১ তে প্রেরণ করার জন্য মহাপরিচালক সমাজসেবা অধিদফতরকে অনুরোধ করা হলো
+														<?php echo $officefunds['of_master']['footer1'];?>
 													</p>
 												</td>
 											</tr>
 											<tr>
-												<td colspan="3"  style=" border: 0px; text-align:center;"><br><br>মহাপরিচালক <br>							                    
-												সমাজসেবা অধিদফতর<br>					                         
-												ই-৮/বি-১, আগারগাও, শেরেবাংলা নগর   <br>                                                  
-												ঢাকা-১২০৭</td>
+												<td colspan="3"  style=" border: 0px; text-align:center;">
+													<?php echo $officefunds['of_master']['signature_left'];?>
+												</td>
 												<td colspan="2"  style=" border: 0px; text-align:center;">
-													<br><br>
-													 মো: ফরিদুল আলম<br>
-													 উপপরিচালক<br>
-													 জেলা সমাজসেবা কার্যালয়<br>
-													কক্সবাজার<br>
+													<?php echo $officefunds['of_master']['signature_right'];?>
 												</td>
 											</tr>
                                         </tbody>
@@ -171,6 +162,7 @@
   <script>
     function printData(){
        var divToPrint=document.getElementById("tbl_office_fund_report");
+	   
        var htmlToPrint = '' +
           '<style type="text/css">' +
           'table {' +
@@ -181,10 +173,13 @@
 		  'text-align: center;' +
           '}' +
           '</style>';
-          htmlToPrint += divToPrint.outerHTML;
-          newWin = window.open("");
-          newWin.document.write(htmlToPrint);
-          newWin.print();
-          newWin.close();
+		  
+		  htmlToPrint += divToPrint.outerHTML;
+		  newWin = window.open("");
+		  newWin.document.write(htmlToPrint);
+		  newWin.print();
+		  newWin.close();
+			
+			
     }
 </script>

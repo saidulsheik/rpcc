@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 12, 2020 at 07:29 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.3.21
+-- Generation Time: Sep 16, 2020 at 11:19 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -514,11 +515,11 @@ INSERT INTO `cg_details` (`id`, `cg_id`, `camp_id`, `no_of_child`, `no_of_care`,
 (132, 5, 28, 11, 10, 20000),
 (133, 5, 30, 10, 10, 20000),
 (134, 5, 13, 10, 10, 20000),
-(135, 8, 32, 10, 10, 20000),
-(136, 8, 30, 10, 10, 20000),
-(137, 8, 26, 10, 10, 20000),
 (138, 6, 32, 11, 10, 20000),
-(139, 6, 31, 11, 10, 20000);
+(139, 6, 31, 11, 10, 20000),
+(143, 8, 32, 10, 10, 20000),
+(144, 8, 30, 10, 10, 20000),
+(145, 8, 26, 10, 10, 20000);
 
 -- --------------------------------------------------------
 
@@ -532,8 +533,11 @@ CREATE TABLE `cg_master` (
   `cg_desc` varchar(250) NOT NULL,
   `total_amout` float NOT NULL,
   `report_text_id` int(11) UNSIGNED NOT NULL,
+  `sarok_no` varchar(150) CHARACTER SET utf8 NOT NULL,
+  `subject` text CHARACTER SET utf8 NOT NULL,
+  `date` date NOT NULL,
   `status` int(1) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL
@@ -543,14 +547,14 @@ CREATE TABLE `cg_master` (
 -- Dumping data for table `cg_master`
 --
 
-INSERT INTO `cg_master` (`id`, `month_name`, `cg_desc`, `total_amout`, `report_text_id`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, '2020-04-01', 'test data', 0, 0, 1, '2020-08-10 12:33:03', '0000-00-00 00:00:00', 1, NULL),
-(3, 'August', 'test', 48000, 0, 1, '2020-08-11 16:14:22', '0000-00-00 00:00:00', 1, NULL),
-(4, 'August', 'For the mon', 32000, 0, 1, '2020-08-11 17:04:52', '0000-00-00 00:00:00', 1, NULL),
-(5, 'August', 'For the mon', 100000, 0, 1, '2020-08-11 17:07:14', '0000-00-00 00:00:00', 1, 1),
-(6, 'August', 'For the month of August', 40000, 3, 1, '2020-08-11 17:15:04', '0000-00-00 00:00:00', 1, 1),
-(7, 'August', 'Test data for August', 60000, 0, 1, '2020-08-11 17:24:05', '0000-00-00 00:00:00', 1, 1),
-(8, 'July', 'test cash allowance', 60000, 3, 1, '2020-08-11 19:06:39', '0000-00-00 00:00:00', 1, 1);
+INSERT INTO `cg_master` (`id`, `month_name`, `cg_desc`, `total_amout`, `report_text_id`, `sarok_no`, `subject`, `date`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(1, '2020-04-01', 'test data', 0, 0, '', '', '0000-00-00', 1, '2020-08-10 12:33:03', '0000-00-00 00:00:00', 1, NULL),
+(3, 'August', 'test', 48000, 0, '', '', '0000-00-00', 1, '2020-08-11 16:14:22', '0000-00-00 00:00:00', 1, NULL),
+(4, 'August', 'For the mon', 32000, 0, '', '', '0000-00-00', 1, '2020-08-11 17:04:52', '0000-00-00 00:00:00', 1, NULL),
+(5, 'August', 'For the mon', 100000, 0, '', '', '0000-00-00', 1, '2020-08-11 17:07:14', '0000-00-00 00:00:00', 1, 1),
+(6, 'August', 'For the month of August', 40000, 3, '', '', '0000-00-00', 1, '2020-08-11 17:15:04', '0000-00-00 00:00:00', 1, 1),
+(7, 'August', 'Test data for August', 60000, 0, '', '', '0000-00-00', 1, '2020-08-11 17:24:05', '0000-00-00 00:00:00', 1, 1),
+(8, 'July', 'Test cash allowance', 60000, 3, '৪১.০১.২২০০.০০০.১৬.০০৬.২০.৩৭', 'রোহিঙ্গা শিশু সুরক্ষা কার্যক্রমের অর্থ ছাড় প্রসঙ্গে।', '2020-09-16', 1, '2020-08-11 19:06:39', '0000-00-00 00:00:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -617,34 +621,34 @@ CREATE TABLE `of_details` (
 --
 
 INSERT INTO `of_details` (`id`, `of_id`, `acc_h_id`, `bill_no`, `qty`, `amount`) VALUES
-(705, 1, 1, '3636', 10, 905000),
-(706, 1, 2, '22', 10, 5609000),
-(707, 1, 3, '2222', 14, 7000),
-(708, 1, 4, '5000', 500, 250000),
-(709, 1, 5, '2323', 3, 1000),
-(710, 1, 6, '8', 7, 0),
-(711, 1, 7, '23', 15, 0),
-(712, 1, 9, '9', 8, 0),
-(713, 1, 13, '31', 29, 0),
-(714, 1, 14, '16', 14, 0),
-(715, 1, 15, '34', 28, 0),
-(716, 1, 16, '12', 5, 0),
-(717, 1, 17, '23', 18, 0),
-(718, 1, 18, '15', 10, 0),
-(719, 1, 19, '26', 25, 0),
-(720, 1, 20, '11', 9, 0),
-(721, 1, 21, '4', 3, 0),
-(722, 1, 22, '9', 7, 0),
-(723, 1, 24, '7', 5, 0),
-(724, 1, 25, '7', 5, 0),
-(725, 1, 26, '43', 33, 0),
-(726, 1, 27, '13', 8, 0),
-(727, 1, 29, '0', 10, 500000),
-(728, 1, 39, '0', 2, 140000),
-(729, 1, 70, '4444', 44, 66000),
-(730, 1, 71, '0', 4, 720000),
-(731, 1, 72, '0', 2, 10000),
-(732, 1, 73, '0', 2, 20000);
+(733, 1, 1, '3636', 10, 905000),
+(734, 1, 2, '22', 10, 5609000),
+(735, 1, 3, '2222', 14, 7000),
+(736, 1, 4, '5000', 500, 250000),
+(737, 1, 5, '2323', 3, 1000),
+(738, 1, 6, '8', 7, 0),
+(739, 1, 7, '23', 15, 0),
+(740, 1, 9, '9', 8, 0),
+(741, 1, 13, '31', 29, 0),
+(742, 1, 14, '16', 14, 0),
+(743, 1, 15, '34', 28, 0),
+(744, 1, 16, '12', 5, 0),
+(745, 1, 17, '23', 18, 0),
+(746, 1, 18, '15', 10, 0),
+(747, 1, 19, '26', 25, 0),
+(748, 1, 20, '11', 9, 0),
+(749, 1, 21, '4', 3, 0),
+(750, 1, 22, '9', 7, 0),
+(751, 1, 24, '7', 5, 0),
+(752, 1, 25, '7', 5, 0),
+(753, 1, 26, '43', 33, 0),
+(754, 1, 27, '13', 8, 0),
+(755, 1, 29, '0', 10, 500000),
+(756, 1, 39, '0', 2, 140000),
+(757, 1, 70, '4444', 44, 66000),
+(758, 1, 71, '0', 4, 720000),
+(759, 1, 72, '0', 2, 10000),
+(760, 1, 73, '0', 2, 20000);
 
 -- --------------------------------------------------------
 
@@ -658,8 +662,11 @@ CREATE TABLE `of_master` (
   `of_desc` varchar(250) CHARACTER SET utf8 NOT NULL,
   `total_amout` float NOT NULL,
   `report_text_id` double UNSIGNED NOT NULL,
+  `sarok_no` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `date` date NOT NULL,
+  `subject` text CHARACTER SET utf8 NOT NULL,
   `status` int(1) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL
@@ -669,8 +676,8 @@ CREATE TABLE `of_master` (
 -- Dumping data for table `of_master`
 --
 
-INSERT INTO `of_master` (`id`, `month_name`, `of_desc`, `total_amout`, `report_text_id`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
-(1, 'February,2020', 'রোহিঙ্গা শিশু সুরক্ষা কার্যক্রমের আওতায় বরাদ্দকৃত অর্থ ছাড় করা প্রসংগে।', 8228000, 1, 1, '2020-08-21 23:29:29', '0000-00-00 00:00:00', 1, 1);
+INSERT INTO `of_master` (`id`, `month_name`, `of_desc`, `total_amout`, `report_text_id`, `sarok_no`, `date`, `subject`, `status`, `created_at`, `updated_at`, `created_by`, `updated_by`) VALUES
+(1, 'February,2020', 'রোহিঙ্গা শিশু সুরক্ষা কার্যক্রমের আওতায় বরাদ্দকৃত অর্থ ছাড় করা প্রসংগে।', 8228000, 1, '৪১.০১.২২০০.০০০.১৬.০০৬.২০.৩৭', '2020-09-17', 'রোহিঙ্গা শিশু সুরক্ষা কার্যক্রমের আওতায় বরাদ্দকৃত অর্থ ছাড় করা প্রসংগে।', 1, '2020-08-21 23:29:29', '0000-00-00 00:00:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -758,7 +765,7 @@ CREATE TABLE `report_text` (
 INSERT INTO `report_text` (`id`, `name`, `header1`, `header2`, `footer1`, `footer2`, `signature_left`, `signature_right`) VALUES
 (1, 'Test Name', 'Test Header 1', 'Test Header 2', 'Test Footer 1', 'Test Footer 2', 'Signature left', 'signature right'),
 (2, 'For office fund', '<p>Office fund header 1</p>', '<p>Office fund header 2</p>', '<p>office fund footer 1</p>', '<p>office fund footer 2</p>', '<p>left sign</p>', '<p>right sign</p>'),
-(3, 'For Unicef Fund', '<p>Report Heade1</p><p>For f</p><p>Unicef Fund</p>', '<p>\r\n\r\n</p><p>Report Header</p><p>Forf</p><p>Unicef Fund</p>\r\n\r\n<br><p></p>', '<p>\r\n\r\n</p><p>Report footer</p><p>Forf</p><p>Unicef Fund</p>\r\n\r\n<br><p></p>', '<p>\r\n\r\n</p><p>Report Footer</p><p>Forf</p><p>Unicef Fund</p>\r\n\r\n<br><p></p>', '<p>\r\n\r\n</p><p>Report Footer</p><p>Forf</p><p>Unicef Fund</p>\r\n\r\n<br><p></p>', '<p>\r\n\r\n</p><p>Report Footer</p><p>Forf</p><p>Unicef Fund</p>\r\n\r\n<br><p></p>');
+(3, 'For Unicef Fund', '<p></p>\r\n\r\nউপরোক্ত 3 টি ক্যাম্পে 30 জন কেয়ারগিভারকে 2000 টাকা করে ০২ মাসের নগদ সহায়তা প্রদানের জন্য মোট 60000 (কথায়ঃ ষাট হাজার )টাকা প্রয়োজন ।\r\n\r\n<p></p>', '<p>\r\n\r\n</p><p>Report Header</p><p>Forf</p><p>Unicef Fund</p>\r\n\r\n<br><p></p>', '<p>\r\n\r\n</p><p></p>\r\n\r\nউপরোক্ত 3 টি ক্যাম্পে 30 জন কেয়ারগিভারকে 2000 টাকা করে ০২ মাসের নগদ সহায়তা প্রদানের জন্য মোট 60000 (কথায়ঃ ষাট হাজার )টাকা প্রয়োজন ।\r\n\r\n<br><p></p>', '<p>\r\n\r\n</p><p>Report Footer</p><p>Forf</p><p>Unicef Fund</p>\r\n\r\n<br><p></p>', '<p>\r\n\r\n</p><p></p>\r\n\r\n<p>মহাপরিচালক<br>সমাজসেবা অধিদফতর<br>ই-৮/বি-১, আগারগাও, শেরেবাংলা নগর<br>ঢাকা-১২০৭</p><p></p>', '<p>\r\n\r\n</p><p></p>\r\n\r\n<p>মোহা: আল-আমিন জামালী<br>বিকল্প ফোকাল পয়েন্ট</p><p></p>');
 
 -- --------------------------------------------------------
 
@@ -1239,7 +1246,7 @@ ALTER TABLE `budget_master`
 -- AUTO_INCREMENT for table `cg_details`
 --
 ALTER TABLE `cg_details`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=140;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
 -- AUTO_INCREMENT for table `cg_master`
@@ -1263,7 +1270,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `of_details`
 --
 ALTER TABLE `of_details`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=733;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=761;
 
 --
 -- AUTO_INCREMENT for table `of_master`
