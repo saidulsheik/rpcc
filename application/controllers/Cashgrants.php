@@ -53,8 +53,10 @@ class Cashgrants extends Admin_Controller
 			$result['data'][$key] = array(
 				$value['month_name'],
 				$value['cg_desc'],
+				$value['subject'],
+				date('d-m-y', strtotime($value['date'])),
+				$value['sarok_no'],
 				$value['total_amout'],
-				$value['status'],
 				$value['created_at'],
 				$buttons
 			);
@@ -71,6 +73,10 @@ class Cashgrants extends Admin_Controller
             redirect('dashboard', 'refresh');
         }
 		$this->data['page_title'] = 'Add Cash Grant';
+		$this->form_validation->set_rules('cg_desc', 'Cash Grant Description', 'trim|required');
+		$this->form_validation->set_rules('date', 'Select Date', 'trim|required');
+		$this->form_validation->set_rules('sarok_no', 'Sarok No', 'trim|required');
+		$this->form_validation->set_rules('subject', 'Cash Grant Subject', 'trim|required');
 		$this->form_validation->set_rules('camp_id[]', 'Camp name', 'trim|required');
 		$this->form_validation->set_rules('no_of_care[]', 'No of Care name', 'trim|required');
 		$this->form_validation->set_rules('no_of_child[]', 'No of Child', 'trim|required');
@@ -119,6 +125,11 @@ class Cashgrants extends Admin_Controller
 		}
 		
 		$this->data['page_title'] = 'Update Cash Grant';
+		
+		$this->form_validation->set_rules('cg_desc', 'Cash Grant Description', 'trim|required');
+		$this->form_validation->set_rules('date', 'Select Date', 'trim|required');
+		$this->form_validation->set_rules('sarok_no', 'Sarok No', 'trim|required');
+		$this->form_validation->set_rules('subject', 'Cash Grant Subject', 'trim|required');
 		$this->form_validation->set_rules('camp_id[]', 'Camp name', 'trim|required');
 		$this->form_validation->set_rules('no_of_care[]', 'No of Care name', 'trim|required');
 		$this->form_validation->set_rules('no_of_child[]', 'No of Child', 'trim|required');
@@ -165,7 +176,11 @@ class Cashgrants extends Admin_Controller
         }
         
 		if($id) {
-			$cashgrant_master=$this->db->query(" SELECT * FROM cg_master WHERE id = $id")->result();
+			$cashgrant_master=$this->db->query(" SELECT cg_master.*, report_text.* FROM cg_master LEFT JOIN report_text ON report_text.id=cg_master.report_text_id WHERE cg_master.id = $id")->result();
+			
+			/* echo '<pre>';
+			print_r($cashgrant_master);
+			echo '</pre>'; */
 			$cashgrant_data=$this->db->query("
 									SELECT
 										cg_details.no_of_child,
@@ -181,9 +196,7 @@ class Cashgrants extends Admin_Controller
 										cg_details.cg_id =	$id
 							")->result();
 							
-							/* echo '<pre>';
-							print_r($cashgrant_data);
-							echo '</pre>'; */
+							
 							
 			?>
 			<!DOCTYPE html>
@@ -204,61 +217,42 @@ class Cashgrants extends Admin_Controller
 			  <div class="row">
 				<table class="table table-border">
 					<tr>
-						<td><img src="<?php echo base_url();?>/assets/images/cashgrants/image001.jpg"></td>
+						<td><img src="<?php echo base_url();?>/assets/images/cashgrants/officefund.jpg"></td>
 						<td>
-							<p>
-								গণপ্রজাতন্ত্রীবাংলাদেশ সরকার<br>
-								সমাজসেবা অধিদপ্তর<br>
-								রোহিঙ্গা শিশুসুরক্ষা কার্যক্রম<br>
-								সোনারপাড়া, উখিয়া কক্সবাজার
-								
-							</p>  
-							
-							
+							গণপ্রজাতন্ত্রীবাংলাদেশ সরকার<br>
+							সমাজসেবা অধিদপ্তর<br>
+							রোহিঙ্গা শিশুসুরক্ষা কার্যক্রম<br>
+							সোনারপাড়া, উখিয়া কক্সবাজার
 						</td>
-						<td><img src="<?php echo base_url();?>/assets/images/cashgrants/image002.jpg"></td> 
+						<td></td> 
 						
 					</tr>
 				</table>
 				
-				<!--table class="table table-border">
-					<thead>
-						<tr>
-							<th>ক্রমিক নং</th>
-							<th>ক্যাম্প নং</td>
-							<th>উপকারভোগী  শিশুর সংখ্যা</th> 
-							<th>ফোস্টার  কেয়ারগিবার সংখ্যা</th> 
-							<th>নগদ সহায়তার পরিমান</th>  
-							<th>মাসের সংখ্যা</th> 
-							<th>নগদ সহায়তার বিতরনের জন্য অর্থ সহায়তা</th>   
-						</tr> 
-					</thead>
-					<tbody>
-						<tr>
-							<td>ক্রমিক নং</td>
-							<td>ক্যাম্প নং</td>
-							<td>উপকারভোগী  শিশুর সংখ্যা</td> 
-							<td>ফোস্টার  কেয়ারগিবার সংখ্যা</td> 
-							<td>নগদ সহায়তার পরিমান</td>  
-							<td>মাসের সংখ্যা</td> 
-							<td>নগদ সহায়তার বিতরনের জন্য অর্থ সহায়তা</td>   
-						</tr>
-					</tbody>
-				</table-->
-				<table class="table table-border">
+				
+				<table class="table">
 					<?php if(!empty($cashgrant_master)): ?>
 					<thead>
 						<tr>
-							<th>Month Name : <?php echo $cashgrant_master[0]->month_name;?></th>
-							<th>Description : <?php echo $cashgrant_master[0]->cg_desc;?></th>
-							<th>Total Amount : <?php echo $cashgrant_master[0]->total_amout;?></th>
-							<th>Created Date : <?php echo $cashgrant_master[0]->created_at;?></th>
-							<th colspan="2"></th>
+							<th>Sarok No : <?php echo $cashgrant_master[0]->sarok_no;?></th>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<th>Date : <?php echo date('d-m-Y', strtotime($cashgrant_master[0]->date));?></th>
 						</tr>
+						<tr>
+							<td colspan="7">Subject : <?php echo $cashgrant_master[0]->subject;?></td>
+						</tr>
+						
+						<tr>
+							<td colspan="7"><?php echo $cashgrant_master[0]->header1;?></td>
+						</tr>
+						
 					</thead>
 					<?php endif; ?>
 					<thead>
 						<tr>
+							<th>Sl#</th>
 							<th>Upzilla Name</th>
 							<th>Area Name</th>
 							<th>Camp ID</th>
@@ -274,14 +268,16 @@ class Cashgrants extends Admin_Controller
 								$total_child=array();
 								$total_amount=array();
 								$total_care=array();
+								$i=0;
 								foreach($cashgrant_data as $cashgrant_value): 
+								$i++;
 									$total_child[]=$cashgrant_value->no_of_child;
 									$total_amount[]=$cashgrant_value->amount;
 									$total_care[]=$cashgrant_value->no_of_care;
 									$campArray[]=$cashgrant_value->camp_id;
-									//print_r($cashgrant_value);
 									?>
 										<tr>
+											
 											<td><?php echo $cashgrant_value->upailla; ?></td>
 											<td><?php echo $cashgrant_value->carea; ?></td>
 											<td><?php echo $cashgrant_value->camp_id; ?></td>	
@@ -294,7 +290,7 @@ class Cashgrants extends Admin_Controller
 								?>
 								
 								<tr>
-									<th colspan="3">Grand Total</th>
+									<th colspan="4">Grand Total</th>
 									<th><?php echo array_sum($total_child); ?></th>
 									<th><?php echo array_sum($total_care); ?></th>
 									<th><?php echo array_sum($total_amount); ?></th>
@@ -313,7 +309,13 @@ class Cashgrants extends Admin_Controller
 				<table class="table table-border">
 					<tr>
 						<td>
-							<p>উপরোক্ত <?php echo count($campArray); ?> টি ক্যাম্পে <?php echo array_sum($total_care); ?> জন কেয়ারগিভারকে 2000 টাকা করে ০২ মাসের নগদ সহায়তা প্রদানের জন্য মোট <?php echo $number=array_sum($total_amount); ?>  (কথায়ঃ <?php echo number_to_bangla($number); ?> )টাকা প্রয়োজন । </p>
+							কথায়ঃ  <?php echo number_to_bangla(array_sum($total_amount)); ?> 
+						</td>
+						
+					</tr>
+					<tr>
+						<td>
+							<?php echo $cashgrant_master[0]->footer1;?>
 						</td>
 						
 					</tr>
@@ -323,16 +325,10 @@ class Cashgrants extends Admin_Controller
 				<table class="table table-border">
 					<tr>
 						<td>
-							<p>
-							মহাপরিচালক	<br>						                   
-							সমাজসেবা অধিদফতর	<br>							
-							ই-৮/বি-১, আগারগাও,  শেরেবাংলা নগর <br>
-							ঢাকা-১২০৭ <br>
-							</p>  
+							<?php echo $cashgrant_master[0]->signature_left;?>
 						</td>
 						<td class="pull-right">
-							<p>মোহা: আল-আমিন জামালী <br>
-								বিকল্প ফোকাল পয়েন্ট</p>
+							<?php echo $cashgrant_master[0]->signature_right;?>
 						</td> 
 						
 					</tr>

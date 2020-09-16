@@ -50,8 +50,10 @@
               <tr>
                 <th>Name of Month</th>
                 <th>Cash Grant Description</th>
+                <th>Subject</th>
+                <th>Date</th>
+                <th>Sarok No</th>
                 <th>Total Amount</th>
-                <th>Status</th>
                 <th>Created Time</th>
                 <?php if(in_array('updateCashgrant', $user_permission) || in_array('viewCashgrant', $user_permission) || in_array('deleteCashgrant', $user_permission)): ?>
                   <th>Action</th>

@@ -38,6 +38,9 @@ class Model_cashgrant extends CI_Model
     		'month_name' => $this->input->post('month_name'),
     		'total_amout' => $this->input->post('gross_amount_value'),
 			'report_text_id' => $this->input->post('report_text_id'),
+			'sarok_no' => $this->input->post('sarok_no'),
+			'date' => $this->input->post('date'),
+			'subject' => $this->input->post('subject'),
     		'status' => 1,
     		'created_by' => $user_id
     	);
@@ -77,6 +80,9 @@ class Model_cashgrant extends CI_Model
 				'month_name' => $this->input->post('month_name'),
 				'total_amout' => $this->input->post('gross_amount'),
 				'report_text_id' => $this->input->post('report_text_id'),
+				'sarok_no' => $this->input->post('sarok_no'),
+				'date' => $this->input->post('date'),
+				'subject' => $this->input->post('subject'),
 				'status' => 1,
 				'updated_by' => $user_id
 			);

@@ -53,7 +53,7 @@
 				<div class="row">
 					
 					<div class="form-group col-md-3">
-						<label for="gross_amount" class="col-sm-5 control-label">Cash Grant Name</label>
+						<label for="gross_amount" class="control-label">Cash Grant Name</label>
 						<input type="text" class="form-control" id="cg_desc" required name="cg_desc" value="<?php echo $cg['cg_master']['cg_desc']; ?>" placeholder=""  autocomplete="on">
 					</div>
 					<?php 
@@ -61,7 +61,7 @@
 						$months = array("January","February","March","April","May","June","July","August","September","October","November","December");
 					?>
 						<div class="form-group col-md-3">
-							<label for="gross_amount" class="col-sm-5 control-label">Select Month</label>
+							<label for="gross_amount" class=" control-label">Select Month</label>
 							<select class="form-control select_group"  id="month" name="month_name" style="width:100%;" required>
 								<option value="">Select a Month</option>
 								<?php foreach ($months as $month): ?>
@@ -85,9 +85,23 @@
 							?>
 						</select>
 					</div>
-					
-					 
+					<div class="form-group col-md-3">
+						<label for="sarok_no" class="control-label">Sarok No</label>
+						<input type="text" class="form-control" id="sarok_no" required name="sarok_no" placeholder="Enter Sarok No"  value="<?php echo $cg['cg_master']['sarok_no']; ?>">
+					</div>
 				</div> 
+				<div class="row">
+					<div class="form-group col-md-3">
+						<label for="date" class="control-label">Select Date</label>
+						<input type="date" class="form-control" id="date" required name="date" value="<?php echo $cg['cg_master']['date']; ?>">
+					</div>
+					
+					<div class="form-group col-md-9">
+						<label for="subject" class="control-label">Subject</label>
+						<textarea  class="form-control" id="subject" required name="subject"  placeholder="Enter Subject"><?php echo $cg['cg_master']['subject']; ?></textarea>
+					</div>
+					
+				</div>
 				
                 <table class="table table-bordered" id="product_info_table">
                   <thead>
